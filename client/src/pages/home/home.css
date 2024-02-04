@@ -1,0 +1,125 @@
+.home-first {
+    display: flex;
+    height: 95vh;
+}
+.home-first-flex {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.home-first-ctn {
+    height: 35vh;
+    width: 85vw;
+    border-bottom: 2px solid #EEEEEE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.home-res {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.home-res-details {
+    width: 60%;
+    margin-right: 10px;
+}
+.home-res-ctn {
+    display: flex;
+    gap: 20px;
+}
+.home-res-box {
+    width: 20%;
+    height: 20vh;
+    background: white;
+    border: 2px solid #EEEEEE;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.home-res-inv {
+    width: 30%;
+    margin-left: 10px;
+}
+.home-inv-ctn {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+.home-inv-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #EEEEEE;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+}
+.home-inv-box p {
+    margin: 0;
+}
+h2 {
+    font-weight: 400;
+}
+.home-first-title {
+    margin: 20px 0;
+}
+.home-second {
+    width: 85vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home-second-title {
+    margin: 5px 1.5vw;
+    height: 10%;
+}
+.home-second-ctn {
+    width: 60%;
+    height: 50vh;
+    border: 2px solid #EEEEEE;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+.home-second-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    height: 90%;
+}
+.home-second-grid-box{
+    background: white;
+    border: 2px solid #EEEEEE;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home-second-grid-box p{
+    margin: 0;
+}
+.home-third-ctn {
+    width: 30%;
+    height: 50vh;
+    border: 2px solid #EEEEEE;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.home-border {
+    border-bottom: 2px solid #EEEEEE;
+}
+.home-first-ctn:hover,
+.home-second-ctn:hover,
+.home-third-ctn:hover {
+    background: #F5FBFF;
+}
+.logo {
+    width: 40%;
+}

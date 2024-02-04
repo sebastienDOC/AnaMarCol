@@ -1,0 +1,44 @@
+.login-ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    height: 100vh;
+    background: url('../../assets/login.jpg') no-repeat;
+}
+.login-welcome {
+    border: 5px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: black;
+    padding: 10px;
+}
+.login-welcome h1, h2 {
+    margin: 25px 10px;
+}
+.login-logs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    border: 5px solid black;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: black;
+    padding: 10px;
+}
+.login-logs button {
+    margin-top: 10px;
+    background: none;
+    border: none;
+}
+.login-logs a {
+    color: white;
+    text-decoration: none;
+}
+.login-welcome,
+.login-logs {
+    width: 15%;
+}

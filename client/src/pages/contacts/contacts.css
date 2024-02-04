@@ -1,0 +1,59 @@
+.contact-ctn {
+    display: flex;
+}
+.contact-flex {
+    height: 90vh;
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 25px;
+}
+.contact-flex h2{
+    margin: 0;
+}
+.contact-adresse {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+.contact-adresse h2,
+.contact-adresse h3 {
+    margin: 0;
+}
+.contact-adresse-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contact-chef,
+.contact-sous-chef, 
+.contact-peuple{
+    display: flex;
+}
+.contact-tech,
+.contact-hotline,
+.contact-ext {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+.contact-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+}
+.contact-user h2,
+.contact-user h3, 
+.contact-user p {
+    margin: 0;
+}
+h2.contact-h2 {
+    margin-bottom: 20px;
+}
+.user-img {
+    width: 100px;
+}
