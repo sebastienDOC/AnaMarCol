@@ -19,12 +19,6 @@ export default function Menu() {
                         Articles
                     </li>
                 </Link>
-                <Link to='/commandes'>
-                    <li>
-                        <i className="fa-solid fa-clipboard"></i>
-                        Commandes
-                    </li>
-                </Link>
                 <Link to='/contacts'>
                     <li>
                         <i className="fa-solid fa-user"></i>

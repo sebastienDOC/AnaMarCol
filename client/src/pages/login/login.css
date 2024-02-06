@@ -29,16 +29,18 @@
     background-color: black;
     padding: 10px;
 }
-.login-logs button {
+.form-btn {
     margin-top: 10px;
     background: none;
     border: none;
-}
-.login-logs a {
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 .login-welcome,
 .login-logs {
     width: 15%;
+}
+.error {
+    color: red;
 }

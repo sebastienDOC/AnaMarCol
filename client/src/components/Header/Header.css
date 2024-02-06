@@ -34,6 +34,7 @@
 }
 .header-icons {
     color: #6F6F6F; 
+    display: flex;
 }
 .btn-logout {
     padding: 0;

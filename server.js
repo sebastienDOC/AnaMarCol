@@ -11,14 +11,14 @@ const app = express();
 
 const corsOptions = {
     origin: process.env.CLIENT_URL,
-    credential: true,
+    credentials: true,
     'allowedHeaders': ['sessionID', 'Content-Type'],
     'exposedHeaders': ['sessionID'],
     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
     'preflightContinue': false
 }
-app.use(cors({corsOptions}))
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
