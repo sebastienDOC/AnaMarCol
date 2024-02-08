@@ -4,15 +4,16 @@ const ItemSchema = new mongoose.Schema(
     {
         posterId: {
             type: String,
-            required: true,
+            // required: true,
         },
         denomination: {
             type: String,
             trim: true,
+            unique: true,
             required: true,
         },
         quantite: {
-            type: Number,
+            type: String,
             required: true,
         },
         fournisseur: {
@@ -21,7 +22,11 @@ const ItemSchema = new mongoose.Schema(
         },
         image: {
             type: String,
-            default: "",
+            default: "./logo_small.jpg",
+        },
+        etat: {
+            type: String,
+            required: true
         }
     },
     {

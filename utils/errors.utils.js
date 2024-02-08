@@ -50,3 +50,21 @@ module.exports.uploadErrors = (err, detectedMimeType, fileName) => {
 
     return errors;
 };
+
+// Erreurs pendant la création d'article
+module.exports.createItemErrors = (err) => {
+    let errors = { denomination :'', fournisseur:'', etat : '', quantite : ''}
+
+    if (err.message.includes('denomination')) 
+        errors.denomination = "Dénomination incorrect ou déjà prise"
+    if (err.message.includes('fournisseur')) 
+        errors.fournisseur = "Nommez un fournisseur valide"
+    if (err.message.includes('etat')) 
+        errors.etat = "L'état de la pièce doit être Neuf ou SAV"
+    if (err.message.includes('quantite')) 
+        errors.quantite = "La quantité attendu est un nombre"
+    if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('denomination'))
+        errors.denomination = "Cette dénomination est déjà prise"
+
+    return errors
+}

@@ -1,0 +1,7 @@
+.tri-ctn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 25px auto 0;
+}

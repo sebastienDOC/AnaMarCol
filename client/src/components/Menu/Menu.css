@@ -1,7 +1,7 @@
 .menu-ctn {
     margin: 0;
     height: 95vh;
-    width: 15vw;
+    min-width: 225px;
     color: white;
     background-color: #2D373C;
     display: flex;
@@ -35,4 +35,34 @@
 .menu-list a{
     width: 100%;
     text-align: left;
+}
+li.li-btn{
+    padding: 5px;
+}
+li.li-btn button{
+    background: none;
+    border: none;
+    color: white;
+}
+li.li-btn button:hover{
+    background: #1F292E;
+    color: #207CBA;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.modal-content {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
 }

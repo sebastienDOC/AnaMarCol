@@ -1,0 +1,26 @@
+.modal-content {
+    padding-top: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.modal-content button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 15%;
+    background: black;
+    border: none;
+    color: white;
+    padding: 5px;
+}
+.modal-content button:hover{
+    background: red;
+}
+#article-add-form {
+    display: flex;
+    flex-direction: column;
+}
+#article-add-form label{
+    text-align: center;
+}

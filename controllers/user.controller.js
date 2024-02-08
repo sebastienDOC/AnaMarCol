@@ -45,6 +45,7 @@ module.exports.updateUser = async (req, res) => {
         if (req.body.password) user.password = req.body.password;
         if (req.body.poste) user.poste = req.body.poste;
         if (req.body.numero) user.numero = req.body.numero;
+        if (req.body.picture) user.picture = req.body.picture;
 
         const updatedUser = await user.save();
 

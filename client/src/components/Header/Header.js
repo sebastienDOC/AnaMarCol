@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UidContext } from '../AppContext';
 import Logout from '../Logout/Logout';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
     const uid = useContext(UidContext)
-
-    
+    const userData = useSelector((state) => state.userReducer)
 
     return (
         <div className='header'>
@@ -33,7 +33,7 @@ export default function Header() {
                         placeholder='Recherche' 
                     /> */}
                     <div className='header-welcome'>
-                        <h5>Bienvenue 'valeur'</h5>
+                        <h5>Bienvenue {userData.pseudo}</h5>
                     </div>
 
                     <div className='header-icons'>

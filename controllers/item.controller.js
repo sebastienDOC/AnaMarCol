@@ -1,5 +1,6 @@
 const ItemModel = require('../models/item.model')
-const UserModel = require('../models/user.model')
+const UserModel = require('../models/user.model');
+const { createItemErrors } = require('../utils/errors.utils');
 const ObjectID = require('mongoose').Types.ObjectId
 
 module.exports.readItem = (req, res) => {
@@ -14,19 +15,15 @@ module.exports.readItem = (req, res) => {
 };
 
 module.exports.createItem = async (req, res) => {
-    const newItem = new ItemModel({
-        posterId: req.body.posterId,
-        denomination: req.body.denomination,
-        quantite: req.body.quantite,
-        fournisseur: req.body.fournisseur,
-        // image: req.body.image
-    })
+    const {denomination, quantite, fournisseur, etat} = req.body
 
     try {
-        const item = await newItem.save()
-        return res.status(200).json(item)
+        
+        const item = await ItemModel.create({denomination, fournisseur, etat, quantite })
+        return res.status(200).json({ item: item._id})
     } catch (err){
-        return res.status(400).send(err)
+        const errors = createItemErrors(err)
+        res.status(201).send({ errors })
     }
 }
 
@@ -40,7 +37,8 @@ module.exports.updateItem = async (req, res) => {
             denomination: req.body.denomination,
             quantite: req.body.quantite,
             fournisseur: req.body.fournisseur,
-            // image: req.body.image
+            etat: req.body.etat,
+            image: req.body.image
         };
 
         const updatedItem = await ItemModel.findByIdAndUpdate(

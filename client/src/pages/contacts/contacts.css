@@ -14,9 +14,48 @@
     margin: 0;
 }
 .contact-adresse {
+    width: 85vw;
     display: flex;
     justify-content: center;
     gap: 25px;
+}
+.all-contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+    gap: 30px;
+}
+.all-contact li {  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F5FBFF;
+    border-radius: 25px;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+.all-contact li.first-contact {
+    grid-column: span 3; 
+    width: 32%;
+    margin: 0 auto;
+}
+
+.all-contact li img{  
+    border-radius: 20px;
+}
+.all-contact li h2,h3,p {  
+    text-align: center;
+    margin: 0;
+}
+.all-contact li h2{  
+    margin: 5px;
 }
 .contact-adresse h2,
 .contact-adresse h3 {
@@ -26,6 +65,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.add-1 {
+    position: absolute;
+    left: 0;
+}
+.add-2 {
+    position: absolute;
+    right: 0;
 }
 .contact-chef,
 .contact-sous-chef, 
@@ -56,4 +103,4 @@ h2.contact-h2 {
 }
 .user-img {
     width: 100px;
-}
+}   
