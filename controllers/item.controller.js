@@ -1,7 +1,24 @@
 const ItemModel = require('../models/item.model')
-const UserModel = require('../models/user.model');
 const { createItemErrors } = require('../utils/errors.utils');
 const ObjectID = require('mongoose').Types.ObjectId
+
+module.exports.itemInfo = (req, res) => { 
+    if (!ObjectID.isValid(req.params.id)) 
+        return res.status(400).send('ID Unknown : ' + req.params.id)
+
+    ItemModel.findById(req.params.id).select('-password')
+    .then(docs => {
+        if (!docs) {
+            res.status(404).send('Item not found');
+        } else {
+            res.send(docs);
+        }
+    })
+    .catch(err => {
+        console.error('ID Unknown : ' + err);
+        res.status(500).send('Internal Server Error');
+    });
+};
 
 module.exports.readItem = (req, res) => {
     ItemModel.find()
@@ -15,11 +32,10 @@ module.exports.readItem = (req, res) => {
 };
 
 module.exports.createItem = async (req, res) => {
-    const {denomination, quantite, fournisseur, etat} = req.body
+    const {denomination, quantite, fournisseur, etat, posterId, modifierId} = req.body
 
     try {
-        
-        const item = await ItemModel.create({denomination, fournisseur, etat, quantite })
+        const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierId })
         return res.status(200).json({ item: item._id})
     } catch (err){
         const errors = createItemErrors(err)
@@ -28,51 +44,44 @@ module.exports.createItem = async (req, res) => {
 }
 
 module.exports.updateItem = async (req, res) => {
+    if (!ObjectID.isValid(req.params.id)) 
+        return res.status(400).send('ID Unknown : ' + req.params.id);
+
     try {
-        if (!ObjectID.isValid(req.params.id)) {
-            return res.status(400).send('ID Unknown : ' + req.params.id);
-        }
+        const item = await ItemModel.findById(req.params.id);
 
-        const updatedRecord = {
-            denomination: req.body.denomination,
-            quantite: req.body.quantite,
-            fournisseur: req.body.fournisseur,
-            etat: req.body.etat,
-            image: req.body.image
-        };
-
-        const updatedItem = await ItemModel.findByIdAndUpdate(
-            req.params.id,
-            { $set: updatedRecord },
-            { new: true }
-        );
-
-        if (!updatedItem) {
+        if (!item) {
             return res.status(404).send('Item not found');
         }
 
-        res.send(updatedItem);
-    } catch (error) {
-        console.log("Update error : " + error);
-        res.status(500).send('Internal Server Error');
+        // Met à jour les champs individuellement en respectant les middlewares
+        if (req.body.denomination) item.denomination = req.body.denomination;
+        if (req.body.fournisseur) item.fournisseur = req.body.fournisseur;
+        if (req.body.etat) item.etat = req.body.etat;
+        if (req.body.quantite) item.quantite = req.body.quantite;
+        if (req.body.image) item.image = req.body.image;
+        if (req.body.modifierId) item.modifierId = req.body.modifierId;
+
+        // Enregistrez les modifications
+        const updatedItem = await item.save();
+
+        // Renvoyez la réponse avec `modifierId`
+        return res.status(200).json({ item: updatedItem });
+    } catch (err) {
+        console.error('Error updating item:', err);
+        return res.status(500).json({ message: err.message || 'Internal Server Error' });
     }
 };
 
 module.exports.deleteItem = async (req, res) => {
+    if (!ObjectID.isValid(req.params.id)) 
+        return res.status(400).send('ID Unknown : ' + req.params.id);
+
     try {
-        if (!ObjectID.isValid(req.params.id)) {
-            return res.status(400).send('ID Unknown : ' + req.params.id);
-        }
-
-        const deletedItem = await ItemModel.findOneAndDelete({ _id: req.params.id });
-
-        if (!deletedItem) {
-            return res.status(404).send('Item not found');
-        }
-
-        res.send(deletedItem);
-    } catch (error) {
-        console.log("Delete error : " + error);
-        res.status(500).send('Internal Server Error');
+        await ItemModel.deleteOne({_id: req.params.id}).exec()
+        res.status(200).json({message: "Sucessfully deleted."})
+    } catch (err) {
+        console.error('Error deleting item:', err);
+        return res.status(500).json({ message: err.message || 'Internal Server Error' });
     }
-};
+}

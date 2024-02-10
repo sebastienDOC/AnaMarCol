@@ -8,12 +8,12 @@ export default function userReducer(state = initialState, action) {
             return action.payload
         case UPLOAD_PICTURE:
             return {
-                ... state, 
+                ...state, 
                 picture: action.payload
             }
         case UPDATE_NUMERO:
             return {
-                ... state,
+                ...state,
                 numero: action.payload
             }
         default: 

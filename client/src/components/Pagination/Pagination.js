@@ -11,16 +11,26 @@ const Pagination = ({ itemsPerPage, totalItems, paginate, currentPage }) => {
   return (
     <nav>
       <ul className='pagination'>
+        <li>
+          <button onClick={() => paginate(currentPage - 1)} className={currentPage === 1 ? 'hidden' : ''}>
+            Précédent
+          </button>
+        </li>
         {pageNumbers.map((number) => (
           <li key={number} className={currentPage === number ? 'active' : ''}>
-            <a onClick={() => paginate(number)} href='#'>
+            <button onClick={() => paginate(number)}>
               {number}
-            </a>
+            </button>
           </li>
         ))}
+        <li>
+          <button onClick={() => paginate(currentPage + 1)} className={currentPage === pageNumbers.length ? 'hidden' : ''}>
+            Suivant
+          </button>
+        </li>
       </ul>
     </nav>
   );
-};
+}
 
 export default Pagination;

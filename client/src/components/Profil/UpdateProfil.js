@@ -22,11 +22,9 @@ export default function UpdateProfil() {
             <div className="update-ctn">
                 <div className="left-part">
                     <h3>Photo de profil</h3>
-                    <img src={userData.picture} alt='Photo de profil' />
+                    <img src={userData.picture} alt='Employé' />
                     <UploadImg />
 
-                    {/* <p>{errors.maxSize}</p>
-                    <p>{errors.format}</p> */}
                 </div>
                 <div className="right-part">
                     <h3>Fiche de profil</h3>

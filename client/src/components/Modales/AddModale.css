@@ -1,10 +1,10 @@
-.modal-content {
+.modal-content-add {
     padding-top: 30px;
     position: relative;
     display: flex;
     flex-direction: column;
 }
-.modal-content button{
+.modal-content-add button{
     position: absolute;
     right: 0;
     top: 0;
@@ -14,7 +14,7 @@
     color: white;
     padding: 5px;
 }
-.modal-content button:hover{
+.modal-content-add button:hover{
     background: red;
 }
 #article-add-form {

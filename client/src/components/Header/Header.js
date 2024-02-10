@@ -27,11 +27,6 @@ export default function Header() {
 
             {uid ? (
                 <div className='header-tools'>
-                    {/* <input 
-                        type='search' 
-                        className='header-search'
-                        placeholder='Recherche' 
-                    /> */}
                     <div className='header-welcome'>
                         <h5>Bienvenue {userData.pseudo}</h5>
                     </div>

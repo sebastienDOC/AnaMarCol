@@ -2,15 +2,14 @@
 import React from 'react';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../actions/items.actions";
+import { addItem } from "../../actions/item.actions";
 import "./AddModale.css"
 
-const AddModal = ({ onClose }) => {
+const AddModal = ({ onClose, posterId, modifierId }) => {
     const [denomination, setDenomination] = useState("");
     const [fournisseur, setFournisseur] = useState("");
     const [quantite, setQuantite] = useState("");
     const [etat, setEtat] = useState("");
-    const [file, setFile] = useState("");
 
     const dispatch = useDispatch();
 
@@ -18,13 +17,12 @@ const AddModal = ({ onClose }) => {
         e.preventDefault();
 
         try {
-            dispatch(addItem({ denomination, fournisseur, quantite, etat }));
+            dispatch(addItem({ denomination, fournisseur, quantite, etat, posterId, modifierId }));
             
             setDenomination("");
             setFournisseur("");
             setQuantite("");
             setEtat("");
-            setFile("");
         } catch (error) {
         console.error("Erreur lors de la soumission de l'article", error);
         }
@@ -32,7 +30,7 @@ const AddModal = ({ onClose }) => {
 
     return (
         <div className="modal-overlay">
-            <div className="modal-content">
+            <div className="modal-content-add">
                 <button onClick={onClose}>X</button>
                 <form action='' onSubmit={handleAdd} id='article-add-form' className="article-add-ctn">
         
@@ -51,14 +49,19 @@ const AddModal = ({ onClose }) => {
                     <select
                         name="fournisseur"
                         id="fournisseur"
-                        onChange={(e) => setEtat(e.target.value)}
-                        value={etat}
+                        onChange={(e) => setFournisseur(e.target.value)}
+                        value={fournisseur}
                     >
                         <option value=""></option>
                         <option value="CashGuard">CashGuard</option>
                         <option value="Aures">Aures</option>
                         <option value="LDLC">LDLC</option>
                         <option value="VNE">VNE</option>
+                        <option value="Oxhoo">Oxhoo</option>
+                        <option value="Monétique et Services">Monétique et Services</option>
+                        <option value="MD Ouest">MD Ouest</option>
+                        <option value="Solumag">Solumag</option>
+                        <option value="Tigra">Tigra</option>
                     </select>
                     <div className="fournisseur error"></div>
                     <br/>
@@ -87,6 +90,9 @@ const AddModal = ({ onClose }) => {
                     />
                     <div className="quantite error"></div>
                     <br/>
+
+                    <input type="hidden" name="posterId" value={posterId} />
+                    <input type="hidden" name="modifierId" value={modifierId} />
         
                     <input type="submit" value="Ajouter l'article" />
                 </form>

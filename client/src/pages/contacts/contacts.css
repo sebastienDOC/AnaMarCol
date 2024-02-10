@@ -103,4 +103,6 @@ h2.contact-h2 {
 }
 .user-img {
     width: 100px;
+    height: 100px;
+    object-fit: cover;
 }   

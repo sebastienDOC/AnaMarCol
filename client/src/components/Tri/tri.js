@@ -8,9 +8,13 @@ const FiltreArticles = ({ onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const filters = { sortByFournisseur, sortByEtat, searchTerm };
-    onFilterChange(filters);
-  }, [sortByFournisseur, sortByEtat, searchTerm]);
+    const timeoutId = setTimeout(() => {
+      const filters = { sortByFournisseur, sortByEtat, searchTerm };
+      onFilterChange(filters);
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [sortByFournisseur, sortByEtat, searchTerm, onFilterChange]);
 
   return (
     <div className='tri-ctn'>
@@ -21,6 +25,11 @@ const FiltreArticles = ({ onFilterChange }) => {
             <option value="CashGuard">CashGuard</option>
             <option value="LDLC">LDLC</option>
             <option value="VNE">VNE</option>
+            <option value="VNE">Oxhoo</option>
+            <option value="Monétique et Services">Monétique et Services</option>
+            <option value="MD Ouest">MD Ouest</option>
+            <option value="Solumag">Solumag</option>
+            <option value="Tigra">Tigra</option>
         </select>
 
         <h4>Filtrer par état :</h4>

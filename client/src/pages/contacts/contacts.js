@@ -20,7 +20,7 @@ export default function Contacts() {
                                         <h2>{user.poste}</h2>
                                         <img 
                                             src={user.picture}
-                                            alt="Photo de l'employé"
+                                            alt="Employé"
                                             className='user-img'
                                         />
                                         <h3>{user.pseudo}</h3>

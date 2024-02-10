@@ -2,6 +2,7 @@ import './home.css';
 import Header from '../../components/Header/Header'
 import Menu from '../../components/Menu/Menu';
 import img from '../../assets/Logo/logo_small.jpg'
+import Statistiques from '../../components/Stats/Statistics';
 
 export default function Home() {
     return (
@@ -10,7 +11,8 @@ export default function Home() {
             <div className='home-first'>
                 <Menu />
                 <div className='home-first-flex'>
-                    <div className='home-first-ctn'>
+                <Statistiques />
+                {/* <div className='home-first-ctn'>
                         <div className='home-res'>
                             <div className='home-res-details'>
                                 <h2 className='home-first-title'>Détails des produits</h2>
@@ -33,20 +35,6 @@ export default function Home() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='home-res-inv'>
-                                <h2 className='home-first-title'>Résumé de l'inventaire</h2>
-                                <div className='home-inv-ctn'>
-                                    <div className='home-inv-box'>
-                                        <p>Quantité disponible</p>
-                                        <p>58849</p>
-                                    </div>
-                                    <div className='home-inv-box'>
-                                        <p>Quantité à recevoir</p>
-                                        <p>128</p>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                     <div className='home-second'>
@@ -55,69 +43,63 @@ export default function Home() {
                                 <h2 className='home-second-title'>Stock réduit</h2>
                             </div>
                             <div className='home-second-grid'>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
-                                    <div className='home-second-grid-box'>
-                                        <img 
-                                            src={img}
-                                            alt='img AnaMarCol'
-                                            className='logo'
-                                        />
-                                        <p>Nom de l'article</p>
-                                        <p>10</p>
-                                    </div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
                                 </div>
-                        </div>
-                        <div className='home-third-ctn'>
-                            <div className='home-border'>
-                                <h2 className='home-second-title'>Commande(s) en cours</h2>
-                                <div></div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
+                                </div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
+                                </div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
+                                </div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
+                                </div>
+                                <div className='home-second-grid-box'>
+                                    <img 
+                                        src={img}
+                                        alt='img AnaMarCol'
+                                        className='logo'
+                                    />
+                                    <p>Nom de l'article</p>
+                                    <p>10</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

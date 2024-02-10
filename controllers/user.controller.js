@@ -28,7 +28,7 @@ module.exports.userInfo = (req, res) => {
 };
 
 // Mise à jour d'un utilisateur
-// email, password, poste, numéro
+// email, password, poste, numéron image
 module.exports.updateUser = async (req, res) => {
     if (!ObjectID.isValid(req.params.id)) 
         return res.status(400).send('ID Unknown : ' + req.params.id);

@@ -18,9 +18,7 @@ router.delete('/:id', userController.deleteUser)
 
 // Upload
 router.post('/upload', upload.single('file'), (req, res) => {
-    console.log(req.file);  // Vérifiez si le fichier est correctement attaché à la requête
-    console.log(req.body);  // Vérifiez si d'autres données du formulaire sont correctement transmises
     uploadController.uploadProfil(req, res);
-  });
+});
 
 module.exports = router;

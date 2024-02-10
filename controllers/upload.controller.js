@@ -30,7 +30,6 @@ module.exports.uploadProfil = async (req, res) => {
         const bufferStream = new stream.PassThrough();
         bufferStream.end(req.file.buffer);
 
-        // Utilisez la fonction pipeline pour transférer les données du buffer au flux d'écriture
         await pipeline(
             bufferStream,
             fs.createWriteStream(filePath)

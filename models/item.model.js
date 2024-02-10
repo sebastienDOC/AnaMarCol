@@ -4,7 +4,9 @@ const ItemSchema = new mongoose.Schema(
     {
         posterId: {
             type: String,
-            // required: true,
+        },
+        modifierId: {
+            type: String,
         },
         denomination: {
             type: String,
