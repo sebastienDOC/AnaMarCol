@@ -1,6 +1,6 @@
 // reducers/statistics.reducer.js
 
-import { SET_GLOBAL_STATISTICS, SET_FOURNISSEUR_STATISTICS, SET_FOURNISSEURS_LIST, SET_ETATS_LIST } from '../actions/statistics.actions';
+import { SET_GLOBAL_STATISTICS, SET_FOURNISSEUR_STATISTICS, SET_ETAT_STATISTICS, SET_FOURNISSEURS_LIST, SET_ETATS_LIST } from '../actions/statistics.actions';
 
 const initialState = {
   globalStatistics: {
@@ -10,6 +10,7 @@ const initialState = {
     numberOfLowStockArticles: 0,
   },
   fournisseursStats: {},
+  etatsStats: {},
   fournisseursList: [],
   etatsList: [],
 };
@@ -30,6 +31,14 @@ const statisticsReducer = (state = initialState, action) => {
         fournisseursStats: {
           ...state.fournisseursStats,
           [action.payload.fournisseur]: action.payload.statistics,
+        },
+      };
+    case SET_ETAT_STATISTICS:
+      return {
+        ...state,
+        etatsStats: {
+          ...state.etatsStats,
+          [action.payload.etat]: action.payload.statistics,
         },
       };
     case SET_FOURNISSEURS_LIST:

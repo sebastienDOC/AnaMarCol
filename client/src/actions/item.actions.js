@@ -1,25 +1,40 @@
 import axios from "axios";
 import { getAllItems } from "./items.actions";
+import { fetchStatisticsForEtat, fetchStatisticsForFournisseur } from "./statistics.actions";
 
-export const ADD_ITEM = "ADD_ITEM"
+export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS";
+export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE";
+export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS";
+export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE";
 export const SET_SELECTED_ITEM_QUANTITE = 'SET_SELECTED_ITEM_QUANTITE';
 export const SET_SELECTED_ITEM_INFO = "SET_SELECTED_ITEM_INFO"
 export const UPDATE_QUANTITE = "UPDATE_QUANTITE"
 export const UPDATE_QUANTITE_SUCCESS = "UPDATE_QUANTITE_SUCCESS"
 export const SET_SELECTED_ITEM_ID = "SET_SELECTED_ITEM_ID"
 export const UPLOAD_ITEM_PICTURE = "UPLOAD_ITEM_PICTURE"
-export const DELETE_ITEM = "DELETE_ITEM"
 
 export const addItem = (newItem) => {
-    return async (dispatch) => {
-      try {
-        await axios.post(`${process.env.REACT_APP_API_URL}api/item/`, newItem);
-        await dispatch(getAllItems());
-      } catch (error) {
-        console.error("Erreur lors de l'ajout de l'article", error);
-      }
-    };
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}api/item/`, newItem);
+      dispatch({
+        type: ADD_ITEM_SUCCESS,
+        payload: response.data.item,
+      });
+
+      // Mettez à jour les statistiques du fournisseur après la création de l'article
+      dispatch(fetchStatisticsForFournisseur(newItem.fournisseur));
+      dispatch(fetchStatisticsForEtat(newItem.etat));
+      dispatch(getAllItems());
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'article", error);
+      dispatch({
+        type: ADD_ITEM_FAILURE,
+        payload: error.message || 'Une erreur s\'est produite lors de l\'ajout de l\'article.',
+      });
+    }
   };
+};
 
 export const setSelectedItemQuantite = (quantite) => ({
   type: SET_SELECTED_ITEM_QUANTITE,
@@ -90,16 +105,25 @@ export const uploadItemPicture = (data, id, modifierId) => {
   };
 };
 
-export const deleteItem = (itemId) => {
-  return (dispatch) => {
-    return axios({
-      method: 'delete',
-      url: `${process.env.REACT_APP_API_URL}api/item/${itemId}`,
-    })
-    .then((res) => {
-      dispatch({type: DELETE_ITEM, payload: {itemId}})
+export const deleteItem = (itemId, fournisseur, etat) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}api/item/${itemId}`);
+
+      dispatch({
+        type: DELETE_ITEM_SUCCESS,
+        payload: { itemId },
+      });
+      // Mettez à jour les statistiques du fournisseur après la suppression de l'article
+      dispatch(fetchStatisticsForFournisseur(fournisseur));
+      dispatch(fetchStatisticsForEtat(etat));
       dispatch(getAllItems());
-    })
-    .catch((err) => console.log(err));
-  }
-}
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'article", error);
+      dispatch({
+        type: DELETE_ITEM_FAILURE,
+        payload: error.message || 'Une erreur s\'est produite lors de la suppression de l\'article.',
+      });
+    }
+  };
+};

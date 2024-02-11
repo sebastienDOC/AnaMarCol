@@ -1,12 +1,12 @@
 import { 
-  ADD_ITEM, 
+  ADD_ITEM_SUCCESS, DELETE_ITEM_SUCCESS,
   SET_SELECTED_ITEM_QUANTITE, 
   SET_SELECTED_ITEM_INFO, 
   UPDATE_QUANTITE, 
   UPDATE_QUANTITE_SUCCESS,
   SET_SELECTED_ITEM_ID, 
   UPLOAD_ITEM_PICTURE, 
-  DELETE_ITEM } from '../actions/item.actions';
+  } from '../actions/item.actions';
 
 const initialState = {
   selectedItemId: null,
@@ -17,8 +17,17 @@ const initialState = {
 
 export default function itemReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_ITEM:
-      return state;
+    case ADD_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+      };
+
+    case DELETE_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: state.items.filter(item => item._id !== action.payload.itemId),
+      };
 
     case SET_SELECTED_ITEM_ID:
       return {
@@ -49,26 +58,25 @@ export default function itemReducer(state = initialState, action) {
         selectedItemInfo: action.payload,
       };
 
-      case UPDATE_QUANTITE:
-        const { itemId, quantite } = action.payload;
-        return {
-          ...state,
-          items: state.items.map(item => {
-            if (item._id === itemId) {
-              return {
-                ...item,
-                quantite: quantite,
-              };
-            }
-            return item;
-          }),
-          selectedItemQuantite: state.selectedItemId === itemId ? quantite : state.selectedItemQuantite,
-          selectedItemInfo: { 
-            ...state.selectedItemInfo, 
-            quantite: state.selectedItemId === itemId ? quantite : state.selectedItemQuantite,
-          },
-      };
-           
+    case UPDATE_QUANTITE:
+      const { itemId, quantite } = action.payload;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item._id === itemId) {
+            return {
+              ...item,
+              quantite: quantite,
+            };
+          }
+          return item;
+        }),
+        selectedItemQuantite: state.selectedItemId === itemId ? quantite : state.selectedItemQuantite,
+        selectedItemInfo: { 
+          ...state.selectedItemInfo, 
+          quantite: state.selectedItemId === itemId ? quantite : state.selectedItemQuantite,
+        },
+    };
 
     case UPDATE_QUANTITE_SUCCESS:
       const { updatedItemId, updatedQuantite } = action.payload;
@@ -86,10 +94,6 @@ export default function itemReducer(state = initialState, action) {
         selectedItemQuantite: updatedQuantite,
         selectedItemInfo: { ...state.selectedItemInfo, quantite: updatedQuantite },
       };
-      
-    case DELETE_ITEM:
-      const { [action.payload.itemId]: deletedItem, ...newState } = state;
-      return newState;
 
     default:
       return state;

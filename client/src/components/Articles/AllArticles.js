@@ -33,12 +33,13 @@ const AllArticles = () => {
       setIsAddModalOpen(true);
     }
   };
-  const handleDeleteItem = (itemId) => {
-    dispatch(deleteItem(itemId));
+
+  const handleDeleteItem = (itemId, fournisseur, etat) => {
+    dispatch(deleteItem(itemId, fournisseur, etat));
     const updatedFilteredItems = filteredItems.filter((item) => item._id !== itemId);
     setFilteredItems(updatedFilteredItems);
     dispatch(setSelectedItemQuantite(null));
-  };
+  };  
 
   const closeAddModal = () => {
     dispatch(setSelectedItemId(null));
@@ -77,7 +78,7 @@ const AllArticles = () => {
                 transition={{ duration: 0.5 }}
                 onClick={() => handleItemClick(item._id)}
               >
-                <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id)} />
+                <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
                 <h3>{item.denomination}</h3>
                 <img 
                   src={item.image}

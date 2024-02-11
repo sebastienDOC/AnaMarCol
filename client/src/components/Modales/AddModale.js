@@ -23,6 +23,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
             setFournisseur("");
             setQuantite("");
             setEtat("");
+            onClose();
         } catch (error) {
         console.error("Erreur lors de la soumission de l'article", error);
         }

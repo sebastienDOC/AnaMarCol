@@ -68,11 +68,7 @@ exports.getFournisseursList = async (req, res) => {
 exports.getStatisticsForFournisseur = async (req, res) => {
   try {
     const fournisseur = req.params.fournisseur;
-    
-    // Nombre d'articles pour le fournisseur
     const numberOfArticles = await ItemModel.countDocuments({ fournisseur });
-
-    // Statistiques de stock pour le fournisseur
     const stockStatistics = await ItemModel.aggregate([
       {
         $match: { fournisseur, quantite: { $exists: true } }
@@ -91,11 +87,8 @@ exports.getStatisticsForFournisseur = async (req, res) => {
         }
       }
     ]);
-
-    // Si le fournisseur n'a pas d'articles, les statistiques seront toutes à zéro
     const fournisseurStats = stockStatistics.length > 0 ? stockStatistics[0] : { totalStock: 0, numberOfLowStockArticles: 0 };
-
-    console.log(`Data for ${fournisseur}:`, { numberOfArticles, ...fournisseurStats });
+    // console.log(`Data for ${fournisseur}:`, { numberOfArticles, ...fournisseurStats });
 
     res.status(200).json({
       numberOfArticles: `${numberOfArticles}`,
@@ -106,8 +99,6 @@ exports.getStatisticsForFournisseur = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-
-  
 
 // État
 exports.getEtatsList = async (req, res) => {
@@ -121,9 +112,9 @@ exports.getEtatsList = async (req, res) => {
 };
 exports.getStatisticsForEtat = async (req, res) => {
   try {
-    const etat = req.params.etat.toLowerCase();
+    const etat = req.params.etat;
     const numberOfArticles = await ItemModel.countDocuments({ etat });
-    const totalStock = await ItemModel.aggregate([
+    const stockStatistics = await ItemModel.aggregate([
       {
         $match: { etat, quantite: { $exists: true } }
       },
@@ -132,22 +123,20 @@ exports.getStatisticsForEtat = async (req, res) => {
           _id: null,
           totalStock: {
             $sum: { $toInt: '$quantite' }
+          },
+          numberOfLowStockArticles: {
+            $sum: {
+              $cond: [{ $lt: [{ $toInt: '$quantite' }, 5] }, 1, 0]
+            }
           }
         }
       }
     ]);
-
-    const numberOfLowStockArticles = await ItemModel.countDocuments({
-      etat,
-      $expr: {
-        $lt: [ { $toInt: "$quantite" }, 5 ]
-      }
-    });
+    const etatStats = stockStatistics.length > 0 ? stockStatistics[0] : { totalStock: 0, numberOfLowStockArticles: 0 };
 
     res.status(200).json({
       numberOfArticles: `${numberOfArticles}`,
-      totalStock: totalStock[0]?.totalStock || 0,
-      numberOfLowStockArticles: `${numberOfLowStockArticles}` || 0
+      ...etatStats,
     });
   } catch (error) {
     console.error(`Erreur lors du calcul des statistiques pour l'état ${req.params.etat} :`, error);
