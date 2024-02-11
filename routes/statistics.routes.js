@@ -8,9 +8,11 @@ router.get('/fournisseurs', statisticsController.getNumberOfSuppliers);
 router.get('/articles/stockinf5', statisticsController.getNumberOfArticlesWithStockBelow5);
 
 // Fournisseurs
+router.get('/fournisseurs/list', statisticsController.getFournisseursList);
 router.get('/fournisseurs/:fournisseur', statisticsController.getStatisticsForFournisseur);
 
 // État
+router.get('/etats/list', statisticsController.getEtatsList);
 router.get('/etats/:etat', statisticsController.getStatisticsForEtat);
 
 module.exports = router;

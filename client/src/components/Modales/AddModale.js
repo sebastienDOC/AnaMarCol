@@ -74,7 +74,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
                         value={etat}
                     >
                         <option value=""></option>
-                        <option value="neuf">Neuf</option>
+                        <option value="Neuf">Neuf</option>
                         <option value="SAV">SAV</option>
                     </select>
                     <div className="etat error"></div>

@@ -1,0 +1,30 @@
+.collapsible .content {
+    padding: 6px;
+    background-color: #eeeeee;
+}
+.collapsible .header {
+    background-color: #dddddd;
+    padding: 6px;
+    cursor: pointer;
+}
+.collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+.collapse-content.expanded {
+    max-height: 100px; 
+}
+.ul-fournisseurs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+.li-fournisseur{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
