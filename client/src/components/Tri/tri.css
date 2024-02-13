@@ -1,7 +1,32 @@
 .tri-ctn {
+    position: absolute;
+    left: 1.5vw;
+    bottom: 20vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    text-align: left;
     align-items: center;
     gap: 25px;
     margin: 25px auto 0;
+    color: white;
+    z-index: 99;
+}
+.tri-ctn h4 {
+    text-align: start;
+}
+.tri-recherche {
+    width: 100%;
+    justify-content: flex-start;
+}
+.tri-fournisseur {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.tri-etat {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

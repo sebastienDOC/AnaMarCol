@@ -15,10 +15,25 @@
 .collapse-content.expanded {
     max-height: 100px; 
 }
+.stats-container {
+    width: 100%;
+    display: flex;
+}
+.stats-fournisseurs {
+    padding: 5px;
+    width: 60%;
+}
+.stats-etats {
+    padding: 5px;
+    width: 40%;
+    position: relative;
+    top: 58.5%;
+}
 .ul-fournisseurs {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
     justify-content: center;
     padding: 0;
     margin: auto;
@@ -27,4 +42,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 11vh;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.ul-etats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+.li-etats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 11vh;
+    border: 1px solid black;
+    border-radius: 20px;
 }

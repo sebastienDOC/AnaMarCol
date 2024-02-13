@@ -57,6 +57,7 @@ export default function Menu() {
       </ul>
 
       {isAddModalOpen && currentUser._id && <AddModal onClose={closeAddModal} posterId={currentUser._id} modifierId={currentUser._id}/>}
+      
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import './AllArticles.css';
 import FiltreArticles from "../Tri/Tri";
 import ItemModale from '../Modales/ItemModale';
-import { motion, AnimatePresence } from 'framer-motion'; // Importez AnimatePresence
+import { motion, AnimatePresence } from 'framer-motion';
 import DeleteItem from "../Delete/Delete";
 import { setSelectedItemId, setSelectedItemQuantite, deleteItem } from '../../actions/item.actions';
 
@@ -19,6 +19,7 @@ const AllArticles = () => {
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const [filteredItems, setFilteredItems] = useState(itemsData);
   const selectedItemId = useSelector((state) => state.itemReducer.selectedItemId);
+  const userDataId = useSelector((state) => state.userReducer._id)
 
   useEffect(() => {
     setFilteredItems(itemsData);
@@ -46,27 +47,27 @@ const AllArticles = () => {
     setIsAddModalOpen(false);
   };
 
-  const handleFilterChange = ({ sortByFournisseur, sortByEtat, searchTerm }) => {
+  const handleFilterChange = ({ selectedFournisseurs, selectedEtats, searchTerm }) => {
     const newFilteredItems = itemsData.filter((item) => {
-      const fournisseurMatch = !sortByFournisseur || item.fournisseur === sortByFournisseur;
-      const etatMatch = !sortByEtat || item.etat === sortByEtat;
+      const fournisseurMatch = selectedFournisseurs.length === 0 || selectedFournisseurs.includes(item.fournisseur);
+      const etatMatch = selectedEtats.length === 0 || selectedEtats.includes(item.etat);
       const searchTermMatch = !searchTerm || item.denomination.toLowerCase().includes(searchTerm.toLowerCase());
-
+  
       return fournisseurMatch && etatMatch && searchTermMatch;
     });
-
-    // Ajoutez une animation de fade-out/fade-in lors du changement de filtre
+  
     setFilteredItems(newFilteredItems);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="item-flex">
       <FiltreArticles onFilterChange={handleFilterChange} />
-      <div className="items-ctn">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="items-ctn"
+      >
         <AnimatePresence>
           <ul className='all-items'>
             {currentItems.map((item) => (
@@ -78,7 +79,9 @@ const AllArticles = () => {
                 transition={{ duration: 0.5 }}
                 onClick={() => handleItemClick(item._id)}
               >
-                <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
+                {userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201' ? (
+                  <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
+                ) : ""}
                 <h3>{item.denomination}</h3>
                 <img 
                   src={item.image}
@@ -101,8 +104,8 @@ const AllArticles = () => {
           paginate={paginate}
           currentPage={currentPage}
         />
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 

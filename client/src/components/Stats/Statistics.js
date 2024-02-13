@@ -34,13 +34,15 @@ const Statistiques = () => {
   const numberOfArticlesStockInf5 = globalStatistics?.numberOfLowStockArticles || 0;
 
   return (
-    <div>
-      <div>
-        <h2>Total</h2>
-        <p>Nombre d'articles : {numberOfArticles}</p>
-        <p>Stock total : {totalStock}</p>
-        <p>Nombre de fournisseurs : {numberOfFournisseurs}</p>
-        <p>Nombre d'articles avec un stock inférieur à 5 : {numberOfArticlesStockInf5}</p>
+    <div className='stats-ctn'>
+      <div className='stats-total'>
+        <h3>Total</h3>
+        <div className='stats-total-flex'>
+          <p>Nombre d'articles : {numberOfArticles}</p>
+          <p>Stock total : {totalStock}</p>
+          <p>Nombre de fournisseurs : {numberOfFournisseurs}</p>
+          <p>Nombre d'articles avec un stock inférieur à 5 : {numberOfArticlesStockInf5}</p>
+        </div>
       </div>
       <Collapsible />
     </div>

@@ -4,6 +4,7 @@ import Menu from '../../components/Menu/Menu';
 import AllArticles from '../../components/Articles/AllArticles'
 
 export default function Articles() {
+    
     return (
         <div>
             <Header />

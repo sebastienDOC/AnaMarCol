@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const SET_GLOBAL_STATISTICS = 'SET_GLOBAL_STATISTICS';
+export const SET_ARTICLES_WITH_LOW_STOCK = "SET_ARTICLES_WITH_LOW_STOCK"
 export const SET_FOURNISSEUR_STATISTICS = 'SET_FOURNISSEUR_STATISTICS';
 export const SET_ETAT_STATISTICS = "SET_ETAT_STATISTICS"
 export const SET_ETATS_LIST = "SET_ETATS_LIST";
@@ -11,6 +12,7 @@ export const setGlobalStatistics = (statistics) => ({
   type: SET_GLOBAL_STATISTICS,
   payload: statistics,
 });
+
 export const fetchStatistics = () => {
   return async (dispatch) => {
     try {
@@ -23,6 +25,7 @@ export const fetchStatistics = () => {
     }
   };
 };
+
 export const fetchTotalStock = () => {
   return async (dispatch) => {
     try {
@@ -61,6 +64,22 @@ export const fetchNumberOfArticlesWithStockBelow5 = () => {
   };
 };
 
+export const fetchArticlesWithLowStock = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}api/statistics/articles/low-stock`);
+      const data = await response.json();
+
+      dispatch({
+        type: SET_ARTICLES_WITH_LOW_STOCK,
+        payload: data,
+      });
+    } catch (error) {
+      console.error('Error fetching articles with low stock:', error);
+    }
+  };
+};
+
 // Fournisseurs
 export const setFournisseursList = (fournisseursList) => ({
     type: SET_FOURNISSEURS_LIST,
@@ -88,7 +107,6 @@ export const fetchStatisticsForFournisseur = (fournisseur) => {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}api/statistics/fournisseurs/${fournisseur}`);
       const data = response.data;
 
-      // Dispatchez l'action SET_FOURNISSEUR_STATISTICS avec les données du fournisseur
       dispatch(setFournisseurStatistics(data, fournisseur));
     } catch (error) {
       console.error(`Erreur lors de la récupération des statistiques pour le fournisseur ${fournisseur} :`, error);
@@ -108,7 +126,7 @@ export const fetchEtatsList = () => {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}api/statistics/etats/list`);
         const data = response.data;
   
-        dispatch(setEtatsList(data.listeEtats));
+        dispatch(setEtatsList(data.etatsList));
       } catch (error) {
         console.error('Erreur lors de la récupération de la liste des états :', error);
       }
@@ -124,7 +142,6 @@ export const fetchStatisticsForEtat = (etat) => {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}api/statistics/etats/${etat}`);
       const data = response.data;
 
-      // Dispatchez l'action SET_FOURNISSEUR_STATISTICS avec les données du fournisseur
       dispatch(setEtatStatistics(data, etat));
     } catch (error) {
       console.error(`Erreur lors de la récupération des statistiques pour le fournisseur ${etat} :`, error);

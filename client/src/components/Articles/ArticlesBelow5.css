@@ -1,0 +1,18 @@
+.art5-ctn h2{
+    text-align: center;
+}
+.art5-ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.art5-li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+img.art5-img{
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}

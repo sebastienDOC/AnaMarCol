@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAllItems } from "./items.actions";
-import { fetchStatisticsForEtat, fetchStatisticsForFournisseur } from "./statistics.actions";
+import { fetchArticlesWithLowStock, fetchStatistics, fetchStatisticsForEtat, fetchStatisticsForFournisseur } from "./statistics.actions";
 
 export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS";
 export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE";
@@ -25,6 +25,7 @@ export const addItem = (newItem) => {
       // Mettez à jour les statistiques du fournisseur après la création de l'article
       dispatch(fetchStatisticsForFournisseur(newItem.fournisseur));
       dispatch(fetchStatisticsForEtat(newItem.etat));
+      dispatch(fetchArticlesWithLowStock());
       dispatch(getAllItems());
     } catch (error) {
       console.error("Erreur lors de l'ajout de l'article", error);
@@ -60,13 +61,12 @@ export const updateQuantite = (itemId, quantite) => {
           payload: { itemId, quantite },
         });
 
+        dispatch(fetchArticlesWithLowStock());
         dispatch(getAllItems());
       })
       .catch((err) => console.log(err));
   };
 };
-
-
 export const updateQuantiteSuccess = (updatedItemId, updatedQuantite) => ({
   type: UPDATE_QUANTITE_SUCCESS,
   payload: { updatedItemId, updatedQuantite },
@@ -117,6 +117,7 @@ export const deleteItem = (itemId, fournisseur, etat) => {
       // Mettez à jour les statistiques du fournisseur après la suppression de l'article
       dispatch(fetchStatisticsForFournisseur(fournisseur));
       dispatch(fetchStatisticsForEtat(etat));
+      dispatch(fetchArticlesWithLowStock());
       dispatch(getAllItems());
     } catch (error) {
       console.error("Erreur lors de la suppression de l'article", error);

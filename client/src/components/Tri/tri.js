@@ -1,50 +1,65 @@
-// FiltreArticles.js
 import React, { useState, useEffect } from 'react';
 import './Tri.css'
 
 const FiltreArticles = ({ onFilterChange }) => {
-  const [sortByFournisseur, setSortByFournisseur] = useState('');
-  const [sortByEtat, setSortByEtat] = useState('');
+  const [selectedFournisseurs, setSelectedFournisseurs] = useState([]);
+  const [selectedEtats, setSelectedEtats] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const filters = { sortByFournisseur, sortByEtat, searchTerm };
-      onFilterChange(filters);
-    }, 100);
+    const filters = { selectedFournisseurs, selectedEtats, searchTerm };
 
-    return () => clearTimeout(timeoutId);
-  }, [sortByFournisseur, sortByEtat, searchTerm, onFilterChange]);
+    onFilterChange(filters);
+  }, [selectedFournisseurs, selectedEtats, searchTerm]);
+
+  const handleFournisseurChange = (value) => {
+    const updatedFournisseurs = selectedFournisseurs.includes(value)
+      ? selectedFournisseurs.filter((f) => f !== value)
+      : [...selectedFournisseurs, value];
+
+    setSelectedFournisseurs(updatedFournisseurs);
+  };
+
+  const handleEtatChange = (value) => {
+    const updatedEtats = selectedEtats.includes(value)
+      ? selectedEtats.filter((e) => e !== value)
+      : [...selectedEtats, value];
+
+    setSelectedEtats(updatedEtats);
+  };
 
   return (
     <div className='tri-ctn'>
-        <h4>Filtrer par fournisseur :</h4>
-        <select onChange={(e) => setSortByFournisseur(e.target.value)}>
-            <option value="">Tous les fournisseurs</option>
-            <option value="Aures">Aures</option>
-            <option value="CashGuard">CashGuard</option>
-            <option value="LDLC">LDLC</option>
-            <option value="VNE">VNE</option>
-            <option value="VNE">Oxhoo</option>
-            <option value="Monétique et Services">Monétique et Services</option>
-            <option value="MD Ouest">MD Ouest</option>
-            <option value="Solumag">Solumag</option>
-            <option value="Tigra">Tigra</option>
-        </select>
-
-        <h4>Filtrer par état :</h4>
-        <select onChange={(e) => setSortByEtat(e.target.value)}>
-            <option value="">Tous les états</option>
-            <option value="Neuf">Neuf</option>
-            <option value="SAV">SAV</option>
-        </select>
-
-        <h4>Rechercher par dénomination :</h4>
+      
+      <div className='tri-recherche'>
+        <h4>Rechercher :</h4>
         <input
-            type="text"
-            placeholder="Rechercher..."
-            onChange={(e) => setSearchTerm(e.target.value)}
+          type="text"
+          placeholder="Rechercher..."
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
+      </div>
+
+      <div className='tri-fournisseur'>
+        <h4>Fournisseur :</h4>
+        {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+          <label key={value}>
+            <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseurChange(value)} />
+            {value}
+          </label>
+        ))}
+      </div>
+
+      <div className='tri-etat'>
+        <h4>État :</h4>
+        {['SAV', 'Neuf'].map(value => (
+          <label key={value}>
+            <input type="checkbox" value={value} checked={selectedEtats.includes(value)} onChange={() => handleEtatChange(value)} />
+            {value}
+          </label>
+        ))}
+      </div>
+
     </div>
   );
 };
