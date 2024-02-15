@@ -8,6 +8,7 @@ import rootReducer from './reducers';
 
 import { getAllUsers } from './actions/users.actions';
 import { getAllItems } from './actions/items.actions';
+import { getAllContacts } from './actions/contacts.action';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -16,6 +17,7 @@ const store = configureStore({
 
 store.dispatch(getAllUsers())
 store.dispatch(getAllItems())
+store.dispatch(getAllContacts())
 
 const root = createRoot(document.getElementById('root'));
 

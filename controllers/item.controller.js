@@ -32,10 +32,10 @@ module.exports.readItem = (req, res) => {
 };
 
 module.exports.createItem = async (req, res) => {
-    const {denomination, quantite, fournisseur, etat, posterId, modifierId} = req.body
+    const {denomination, quantite, fournisseur, etat, posterId, modifierName} = req.body
 
     try {
-        const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierId })
+        const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierName })
         return res.status(200).json({ item: item._id})
     } catch (err){
         const errors = createItemErrors(err)
@@ -60,12 +60,12 @@ module.exports.updateItem = async (req, res) => {
         if (req.body.etat) item.etat = req.body.etat;
         if (req.body.quantite) item.quantite = req.body.quantite;
         if (req.body.image) item.image = req.body.image;
-        if (req.body.modifierId) item.modifierId = req.body.modifierId;
+        if (req.body.modifierName) item.modifierName = req.body.modifierName;
 
         // Enregistrez les modifications
         const updatedItem = await item.save();
 
-        // Renvoyez la réponse avec `modifierId`
+        // Renvoyez la réponse avec `modifierName`
         return res.status(200).json({ item: updatedItem });
     } catch (err) {
         console.error('Error updating item:', err);

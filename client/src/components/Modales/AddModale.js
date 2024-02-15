@@ -32,7 +32,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content-add">
-                <button onClick={onClose}>X</button>
+                <button onClick={onClose} className='modal-close'>X</button>
                 <form action='' onSubmit={handleAdd} id='article-add-form' className="article-add-ctn">
         
                     <label htmlFor="denomination">Dénomination de l'article</label>

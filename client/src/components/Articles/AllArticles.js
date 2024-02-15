@@ -90,7 +90,7 @@ const AllArticles = () => {
                 />
                 <h4>{item.fournisseur}</h4>
                 <p>{item.etat}</p>
-                <p>Quantité : {item.quantite}</p>
+                <p className={`${item.quantite >= 5 ? 'green' : 'red'}`}>Stock : {item.quantite}</p>
               </motion.li>
             ))}
           </ul>

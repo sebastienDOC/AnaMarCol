@@ -4,6 +4,7 @@ import {
   SET_SELECTED_ITEM_INFO, 
   UPDATE_QUANTITE, 
   UPDATE_QUANTITE_SUCCESS,
+  SET_MODIFIER_NAME,
   SET_SELECTED_ITEM_ID, 
   UPLOAD_ITEM_PICTURE, 
   } from '../actions/item.actions';
@@ -52,6 +53,15 @@ export default function itemReducer(state = initialState, action) {
         selectedItemQuantite: action.payload,
       };
 
+    case SET_MODIFIER_NAME:
+      return {
+        ...state,
+        selectedItemInfo: {
+          ...state.selectedItemInfo,
+          modifierName: action.payload,
+        },
+      };
+
     case SET_SELECTED_ITEM_INFO:
       return {
         ...state,
@@ -79,7 +89,7 @@ export default function itemReducer(state = initialState, action) {
     };
 
     case UPDATE_QUANTITE_SUCCESS:
-      const { updatedItemId, updatedQuantite } = action.payload;
+      const { updatedItemId, updatedQuantite, modifierName } = action.payload;
       return {
         ...state,
         items: state.items.map(item => {
@@ -87,13 +97,19 @@ export default function itemReducer(state = initialState, action) {
             return {
               ...item,
               quantite: updatedQuantite,
+              modifierName: modifierName,
             };
           }
           return item;
         }),
         selectedItemQuantite: updatedQuantite,
-        selectedItemInfo: { ...state.selectedItemInfo, quantite: updatedQuantite },
+        selectedItemInfo: {
+          ...state.selectedItemInfo,
+          quantite: updatedQuantite,
+          modifierName: modifierName,
+        },
       };
+    
 
     default:
       return state;

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import "./ItemModale.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { updateQuantite, updateQuantiteSuccess, uploadItemPicture } from "../../actions/item.actions"
+import { setModifierName, updateQuantite, updateQuantiteSuccess, uploadItemPicture } from "../../actions/item.actions"
 import { dateParser } from '../../Utils';
 
 const ItemModale = ({ onClose }) => {
@@ -10,14 +10,16 @@ const ItemModale = ({ onClose }) => {
     const dispatch = useDispatch();
     const { selectedItemInfo, selectedItemQuantite } = useSelector((state) => state.itemReducer);
     const currentUser = useSelector((state) => state.userReducer);
-    const [quantite, setQuantite] = useState(selectedItemQuantite || ''); // Utilisez la quantité du state comme valeur initiale
+    const userDataId = currentUser._id
+    const modifierName = useSelector((state) => state.userReducer.pseudo)
+    const [quantite, setQuantite] = useState(selectedItemQuantite || '');
     const [updateForm, setUpdateForm] = useState(false);
 
     const handlePicture = async (event) => {
         event.preventDefault();
 
         if (selectedItemInfo && selectedItemInfo._id && file && currentUser && currentUser._id) {
-            const modifierId = typeof currentUser._id === 'string' ? currentUser._id : currentUser._id[0];
+            const modifierId = currentUser._id;
 
             const data = new FormData();
             data.append("denomination", selectedItemInfo.denomination);
@@ -40,11 +42,11 @@ const ItemModale = ({ onClose }) => {
     const handleUpdate = async () => {
         try {
             if (selectedItemInfo && selectedItemInfo._id) {
-            await dispatch(updateQuantite(selectedItemInfo._id, quantite));
+            await dispatch(updateQuantite(selectedItemInfo._id, quantite, modifierName));
             setUpdateForm(false);
 
-            dispatch(updateQuantiteSuccess(selectedItemInfo._id, quantite));
-
+            dispatch(updateQuantiteSuccess(selectedItemInfo._id, quantite, modifierName));
+            dispatch(setModifierName(modifierName));
             } else {
             console.error("L'ID de l'article est indéfini.");
             }
@@ -115,12 +117,13 @@ const ItemModale = ({ onClose }) => {
                                 <button onClick={handleUpdate}>Valider modifications</button>
                             </>
                         )}
-                        <div>
-                            <h4>Créé le : </h4>
-                            <p>{dateParser(selectedItemInfo ? selectedItemInfo.createdAt : "")}</p>
-                            <h4>Modifié le : </h4>
-                            <p>{dateParser(selectedItemInfo ? selectedItemInfo.updatedAt : "")}</p>
-                        </div>
+                        {(userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201') ?
+                            <div className='modal-infos'>
+                                <div className='modal-infos'>
+                                    <h4>Modifié par {selectedItemInfo ? selectedItemInfo.modifierName : ""} le {dateParser(selectedItemInfo ? selectedItemInfo.updatedAt : "")}</h4>
+                                </div>
+                            </div> : ""
+                        }
                     </div>
 
                 </div>

@@ -5,8 +5,9 @@ const ItemSchema = new mongoose.Schema(
         posterId: {
             type: String,
         },
-        modifierId: {
+        modifierName: {
             type: String,
+            default: "",
         },
         denomination: {
             type: String,

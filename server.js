@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const userRoutes = require('./routes/user.routes');
 const itemRoutes = require('./routes/item.routes')
 const statisticsRoutes = require('./routes/statistics.routes')
+const contactsRoutes = require('./routes/contacts.routes')
 require('dotenv').config({path: './config/.env'});
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware')
@@ -33,6 +34,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 // Routes
 app.use('/api/user', userRoutes);
 app.use('/api/item', itemRoutes)
+app.use('/api/contacts', contactsRoutes)
 app.use('/api/statistics', statisticsRoutes)
 
 // Server

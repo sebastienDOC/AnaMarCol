@@ -1,17 +1,116 @@
+h2 {
+    margin: 0 0 10px;
+    text-align: center;
+}
 .stats-ctn {
     display: flex;
     height: 40vh;
     width: 85vw;
     position: relative;
     border-bottom: 1px solid black;
+    gap: 10px;
 }
 .stats-total {
     display: flex;
+    padding: 5px;
     height: 15vh;
     flex-direction: column;
-    justify-content: space-between;
+    margin: auto;
+    width: 50%;
+}
+table, th, td {
+    border: 1px solid black;
+    padding: 10px;
     text-align: center;
-    position: absolute;
-    top: 1%;
-    left: 11%;
+    border-collapse: collapse;
+}
+.tr-etats,
+.tr-fournisseur{
+    border-bottom: 1px solid black;
+}
+.tr-total {
+
+}
+.td-case {
+
+}
+.td-number {
+
+}
+.td-etat {
+    color: red;
+}
+.td-fournisseur {
+    color: red;
+}
+.collapsible .content {
+    padding: 6px;
+    background-color: #eeeeee;
+}
+.collapsible .header {
+    background-color: #dddddd;
+    padding: 6px;
+    cursor: pointer;
+}
+.collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+.collapse-content.expanded {
+    max-height: 100px; 
+}
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 42%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+.stats-fournisseurs,
+.stats-etats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    margin: auto;
+}
+.table-container {
+    display: flex;
+    gap: 20px;
+}
+.ul-fournisseurs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+.li-fournisseur{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 11vh;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.ul-etats {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    justify-content: center;
+    padding: 0;
+    margin: auto;
+}
+.li-etats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 11vh;
+    border: 1px solid black;
+    border-radius: 20px;
 }

@@ -10,6 +10,7 @@ export const SET_SELECTED_ITEM_QUANTITE = 'SET_SELECTED_ITEM_QUANTITE';
 export const SET_SELECTED_ITEM_INFO = "SET_SELECTED_ITEM_INFO"
 export const UPDATE_QUANTITE = "UPDATE_QUANTITE"
 export const UPDATE_QUANTITE_SUCCESS = "UPDATE_QUANTITE_SUCCESS"
+export const SET_MODIFIER_NAME = 'SET_MODIFIER_NAME'
 export const SET_SELECTED_ITEM_ID = "SET_SELECTED_ITEM_ID"
 export const UPLOAD_ITEM_PICTURE = "UPLOAD_ITEM_PICTURE"
 
@@ -47,18 +48,18 @@ export const setSelectedItemInfo = (itemInfo) => ({
   payload: itemInfo,
 });
 
-export const updateQuantite = (itemId, quantite) => {
+export const updateQuantite = (itemId, quantite, modifierName) => {
   return (dispatch) => {
     return axios({
       method: "put",
       url: `${process.env.REACT_APP_API_URL}api/item/${itemId}`,
-      data: { quantite },
+      data: { quantite, modifierName },
       withCredentials: true,
     })
       .then((res) => {
         dispatch({
           type: UPDATE_QUANTITE,
-          payload: { itemId, quantite },
+          payload: { itemId, quantite, modifierName },
         });
 
         dispatch(fetchArticlesWithLowStock());
@@ -67,9 +68,13 @@ export const updateQuantite = (itemId, quantite) => {
       .catch((err) => console.log(err));
   };
 };
-export const updateQuantiteSuccess = (updatedItemId, updatedQuantite) => ({
+export const setModifierName = (modifierName) => ({
+  type: SET_MODIFIER_NAME,
+  payload: modifierName,
+});
+export const updateQuantiteSuccess = (updatedItemId, updatedQuantite, modifierName) => ({
   type: UPDATE_QUANTITE_SUCCESS,
-  payload: { updatedItemId, updatedQuantite },
+  payload: { updatedItemId, updatedQuantite, modifierName },
 });
 
 export const setSelectedItemId = (itemId) => {

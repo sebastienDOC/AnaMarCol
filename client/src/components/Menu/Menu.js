@@ -48,6 +48,12 @@ export default function Menu() {
             </li>
           </Link>
         )}
+        <Link to='/membres'>
+          <li>
+            <i className="fa-solid fa-user"></i>
+            Membres
+          </li>
+        </Link>
         <Link to='/contacts'>
           <li>
             <i className="fa-solid fa-user"></i>
