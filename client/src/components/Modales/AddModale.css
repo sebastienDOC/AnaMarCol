@@ -5,6 +5,23 @@
     flex-direction: column;
     z-index: 1000;
 }
+.article-add-ctn button {
+    background: #CED7C1;
+    border: 1px solid #CED7C1;
+    border-radius: 20px;
+    color: black;
+    font-family: 'Montserrat';
+    transition: all 0.3s;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.article-add-ctn button:hover {
+    background-color: #5d6d46;
+    border: 1px solid white;
+    scale: 1.1;
+    transition: all 0.3s;
+    color: white;
+}
 .modal-close{
     position: absolute;
     right: 0;
@@ -13,7 +30,7 @@
     border: none;
     color: white;
 }   
-.modal-content-add button:hover{
+.modal-close button:hover{
     background: red;
 }
 #article-add-form {

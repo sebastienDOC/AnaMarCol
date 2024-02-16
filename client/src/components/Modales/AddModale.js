@@ -95,7 +95,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
                     <input type="hidden" name="posterId" value={posterId} />
                     <input type="hidden" name="modifierId" value={modifierId} />
         
-                    <input type="submit" value="Ajouter l'article" />
+                    <button type="submit">Ajouter l'article</button>
                 </form>
             </div>
         </div>
