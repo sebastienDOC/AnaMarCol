@@ -1,6 +1,6 @@
 .header {
     height: 5vh;
-    background-color: #F9F8F8;
+    background-color: #b6c3a2;
     display: flex;
     justify-content: space-between;
 }
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #EEEEEE;
+    background-color: #b6c3a2;
     border: none;
 }
 .header-logo{

@@ -9,11 +9,10 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 15%;
     background: black;
     border: none;
     color: white;
-    padding: 5px;
+    padding: 10px 0;
 }
 .modal-close:hover{
     background: red;
@@ -25,24 +24,47 @@
 .modal-right {
     width: 100%;
     margin: 0 25px;
-    gap: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.modal-left img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
+img.modal-left-img {
+    max-width: 300px;
+    max-height: 300px;
     border-radius: 20px;
+    object-fit: cover;
 }
 .upload-image {
     text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 .upload-image label {
     cursor: pointer;
+    font-size: 14px;
+    font-family: 'Montserrat';
 }
 .upload-image-btn{
     display: none;
+}
+.modal-btn {
+    background: #CED7C1;
+    border: 1px solid #CED7C1;
+    border-radius: 20px;
+    color: black;
+    font-family: 'Montserrat';
+    transition: all 0.3s;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.modal-btn:hover {
+    background-color: #5d6d46;
+    border: 1px solid #5d6d46;
+    transition: all 0.3s;
+    color: white;
+}
+.modal-infos h4{
+    margin-bottom: 5px;
 }

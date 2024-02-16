@@ -61,47 +61,58 @@ const Statistiques = () => {
   
         <div className='stats-container'>
             <div className='stats-total'>
-                <h2>Stock Général</h2>
-                <table>
-                    <tbody>
+              <h2>Stock Général</h2>
+              <table>
+                  <tbody>
                       <tr>
-                        <th className='td-case'>Articles</th>
-                        <th className='td-case'>Stock total</th>
-                        <th className='td-case'>Fournisseurs</th>
-                        <th className='td-case'>Stock &lt; 5</th>
-                      </tr>
-                      <tr className='tr-total'>
+                          <th className='td-case'>Articles</th>
                           <td className='td-number'>{numberOfArticles}</td>
+                      </tr>
+                      <tr>
+                          <th className='td-case'>Stock total</th>
                           <td className='td-number'>{totalStock}</td>
+                      </tr>
+                      <tr>
+                          <th className='td-case'>Fournisseurs</th>
                           <td className='td-number'>{numberOfFournisseurs}</td>
+                      </tr>
+                      <tr>
+                          <th className='td-case'>Stock &lt; 5</th>
                           <td className='td-number'>{numberOfArticlesStockInf5}</td>
                       </tr>
-                    </tbody>
-                </table>
+                  </tbody>
+              </table>
             </div>
-  
+
             <div className='stats-etats'>
-                <h2>Stock par État</h2>
-                <table>
-                    <tbody>
+              <h2>Stock par État</h2>
+              <table>
+                  <thead>
                       <tr>
-                        <th>États</th>
-                        <th className='td-case'>Articles</th>
-                        <th className='td-case'>Stock total</th>
-                        <th className='td-case'>Stock &lt; 5</th>
+                          <th>État</th>
+                          <th>Neuf</th>
+                          <th>SAV</th>
                       </tr>
-                        {etatsList.map((etat, index) => (
-                            <tr key={index + fournisseursList.length} className='tr-etats'>
-                                <td className='td-etat'>{etat}</td>
-                                <td className='td-number'>{etatsStats[etat]?.numberOfArticles || 0}</td>
-                                <td className='td-number'>{etatsStats[etat]?.totalStock || 0}</td>
-                                <td className='td-number'>{etatsStats[etat]?.numberOfLowStockArticles || 0}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                  </thead>
+                  <tbody>
+                      <tr className='tr-etats'>
+                          <td className='td-case'>Articles</td>
+                          <td className='td-number'>{etatsStats['Neuf']?.numberOfArticles || 0}</td>
+                          <td className='td-number'>{etatsStats['SAV']?.numberOfArticles || 0}</td>
+                      </tr>
+                      <tr className='tr-etats'>
+                          <td className='td-case'>Stock total</td>
+                          <td className='td-number'>{etatsStats['Neuf']?.totalStock || 0}</td>
+                          <td className='td-number'>{etatsStats['SAV']?.totalStock || 0}</td>
+                      </tr>
+                      <tr className='tr-etats'>
+                          <td className='td-case'>Stock &lt; 5</td>
+                          <td className='td-number'>{etatsStats['Neuf']?.numberOfLowStockArticles || 0}</td>
+                          <td className='td-number'>{etatsStats['SAV']?.numberOfLowStockArticles || 0}</td>
+                      </tr>
+                  </tbody>
+              </table>
             </div>
-  
         </div>
   
         <div className='stats-fournisseurs'>

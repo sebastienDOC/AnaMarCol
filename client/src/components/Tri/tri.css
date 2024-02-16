@@ -1,15 +1,15 @@
 .tri-ctn {
     position: absolute;
     left: 1.5vw;
-    bottom: 20vh;
+    bottom: 12.5vh;
     display: flex;
     flex-direction: column;
     text-align: left;
     align-items: center;
     gap: 25px;
     margin: 25px auto 0;
-    color: white;
-    z-index: 99;
+    color: black;
+    z-index: 0;
 }
 .tri-ctn h4 {
     text-align: start;
@@ -30,3 +30,54 @@
     flex-direction: column;
     justify-content: flex-start;
 }
+
+/* Style général pour toutes les cases à cocher */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 2px solid #333;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  /* Style de la case cochée */
+  input[type="checkbox"]:checked {
+    background-color: #5d6d46;
+    border: 2px solid #5d6d46;
+  }
+  
+  /* Style de l'étiquette du texte à côté de la case à cocher */
+  .tri-ctn label {
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+  .tri-ctn label:hover {
+    color: white;
+    font-weight: 500;
+    transition: all 0.1s;
+  }
+  
+  /* Masquer la boîte à cocher par défaut */
+  input[type="checkbox"]::-webkit-check-box {
+    display: none;
+  }
+  
+  /* Style lorsque la case à cocher est cochée */
+  input[type="checkbox"]:checked::before {
+    content: "\2713";
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

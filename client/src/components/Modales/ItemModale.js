@@ -65,9 +65,9 @@ const ItemModale = ({ onClose }) => {
                         <h4>Photo de l'article</h4>
                         {selectedItemInfo && selectedItemInfo.image ? (
                             <>
-                                <img src={selectedItemInfo.image} alt="Article" />
+                                <img src={selectedItemInfo.image} alt="Article" className='modal-left-img'/>
                                 <form  onSubmit={handlePicture} className="upload-image">
-                                    <label htmlFor="file">Changer d'image</label>
+                                    <label htmlFor="file">Parcourir...</label>
                                     <input 
                                         type="file" 
                                         id="file" 
@@ -77,7 +77,7 @@ const ItemModale = ({ onClose }) => {
                                         className="upload-image-btn"
                                     />
                                     <br/>
-                                    <input type="submit" value="Envoyer" className="upload-image-send" />
+                                    <input type="submit" value="Envoyer" className="modal-btn"/>
                                 </form>
                             </>
                         ) : (
@@ -99,10 +99,12 @@ const ItemModale = ({ onClose }) => {
                             <p>{selectedItemInfo ? selectedItemInfo.etat : ""}</p>
                         </div>
                         {updateForm !== true && (
-                        <>
-                            <h4>Quantité</h4>
-                            <p onClick={() => setUpdateForm(!updateForm)}>{selectedItemInfo ? selectedItemInfo.quantite : ""}</p>
-                            <button onClick={() => setUpdateForm(!updateForm)}>Modifier la quantité</button>
+                        <>  
+                            <div className='modal-infos'>
+                                <h4>Quantité</h4>
+                                <p onClick={() => setUpdateForm(!updateForm)}>{selectedItemInfo ? selectedItemInfo.quantite : ""}</p>
+                            </div>
+                            <button onClick={() => setUpdateForm(!updateForm)} className='modal-btn'>Modifier la quantité</button>
                         </>
                         )}
                         {updateForm && (
@@ -113,14 +115,13 @@ const ItemModale = ({ onClose }) => {
                                     value={quantite}
                                     onChange={(e) => setQuantite(e.target.value)}
                                 />
-                                <br />
-                                <button onClick={handleUpdate}>Valider modifications</button>
+                                <button onClick={handleUpdate} className='modal-btn'>Valider modifications</button>
                             </>
                         )}
                         {(userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201') ?
                             <div className='modal-infos'>
                                 <div className='modal-infos'>
-                                    <h4>Modifié par {selectedItemInfo ? selectedItemInfo.modifierName : ""} le {dateParser(selectedItemInfo ? selectedItemInfo.updatedAt : "")}</h4>
+                                    <p>Modifié par {selectedItemInfo ? selectedItemInfo.modifierName : ""} le {dateParser(selectedItemInfo ? selectedItemInfo.updatedAt : "")}</p>
                                 </div>
                             </div> : ""
                         }

@@ -65,7 +65,7 @@ const AllArticles = () => {
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
         className="items-ctn"
       >
         <AnimatePresence>
@@ -76,21 +76,21 @@ const AllArticles = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
                 onClick={() => handleItemClick(item._id)}
               >
                 {userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201' ? (
                   <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
                 ) : ""}
-                <h3>{item.denomination}</h3>
                 <img 
                   src={item.image}
                   alt="Article"
                   className='item-img'
                 />
+                <h3>{item.denomination}</h3>
                 <h4>{item.fournisseur}</h4>
                 <p>{item.etat}</p>
-                <p className={`${item.quantite >= 5 ? 'green' : 'red'}`}>Stock : {item.quantite}</p>
+                <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
               </motion.li>
             ))}
           </ul>

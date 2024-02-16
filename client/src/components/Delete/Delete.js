@@ -1,4 +1,5 @@
 import React from 'react';
+import './Delete.css';
 
 const DeleteItem = ({ onDelete }) => {
     return (

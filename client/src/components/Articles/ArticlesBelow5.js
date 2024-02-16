@@ -30,12 +30,12 @@ const ArticlesBelow5 = () => {
       <ul className='art5-ul'>
         {currentItems.map((article) => (
           <li key={article._id} className='art5-li'>
-            <h3>{article.denomination}</h3>
             <img 
               src={article.image}
               alt="Article"
               className='art5-img'
             />
+            <h3>{article.denomination}</h3>
             <h4>{article.fournisseur}</h4>
             <p>{article.etat}</p>
             <p>Quantité : {article.quantite}</p>
