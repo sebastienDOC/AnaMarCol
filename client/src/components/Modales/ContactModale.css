@@ -1,5 +1,4 @@
 .modal-content {
-    padding-top: 30px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -14,6 +13,7 @@
     color: white;
     padding: 10px 15px;
     z-index: 100;
+    border-top-right-radius: 20px;
 }
 
 .modal-close:hover{
@@ -33,12 +33,15 @@
 }
 .modal-left img {
     border-radius: 20px;
+    max-width: 300px;
+    max-height: 300px;
 }
 .upload-image {
     text-align: center;
 }
 .upload-image label {
     cursor: pointer;
+    font-family: 'Montserrat';
 }
 .upload-image-btn{
     display: none;

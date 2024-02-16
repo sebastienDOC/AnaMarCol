@@ -29,11 +29,11 @@ const Contacts = () => {
         <div className='contact-flex'>
           <ul className='all-contact'>
             <li>
-              <h2>Contacts Extérieurs</h2>
+              <h2 className='contact-title'>Contacts Extérieurs</h2>
               <div className="contacts-row">
                 {contactsData.slice(0, 3).map((contact) => (
                   <div key={contact._id} className="contact-item" onClick={() => handleContactClick(contact._id)}>
-                    <h2>{contact.poste}</h2>
+                    <h3>{contact.poste}</h3>
                     <img 
                       src={contact.picture}
                       alt="Logo du contact"
@@ -48,7 +48,7 @@ const Contacts = () => {
               </div>
             </li>
             <li>
-              <h2>Fournisseurs Extérieurs</h2>
+              <h2 className='contact-title'>Fournisseurs Extérieurs</h2>
               <div className="contacts-row">
                 {contactsData.slice(3, 6).map((contact) => (
                   <div key={contact._id} className="contact-item" onClick={() => handleContactClick(contact._id)}>

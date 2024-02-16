@@ -38,7 +38,7 @@ const ArticlesBelow5 = () => {
             <h3>{article.denomination}</h3>
             <h4>{article.fournisseur}</h4>
             <p>{article.etat}</p>
-            <p>Quantité : {article.quantite}</p>
+            <p className={`${article.quantite >= 5 ? '' : 'red'}`}>Stock : <strong>{article.quantite}</strong></p>
           </li>
         ))}
       </ul>

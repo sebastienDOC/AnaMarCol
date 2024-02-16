@@ -21,11 +21,11 @@
     justify-content: center;
     text-align: center;
     border-radius: 20px;
-    background: #F5FBFF;
+    background: #ced7c1;
     transition: all 0.3s;
 }
 .left-part:hover{
-    background: #bcd0ff;
+    background: #9daf83;
     transition: all 0.3s;
 }
 .left-part img {
@@ -43,11 +43,11 @@
     justify-content: center;
     text-align: center;
     border-radius: 20px;
-    background: #F5FBFF;
+    background: #ced7c1;
     transition: all 0.3s;
 }
 .right-part:hover{
-    background: #bcd0ff;
+    background: #9daf83;
     transition: all 0.3s;
 }
 .right-part h4{
@@ -58,6 +58,19 @@
 }
 .right-part button {
     margin-top: 10px;
+    cursor: pointer;
+    border: 2px solid #EEEEEE;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #EEEEEE;
+    transition: all 0.3s;
+    width: 25%;
+}
+.right-part button:hover{
+    background-color: #2D373C;
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.3s;
 }
 .right-part img {
     width: 50%;

@@ -61,7 +61,8 @@ img.modal-left-img {
 }
 .modal-btn:hover {
     background-color: #5d6d46;
-    border: 1px solid #5d6d46;
+    border: 1px solid white;
+    scale: 1.1;
     transition: all 0.3s;
     color: white;
 }

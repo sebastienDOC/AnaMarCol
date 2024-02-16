@@ -30,7 +30,6 @@
     cursor: pointer;
     position: relative;
     transition: all 0.3s;
-
     max-height: 208px;
 }
 .all-items li:hover {

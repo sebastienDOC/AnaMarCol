@@ -26,6 +26,10 @@
     background: #5d6d46;
     color: white;
 }
+.menu-list li a:active, .menu-list li:active{
+    background: #5d6d46;
+    color: white;
+}
 .menu-list i{
     display: flex;
     flex-direction: column;
@@ -63,12 +67,13 @@ li.li-btn button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
   }
   
 .modal-content,
 .modal-content-add {
     background: white;
     color: black;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 40px;
+    border-radius: 20px;
 }
