@@ -33,14 +33,11 @@ app.use('/api/contacts', contactsRoutes)
 app.use('/api/statistics', statisticsRoutes)
 
 // JWT
-app.get('*', checkUser)
 app.get('/jwtid', requireAuth, (req, res) => {
     res.status(200).send(res.locals.user._id)
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './build/index.html'));
-});
+app.get('*', checkUser)
 
 // Server
 app.listen(process.env.PORT, () => {
