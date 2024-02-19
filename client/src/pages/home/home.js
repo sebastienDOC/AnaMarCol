@@ -4,6 +4,8 @@ import Header from '../../components/Header/Header'
 import Menu from '../../components/Menu/Menu';
 import Statistiques from '../../components/Stats/Statistics';
 import ArticlesBelow5 from '../../components/Articles/ArticlesBelow5';
+import { UidContext } from '../../components/AppContext';
+import { useContext } from 'react';
 
 export default function Home() {
     const uid = useContext(UidContext)

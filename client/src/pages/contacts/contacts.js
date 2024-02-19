@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './contacts.css'
 import Header from '../../components/Header/Header'
@@ -6,6 +6,7 @@ import Menu from '../../components/Menu/Menu'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectedContactId } from '../../actions/contacts.action'
 import ContactModale from '../../components/Modales/ContactModale'
+import { UidContext } from '../../components/AppContext';
 
 const Contacts = () => {
   const dispatch = useDispatch();

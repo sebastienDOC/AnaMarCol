@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header'
 import Menu from '../../components/Menu/Menu';
 import AllArticles from '../../components/Articles/AllArticles'
+import { useContext } from 'react';
+import { UidContext } from '../../components/AppContext';
 
 export default function Articles() {
     const uid = useContext(UidContext)
