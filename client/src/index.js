@@ -12,7 +12,7 @@ import { getAllContacts } from './actions/contacts.action';
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: true,
+  devTools: false,
 });
 
 store.dispatch(getAllUsers())

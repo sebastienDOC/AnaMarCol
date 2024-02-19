@@ -12,12 +12,12 @@ const cors = require('cors')
 const app = express();
 
 const corsOptions = {
-    origin: process.env.CLIENT_URL,
+    origin: '*',  // ou process.env.CLIENT_URL pour spécifier une origine spécifique
     credentials: true,
-    'allowedHeaders': ['sessionID', 'Content-Type'],
-    'exposedHeaders': ['sessionID'],
-    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    'preflightContinue': false
+    allowedHeaders: ['Content-Type', 'sessionID'],
+    exposedHeaders: ['sessionID'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false
 }
 
 app.use(cors(corsOptions));
