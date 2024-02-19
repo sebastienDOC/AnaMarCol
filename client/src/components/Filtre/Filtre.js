@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import './Tri.css';
+import './Filtre.css';
 
 const FiltreArticles = ({ onFilterChange }) => {
   const [selectedFournisseurs, setSelectedFournisseurs] = useState([]);

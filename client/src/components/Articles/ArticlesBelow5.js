@@ -1,10 +1,11 @@
-import React, { useEffect, useState,  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchArticlesWithLowStock, fetchStatistics } from '../../actions/statistics.actions';
 import './ArticlesBelow5.css';
 import Pagination from '../Pagination/Pagination';
 
 const ITEMS_PER_PAGE = 10;
+
 
 const ArticlesBelow5 = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,14 @@ const ArticlesBelow5 = () => {
   const currentItems = articlesWithLowStock.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
-    if (!articlesWithLowStock.length) {
-        dispatch(fetchStatistics())
-        dispatch(fetchArticlesWithLowStock());
-    }
+    const fetchArticles = async () => {
+      if (!articlesWithLowStock.length) {
+        await dispatch(fetchStatistics());
+        await dispatch(fetchArticlesWithLowStock());
+      }
+    };
+
+    fetchArticles();
   }, [dispatch, articlesWithLowStock]);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
