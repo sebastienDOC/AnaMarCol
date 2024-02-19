@@ -11,19 +11,26 @@ export default function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchToken = async() => {
-      await axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/jwtid`,
-        withCredentials: true
-      })
-      .then((res) => setUid(res.data))
-      .catch((err) => console.log('No token'))
+    const fetchToken = async () => {
+      try {
+        const response = await axios({
+          method: 'get',
+          url: `${process.env.REACT_APP_API_URL}jwtid`,
+          withCredentials: true
+        });
+        console.log(response.data);  // Vérifier la réponse du serveur
+        setUid(response.data);
+      } catch (error) {
+        console.error('Error fetching token:', error);
+      }
+    };
+  
+    fetchToken();
+  
+    if (uid) {
+      dispatch(getUser(uid));
     }
-    fetchToken()
-
-    if (uid) dispatch(getUser(uid))
-  }, [uid, dispatch])
+  }, [uid, dispatch]);  
 
   return (
     <UidContext.Provider value={uid}>
