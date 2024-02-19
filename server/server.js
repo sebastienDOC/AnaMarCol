@@ -37,6 +37,10 @@ app.get('/jwtid', requireAuth, (req, res) => {
     res.status(200).send(res.locals.user._id)
 })
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 // Server
 app.listen(process.env.PORT, () => {
     console.log(`Listening on port ${process.env.PORT}`)
