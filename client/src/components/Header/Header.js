@@ -25,18 +25,22 @@ export default function Header() {
                 </div>
             </div>
 
-            <div className='header-tools'>
-                <div className='header-welcome'>
-                    <h5>Bienvenue {userData.pseudo}</h5>
-                </div>
+            {uid ? (
+                <div className='header-tools'>
+                    <div className='header-welcome'>
+                        <h5>Bienvenue {userData.pseudo}</h5>
+                    </div>
 
-                <div className='header-icons'>
-                    <Link to='/profil'>
-                        <i className="fa-solid fa-user fa-xl"></i>
-                    </Link>
-                    <Logout />
+                    <div className='header-icons'>
+                        <Link to='/profil'>
+                            <i className="fa-solid fa-user fa-xl"></i>
+                        </Link>
+                        <Logout />
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div></div>
+            )}
             
         </div>
     )
