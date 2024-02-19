@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from '../../components/Pagination/Pagination';
 import './AllArticles.css';
-import FiltreArticles from "../Tri/Tri";
+import FiltreArticles from "../Filtre/Filtre";
 import ItemModale from '../Modales/ItemModale';
 import { motion, AnimatePresence } from 'framer-motion';
 import DeleteItem from "../Delete/Delete";

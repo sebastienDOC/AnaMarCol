@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getAllItems } from "./items.actions";
-import { fetchArticlesWithLowStock, fetchStatistics, fetchStatisticsForEtat, fetchStatisticsForFournisseur } from "./statistics.actions";
+import { fetchArticlesWithLowStock, fetchStatisticsForEtat, fetchStatisticsForFournisseur } from "./statistics.actions";
 
 export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS";
 export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE";
