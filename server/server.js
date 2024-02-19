@@ -25,17 +25,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
-// JWT
-app.get('*', checkUser)
-app.get('/jwtid', requireAuth, (req, res) => {
-    res.status(200).send(res.locals.user._id)
-})
-
 // Routes
 app.use('/api/user', userRoutes);
 app.use('/api/item', itemRoutes)
 app.use('/api/contacts', contactsRoutes)
 app.use('/api/statistics', statisticsRoutes)
+
+// JWT
+app.get('*', checkUser)
+app.get('/jwtid', requireAuth, (req, res) => {
+    res.status(200).send(res.locals.user._id)
+})
 
 // Server
 app.listen(process.env.PORT, () => {
