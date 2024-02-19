@@ -19,7 +19,10 @@ export default function Articles() {
                     </div>
                 </div>
             ) : (
-                <h2>Vous n'êtes pas connecté.</h2>
+                <div>
+                    <h1>Veuillez vous connecter</h1>
+                    <h2><Link to='/'>Retour à la page de connexion</Link></h2>
+                </div>
             )}
         </div>
     )
