@@ -6,6 +6,10 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getUser } from "./actions/user.actions";
 
+import { getAllUsers } from './actions/users.actions';
+import { getAllItems } from './actions/items.actions';
+import { getAllContacts } from './actions/contacts.action';
+
 export default function App() {
   const [uid, setUid] = useState(null)
   const dispatch = useDispatch()
@@ -22,7 +26,12 @@ export default function App() {
     }
     fetchToken()
 
-    if (uid) dispatch(getUser(uid))
+    if (uid) {
+      dispatch(getUser(uid))
+      dispatch(getAllUsers())
+      dispatch(getAllItems())
+      dispatch(getAllContacts())
+    }
   }, [uid, dispatch])
 
   return (

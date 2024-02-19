@@ -9,12 +9,11 @@ require('dotenv').config({path: './config/.env'});
 require('./config/db');
 const {checkUser, requireAuth} = require('./middleware/auth.middleware')
 const cors = require('cors')
-const path = require('path');
 const app = express();
 
 const corsOptions = {
-    origin: 'https://anamarcol-front.onrender.com',
-    credentials: true,
+    origin: '*',
+    // credentials: true,
     allowedHeaders: ['Content-Type', 'sessionID'],
     exposedHeaders: ['sessionID'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
