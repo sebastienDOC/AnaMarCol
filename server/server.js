@@ -12,7 +12,7 @@ const cors = require('cors')
 const app = express();
 
 const corsOptions = {
-    origin: 'https://anamarcol-front.onrender.com',
+    origin: 'anamarcol-front.onrender.com',
     credentials: true,
     allowedHeaders: ['Content-Type', 'sessionID'],
     exposedHeaders: ['sessionID'],
