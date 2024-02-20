@@ -34,11 +34,11 @@ module.exports.signIn = async (req, res) => {
     try {
         const user = await UserModel.login(email, password)
         const token = createToken(user.id)
-        res.cookie('jwt', token, { httpOnly: true, maxAge})
+        res.cookie('jwt', token, { httpOnly: true, maxAge, domain: 'https://anamarcol-front.onrender.com', secure: true, sameSite: 'None' });
         res.status(200).json({user: user._id})
     } catch (err){
         const errors = signInErrors(err)
-        res.status(201).json({errors})
+        res.status(400).json({errors})
     }
 }
 
