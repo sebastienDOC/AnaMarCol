@@ -24,6 +24,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+app.get('*', checkUser)
 
 // Routes
 app.use('/api/user', userRoutes);
@@ -35,8 +36,6 @@ app.use('/api/statistics', statisticsRoutes)
 app.get('/jwtid', requireAuth, (req, res) => {
     res.status(200).send(res.locals.user._id)
 })
-
-app.get('*', checkUser)
 
 // Server
 app.listen(process.env.PORT, () => {
