@@ -6,7 +6,7 @@ import FiltreArticles from "../Filtre/Filtre";
 import ItemModale from '../Modales/ItemModale';
 import { motion, AnimatePresence } from 'framer-motion';
 import DeleteItem from "../Delete/Delete";
-import { setSelectedItemId, setSelectedItemQuantite, deleteItem } from '../../actions/item.actions';
+import { setSelectedItemId, setSelectedItemQuantite, deleteItem, updateQuantite } from '../../actions/item.actions';
 
 const ITEMS_PER_PAGE = 15;
 
@@ -59,6 +59,16 @@ const AllArticles = () => {
     setFilteredItems(newFilteredItems);
   };
 
+  const handleQuantityChange = (e, itemId, operation) => {
+    e.stopPropagation();  // Empêcher la propagation de l'événement
+    const selectedItem = filteredItems.find(item => item._id === itemId);
+
+    if (selectedItem) {
+      const numericQuantite = parseInt(selectedItem.quantite, 10); // Convertir la quantité en nombre
+      dispatch(updateQuantite(itemId, numericQuantite, 'modifierName', operation));
+    }
+  };
+
   return (
     <div className="item-flex">
       <FiltreArticles onFilterChange={handleFilterChange} />
@@ -90,7 +100,11 @@ const AllArticles = () => {
                 <h3>{item.denomination}</h3>
                 <h4>{item.fournisseur}</h4>
                 <p>{item.etat}</p>
-                <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
+                <div className="items-quantity">
+                  <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')}>-</button>
+                  <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
+                  <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')}>+</button>
+                </div>
               </motion.li>
             ))}
           </ul>

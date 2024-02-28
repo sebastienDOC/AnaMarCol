@@ -89,7 +89,7 @@ export default function itemReducer(state = initialState, action) {
     };
 
     case UPDATE_QUANTITE_SUCCESS:
-      const { updatedItemId, updatedQuantite, modifierName } = action.payload;
+      const { updatedItemId, updatedQuantite, modifierName, operation } = action.payload;
       return {
         ...state,
         items: state.items.map(item => {
@@ -108,8 +108,7 @@ export default function itemReducer(state = initialState, action) {
           quantite: updatedQuantite,
           modifierName: modifierName,
         },
-      };
-    
+      };   
 
     default:
       return state;

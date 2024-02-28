@@ -35,7 +35,7 @@
 .all-items li:hover {
     transition: all 0.3s;
     background-color: #9daf83;
-    scale: 1.05;
+    scale: 1.015;
 }
 .all-items li img{  
     height: 100px;
@@ -43,6 +43,25 @@
     padding: 10px;
     border-radius: 20px;
     object-fit: cover;
+}
+.items-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 10px 0;
+    gap: 20px;
+}
+.items-quantity button{
+    border: 1px solid #F5F1E3;
+    border-radius: 5px;
+    background: #CED7C1;
+    padding: 5px 10px;
+    transition: all 0.3s;
+}
+.items-quantity button:hover{
+    background: #F5F1E3;
+    padding: 5px 10px;
+    transition: all 0.3s;
 }
 .all-items li h2,h3,h4,p {  
     text-align: center;
@@ -63,7 +82,4 @@
 }
 .item-del:hover {
     background: red;
-}
-.item-quantite {
-    padding-bottom: 10px;
 }
