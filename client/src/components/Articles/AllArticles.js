@@ -19,6 +19,7 @@ const AllArticles = () => {
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
   const [filteredItems, setFilteredItems] = useState(itemsData);
   const selectedItemId = useSelector((state) => state.itemReducer.selectedItemId);
+  const userDataPseudo = useSelector((state) => state.userReducer.pseudo)
   const userDataId = useSelector((state) => state.userReducer._id)
 
   useEffect(() => {
@@ -60,12 +61,19 @@ const AllArticles = () => {
   };
 
   const handleQuantityChange = (e, itemId, operation) => {
-    e.stopPropagation();  // Empêcher la propagation de l'événement
+    e.stopPropagation()
     const selectedItem = filteredItems.find(item => item._id === itemId);
-
+  
     if (selectedItem) {
-      const numericQuantite = parseInt(selectedItem.quantite, 10); // Convertir la quantité en nombre
-      dispatch(updateQuantite(itemId, numericQuantite, 'modifierName', operation));
+      const numericQuantite = parseInt(selectedItem.quantite, 10);
+
+      if (operation === 'increment') {
+        dispatch(updateQuantite(itemId, numericQuantite + 1, userDataPseudo, 'increment'));
+      } else if (operation === 'decrement') {
+        dispatch(updateQuantite(itemId, numericQuantite - 1, userDataPseudo, 'decrement'));
+      } else {
+        dispatch(updateQuantite(itemId, 15, userDataPseudo, 'direct'));
+      }
     }
   };
 
@@ -101,9 +109,9 @@ const AllArticles = () => {
                 <h4>{item.fournisseur}</h4>
                 <p>{item.etat}</p>
                 <div className="items-quantity">
-                  <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')}>-</button>
+                  <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')}>-</button>
                   <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
-                  <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')}>+</button>
+                  <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')}>+</button>
                 </div>
               </motion.li>
             ))}

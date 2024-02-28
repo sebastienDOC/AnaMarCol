@@ -96,7 +96,7 @@ export default function itemReducer(state = initialState, action) {
           if (item._id === updatedItemId) {
             return {
               ...item,
-              quantite: updatedQuantite,
+              quantite: operation === 'increment' ? item.quantite + 1 : item.quantite - 1,
               modifierName: modifierName,
             };
           }
@@ -106,7 +106,7 @@ export default function itemReducer(state = initialState, action) {
         selectedItemInfo: {
           ...state.selectedItemInfo,
           quantite: updatedQuantite,
-          modifierName: modifierName,
+          modifierName: modifierName, 
         },
       };   
 

@@ -48,21 +48,20 @@ export const setSelectedItemInfo = (itemInfo) => ({
   payload: itemInfo,
 });
 
-export const updateQuantite = (itemId, quantite, modifierName, operation) => {
+export const updateQuantite = (itemId, newQuantite, modifierName, operation) => {
   return (dispatch) => {
-    const numericQuantite = parseInt(quantite, 10); // Convertir la quantité en nombre
-    const newQuantite = operation === 'increment' ? numericQuantite - 1 : numericQuantite + 1;
+    const numericQuantite = parseInt(newQuantite, 10);
 
     return axios({
       method: "put",
       url: `${process.env.REACT_APP_API_URL}api/item/${itemId}`,
-      data: { quantite: newQuantite, modifierName },
+      data: { quantite: numericQuantite, modifierName, operation },
       withCredentials: true,
     })
       .then((res) => {
         dispatch({
-          type: UPDATE_QUANTITE,
-          payload: { itemId, quantite: newQuantite, modifierName },
+          type: UPDATE_QUANTITE_SUCCESS,
+          payload: { updatedItemId: itemId, updatedQuantite: numericQuantite, modifierName, operation },
         });
 
         dispatch(fetchArticlesWithLowStock());
