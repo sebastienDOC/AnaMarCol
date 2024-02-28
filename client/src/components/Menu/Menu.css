@@ -41,6 +41,10 @@
     width: 100%;
     text-align: left;
 }
+.menu-list li a{
+    display: flex;
+    color: black;
+}
 li.li-btn{
     display: flex;
     justify-content: flex-end;

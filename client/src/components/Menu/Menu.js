@@ -21,45 +21,49 @@ export default function Menu() {
   return (
     <div className='menu-ctn'>
       <ul className='menu-list'>
-        <Link to='/home'>
-          <li>
+        <li>
+          <Link to='/home'>
             <i className="fa-solid fa-house"></i>
             Tableau de bord
-          </li>
-        </Link>
+          </Link>
+        </li>
+
         {isOnArticlePage && (
-          <>
-            <Link to='/articles'>
-              <li>
+          <> 
+            <li>
+              <Link to='/articles'>
                 <i className="fa-solid fa-bag-shopping"></i>
                 Articles
-              </li>
-            </Link>
-              <li className='li-btn'>
-                <button onClick={openAddModal}>Ajouter article(s)</button>
-              </li>
+              </Link>
+            </li>
+          
+            <li className='li-btn'>
+              <button onClick={openAddModal}>Ajouter article(s)</button>
+            </li>
           </>
         )}
         {!isOnArticlePage && (
-          <Link to='/articles'>
+          
             <li>
-              <i className="fa-solid fa-bag-shopping"></i>
-              Articles
+              <Link to='/articles'>
+                <i className="fa-solid fa-bag-shopping"></i>
+                Articles
+              </Link>
             </li>
-          </Link>
-        )}
-        <Link to='/membres'>
-          <li>
+          
+        )}      
+        <li>
+          <Link to='/membres'>
             <i className="fa-solid fa-user"></i>
             Membres
-          </li>
-        </Link>
-        <Link to='/contacts'>
-          <li>
+          </Link>
+        </li>     
+        <li>
+          <Link to='/contacts'>
             <i className="fa-solid fa-user"></i>
             Contacts
-          </li>
-        </Link>
+          </Link>
+        </li>       
       </ul>
 
       {isAddModalOpen && currentUser._id && <AddModal onClose={closeAddModal} posterId={currentUser._id} modifierId={currentUser._id}/>}
