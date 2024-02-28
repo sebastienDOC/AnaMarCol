@@ -24,7 +24,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
+app.use(cookieParser({
+    sameSite: 'None',
+    secure: true,
+}));
 app.get('*', checkUser)
 
 // Routes
