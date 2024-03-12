@@ -41,3 +41,17 @@
     transform: scale(1.1);
     transition: all 0.3s;
 }
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px){
+
+}
+@media screen and (max-width: 750px){
+
+}

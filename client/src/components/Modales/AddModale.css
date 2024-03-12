@@ -40,3 +40,17 @@
 #article-add-form label{
     text-align: center;
 }
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px){
+
+}
+@media screen and (max-width: 750px){
+
+}

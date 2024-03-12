@@ -12,10 +12,10 @@ export default function Header() {
 
     return (
         <div className='header'>
+            
             <div className='header-menu'>
-                
                 <div className='header-btn'>
-                    <Link to='/home'>
+                    <Link to='/home' aria-label="Acceuil">
                         <img 
                             src={Logo}
                             alt='Logo AnaMarCol'
@@ -32,7 +32,7 @@ export default function Header() {
                     </div>
 
                     <div className='header-icons'>
-                        <Link to='/profil'>
+                        <Link to='/profil' aria-label="Profil utilisateur">
                             <i className="fa-solid fa-user fa-xl"></i>
                         </Link>
                         <Logout />

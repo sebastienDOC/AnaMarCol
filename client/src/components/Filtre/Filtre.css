@@ -1,7 +1,6 @@
 .tri-ctn {
-    position: absolute;
-    left: 1.5vw;
-    bottom: 12.5vh;
+    position: relative;
+    bottom: 10vh;
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -81,3 +80,17 @@ input[type="checkbox"] {
     transform: translate(-50%, -50%);
   }
   
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px){
+
+}
+@media screen and (max-width: 750px){
+
+}

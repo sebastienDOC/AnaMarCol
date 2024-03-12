@@ -1,13 +1,39 @@
+.menu-all {
+    display: flex;
+    position: relative;
+}
 .menu-ctn {
     margin: 0;
     height: 95vh;
-    min-width: 15vw;
+    min-width: 288px;
     background-color: #9daf83;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-weight: 400;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
 }
+.closed {
+    transform: translateX(-100%); 
+}
+.visible {
+    transform: translateX(0); 
+}
+.toggle-menu-button {
+    border: 1px solid #5d6d46 ;
+    background: #9daf83;
+    transition: transform 0.3s ease-in-out;
+}
+.toggle-menu-button:hover {
+    background: #5d6d46;
+    transition: all 0.3s ease-in-out;
+}
+.toggle-menu-button.sticky {
+    transform: translateX(-288px);
+    transition: transform 0.3s ease-in-out;
+}
+
 .menu-list {
     padding: 0;
     display: flex;
@@ -17,7 +43,6 @@
 }
 .menu-list li{
     width: 100%;
-    padding: 20px 0;
     display: flex;
     text-align: center;
     color: black;
@@ -44,6 +69,7 @@
 .menu-list li a{
     display: flex;
     color: black;
+    padding: 20px 0;
 }
 li.li-btn{
     display: flex;
@@ -81,4 +107,18 @@ li.li-btn button:hover{
     color: black;
     padding: 40px;
     border-radius: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px){
+
+}
+@media screen and (max-width: 750px){
+
 }

@@ -58,7 +58,7 @@ const ItemModale = ({ onClose }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <button onClick={onClose} className='modal-close'>X</button>
+                <button onClick={onClose} className='modal-close' aria-label="Fermer">X</button>
                 <div className='modal-ctn'> 
 
                     <div className='modal-left'>
@@ -104,7 +104,7 @@ const ItemModale = ({ onClose }) => {
                                 <h4>Quantité</h4>
                                 <p onClick={() => setUpdateForm(!updateForm)}>{selectedItemInfo ? selectedItemInfo.quantite : ""}</p>
                             </div>
-                            <button onClick={() => setUpdateForm(!updateForm)} className='modal-btn'>Modifier la quantité</button>
+                            <button onClick={() => setUpdateForm(!updateForm)} className='modal-btn' aria-label="Modifier la quantité">Modifier la quantité</button>
                         </>
                         )}
                         {updateForm && (
@@ -115,7 +115,7 @@ const ItemModale = ({ onClose }) => {
                                     value={quantite}
                                     onChange={(e) => setQuantite(e.target.value)}
                                 />
-                                <button onClick={handleUpdate} className='modal-btn'>Valider modifications</button>
+                                <button onClick={handleUpdate} className='modal-btn' aria-label="Valider modifications">Valider modifications</button>
                             </>
                         )}
                         {(userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201') ?

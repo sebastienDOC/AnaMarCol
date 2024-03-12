@@ -10,6 +10,7 @@ export default function UpdateProfil() {
     const userData = useSelector((state) => state.userReducer)
     const [numero, setNumero] = useState('')
     const [updateForm, setUpdateForm] = useState(false)
+    const isMenuOpen = useSelector((state) => state.menuReducer.isMenuOpen);
 
     const handleUpdate = () => {
         dispatch(updateNumero(userData._id, numero))
@@ -17,7 +18,7 @@ export default function UpdateProfil() {
     }
 
     return (
-        <div className="profil-ctn">
+        <div className={`profil-ctn main-content ${isMenuOpen ? 'visible' : 'closed'}`}>
             <h1>Profil de {userData.pseudo}</h1>
             <div className="update-ctn">
                 <div className="left-part">
@@ -38,7 +39,7 @@ export default function UpdateProfil() {
                         <>
                             <h4>Numéro de téléphone</h4>
                             <p onClick={() => setUpdateForm(!updateForm)}>{userData.numero}</p>
-                            <button onClick={() => setUpdateForm(!updateForm)}>Modifier le numéro</button>
+                            <button onClick={() => setUpdateForm(!updateForm)} aria-label="Modifier le numéro">Modifier le numéro</button>
                         </>
                     )}
                     {updateForm && (
@@ -50,7 +51,7 @@ export default function UpdateProfil() {
                                 onChange={(e) => setNumero(e.target.value)}>
                             </textarea>
                             <br/>
-                            <button onClick={handleUpdate}>Valider modifications</button>
+                            <button onClick={handleUpdate} aria-label="Valider modifications">Valider modifications</button>
                         </>
                     )}
                     <br/>

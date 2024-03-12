@@ -8,7 +8,7 @@ const DeleteItem = ({ onDelete }) => {
         if (window.confirm('Voulez-vous vraiment supprimer cet article ?')) {
           onDelete();
         }
-      }} className="item-del">
+      }} className="item-del" aria-label="Supprimer l'article">
         <i className="fa-solid fa-trash"></i>
       </button>
     );

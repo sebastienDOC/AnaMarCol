@@ -32,3 +32,17 @@ img.art5-img{
     border-radius: 20px;
     object-fit: cover;
 }
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px){
+
+}
+@media screen and (max-width: 750px){
+
+}

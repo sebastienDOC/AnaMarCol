@@ -6,6 +6,7 @@
   width: 85vw;
   display: flex;
   justify-content: center; 
+  align-items: center;
   list-style: none;
   height: 40px;
   padding: 0;
@@ -33,4 +34,22 @@
   cursor: pointer;
   border-radius: 10px;
   transition: all 0.3s;
+}
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+
+}
+@media screen and (max-width: 1250px){
+
+}
+@media screen and (max-width: 1000px) {
+}
+@media screen and (max-width: 750px){
+  .pagination {
+    flex-wrap: wrap;
+  }
+  .button {
+    display: none; 
+  }
 }

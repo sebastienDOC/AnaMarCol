@@ -32,7 +32,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content-add">
-                <button onClick={onClose} className='modal-close'>X</button>
+                <button onClick={onClose} className='modal-close' aria-label="Fermer">X</button>
                 <form action='' onSubmit={handleAdd} id='article-add-form' className="article-add-ctn">
         
                     <label htmlFor="denomination">Dénomination de l'article</label>
@@ -95,7 +95,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
                     <input type="hidden" name="posterId" value={posterId} />
                     <input type="hidden" name="modifierId" value={modifierId} />
         
-                    <button type="submit">Ajouter l'article</button>
+                    <button type="submit" aria-label="Ajouter l'article">Ajouter l'article</button>
                 </form>
             </div>
         </div>

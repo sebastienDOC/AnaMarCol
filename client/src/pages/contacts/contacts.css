@@ -62,6 +62,7 @@
     margin: 0 auto;
     padding: 10px;
     gap: 5px;
+    cursor: pointer;
 }
 .contact-item a {
     color: black;

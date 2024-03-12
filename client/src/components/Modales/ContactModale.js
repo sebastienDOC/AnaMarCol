@@ -37,7 +37,7 @@ const ContactModale = ({ onClose, contactId }) => {
     return (
         <div className="modal-overlay">
             <div className="modal-content-add">
-                <button className='modal-close' onClick={onClose}>X</button>
+                <button className='modal-close' onClick={onClose} aria-label="Fermer">X</button>
                 
                 <div className='modal-ctn'> 
                     <div className='modal-left'>

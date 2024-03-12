@@ -5,6 +5,7 @@ import contactsReducer from "./contacts.reducer";
 import itemReducer from "./item.reducer";
 import itemsReducer from "./items.reducer";
 import statisticsReducer from "./statistics.reducer";
+import menuReducer from "./menu.reducer";
 
 export default combineReducers({
     userReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     contactsReducer,
     itemReducer,
     itemsReducer,
-    statisticsReducer
+    statisticsReducer,
+    menuReducer
 })

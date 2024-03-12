@@ -42,3 +42,20 @@ i {
   color: red;
   font-weight: bold;
 }
+.closed ~ .main-content {
+  transform: translateX(calc(-50vw + 50%)); 
+  transition: transform 0.3s ease-in-out;
+}
+.visible ~ .main-content {
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+}  
+
+.menu-all ~ .main-content.closed {
+  transform: translateX(calc(-50vw + 50%)); 
+  transition: transform 0.3s ease-in-out;
+}
+.menu-all ~ .main-content.visible {
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+}  

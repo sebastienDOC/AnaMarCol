@@ -15,6 +15,7 @@ const Contacts = () => {
   const selectedContactId = useSelector((state) => state.contactsReducer.selectedContactId);
   const userDataId = useSelector((state) => state.userReducer._id)
   const uid = useContext(UidContext)
+  const isMenuOpen = useSelector((state) => state.menuReducer.isMenuOpen);
 
   const handleContactClick = (contactId) => {
     dispatch(setSelectedContactId(contactId));
@@ -31,8 +32,8 @@ const Contacts = () => {
           <Header />
           <div className='contact-ctn'>
             <Menu />
-            <div className='contact-flex'>
-              <ul className='all-contact'>
+            <div className={`contact-flex main-content ${isMenuOpen ? 'visible' : 'closed'}`}>
+              <ul className='all-contact '>
                 <li>
                   <h2 className='contact-title'>Contacts Extérieurs</h2>
                   <div className="contacts-row">
@@ -66,7 +67,7 @@ const Contacts = () => {
                           <a href={contact.lien} target="_blank" rel="noopener noreferrer">
                             Lien vers le site
                           </a>
-                        <h4>{contact.nom}</h4>
+                        <h3>{contact.nom}</h3>
                         <p>{contact.email}</p>
                         <p>{contact.tel}</p>
                       </div>
