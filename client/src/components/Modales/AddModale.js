@@ -25,7 +25,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
             setEtat("");
             onClose();
         } catch (error) {
-        console.error("Erreur lors de la soumission de l'article", error);
+            console.error("Erreur lors de la soumission de l'article", error);
         }
     };
 

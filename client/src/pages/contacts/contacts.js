@@ -38,17 +38,17 @@ const Contacts = () => {
                   <h2 className='contact-title'>Contacts Extérieurs</h2>
                   <div className="contacts-row">
                     {contactsData.slice(0, 3).map((contact) => (
-                      <div key={contact._id} className="contact-item" onClick={() => handleContactClick(contact._id)}>
-                        <h3>{contact.poste}</h3>
+                      <div key={contact._id} className='contact-item' onClick={() => handleContactClick(contact._id)}>
+                        {contact.poste && <h3 className={!contact.poste ? 'display-none' : ''}>{contact.poste}</h3>}
                         <img 
                           src={contact.picture}
                           alt="Logo du contact"
                           className='contact-img'
                         />
-                        <h3>{contact.lien}</h3>
-                        <h4>{contact.nom}</h4>
-                        <p>{contact.email}</p>
-                        <p>{contact.tel}</p>
+                        {contact.lien && <a href={contact.lien} target="_blank" rel="noopener noreferrer">Lien vers le site</a>}
+                        {contact.nom && <h3>{contact.nom}</h3>}
+                        {contact.email && <p>{contact.email}</p>}
+                        {contact.tel && <p>{contact.tel}</p>}
                       </div>
                     ))}
                   </div>
@@ -58,7 +58,7 @@ const Contacts = () => {
                   <div className="contacts-row">
                     {contactsData.slice(3, 6).map((contact) => (
                       <div key={contact._id} className="contact-item" onClick={() => handleContactClick(contact._id)}>
-                        <h2>{contact.poste}</h2>
+                        {contact.poste && <h3 className={!contact.poste ? 'display-none' : ''}>{contact.poste}</h3>}
                         <img 
                           src={contact.picture}
                           alt="Logo du contact"
@@ -67,9 +67,9 @@ const Contacts = () => {
                           <a href={contact.lien} target="_blank" rel="noopener noreferrer">
                             Lien vers le site
                           </a>
-                        <h3>{contact.nom}</h3>
-                        <p>{contact.email}</p>
-                        <p>{contact.tel}</p>
+                        {contact.nom && <h3>{contact.nom}</h3>}
+                        {contact.email && <p>{contact.email}</p>}
+                        {contact.tel && <p>{contact.tel}</p>}
                       </div>
                     ))}
                   </div>

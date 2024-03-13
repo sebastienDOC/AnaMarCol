@@ -1,9 +1,3 @@
-.modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-}
 .modal-close {
     position: absolute;
     right: 0;

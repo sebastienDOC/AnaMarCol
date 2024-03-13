@@ -19,25 +19,21 @@ export default function Membres() {
                     <div className='membres-ctn'>
                         <Menu />
                         <div className={`membres-flex main-content ${isMenuOpen ? 'visible' : 'closed'}`}>
-                            <div className='membres-chef'>
-                                <div className='membres-adresse'>
-                                    <ul className='all-membres'>
-                                        {usersData.map((user, index) => (
-                                            <li key={user._id} className={index === 0 ? 'first-membres' : ''}>
-                                                <h2>{user.poste}</h2>
-                                                <img 
-                                                    src={user.picture}
-                                                    alt="Employé"
-                                                    className='user-img'
-                                                />
-                                                <h3>{user.pseudo}</h3>
-                                                <p>{user.numero}</p>
-                                                <p>{user.email}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
+                            <ul className='all-membres'>
+                                {usersData.map((user, index) => (
+                                    <li key={user._id} className={index === 0 ? 'first-membres' : ''}>
+                                        <h2>{user.poste}</h2>
+                                        <img 
+                                            src={user.picture}
+                                            alt="Employé"
+                                            className='user-img'
+                                        />
+                                        <h3>{user.pseudo}</h3>
+                                        <p>{user.numero}</p>
+                                        <p>{user.email}</p>
+                                    </li>
+                                ))}
+                            </ul>
                         </div> 
                     </div>
                 </div>

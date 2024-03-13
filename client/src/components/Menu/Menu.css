@@ -5,14 +5,13 @@
 .menu-ctn {
     margin: 0;
     height: 95vh;
-    min-width: 288px;
+    min-width: 12.5vw;
     background-color: #9daf83;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     font-weight: 400;
     transition: transform 0.3s ease-in-out;
-    position: relative;
+    gap: 20px;
 }
 .closed {
     transform: translateX(-100%); 
@@ -21,6 +20,7 @@
     transform: translateX(0); 
 }
 .toggle-menu-button {
+    width: 2vw;
     border: 1px solid #5d6d46 ;
     background: #9daf83;
     transition: transform 0.3s ease-in-out;
@@ -29,11 +29,6 @@
     background: #5d6d46;
     transition: all 0.3s ease-in-out;
 }
-.toggle-menu-button.sticky {
-    transform: translateX(-288px);
-    transition: transform 0.3s ease-in-out;
-}
-
 .menu-list {
     padding: 0;
     display: flex;
@@ -69,7 +64,7 @@
 .menu-list li a{
     display: flex;
     color: black;
-    padding: 20px 0;
+    padding: 20px 20px 20px 0;
 }
 li.li-btn{
     display: flex;
@@ -108,17 +103,58 @@ li.li-btn button:hover{
     padding: 40px;
     border-radius: 20px;
 }
-
+.add-btn.mob {
+    display: none;
+}
 /* Responsive */
 @media screen and (max-width: 1500px){
-
+    .menu-ctn {
+        min-height: 100vh;
+        height: 100%;
+    }
+    .toggle-menu-button {
+        display: none;
+    }
 }
 @media screen and (max-width: 1250px){
-
-}
-@media screen and (max-width: 1000px){
-
+    .menu-ctn {
+        width: 20vw;
+    }
 }
 @media screen and (max-width: 750px){
-
+    .menu-all {
+        width: 100%;
+        overflow-x: hidden;
+        flex-direction: column;
+    }
+    .menu-ctn {
+        min-width: 100%;
+        min-height: 0;
+        height: 100%;
+        padding: 10px 0;
+        justify-content: center;
+        gap: 1vh;
+    }
+    .menu-list {
+        flex-direction: row;
+    }
+    .menu-list li a{
+        padding: 5px 0;
+        justify-content: center;
+    }
+    .menu-list i{
+        margin: 0 10px;
+    }
+    li.li-btn.desk{
+        display: none;
+    }
+    .add-btn.mob {
+        display: block;
+        margin: 10px auto;
+        border: 1px solid #F5F1E3;
+        border-radius: 5px;
+        background: #CED7C1;
+        padding: 10px;
+        transition: all 0.3s;
+    }
 }

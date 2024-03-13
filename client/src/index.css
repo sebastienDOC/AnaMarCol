@@ -4,8 +4,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 1920px;
-  /* overflow-y: hidden; */
   overflow-x: hidden;
+  overflow-y: hidden;
   background-color: #F5F1E3;
 }
 code {
@@ -20,6 +20,7 @@ li {
 }
 button {
   cursor: pointer;
+  font-family: 'Montserrat';
 }
 p {
   font-size: 14px;
@@ -30,6 +31,7 @@ a {
 }
 i {
   color: black; 
+  cursor: pointer;
 }
 .flex-row {
   display: flex;
@@ -50,7 +52,6 @@ i {
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
 }  
-
 .menu-all ~ .main-content.closed {
   transform: translateX(calc(-50vw + 50%)); 
   transition: transform 0.3s ease-in-out;
@@ -59,3 +60,24 @@ i {
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
 }  
+.toggle-menu-button.sticky {
+  transform: translateX(-12.5vw);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Responsive */ 
+@media screen and (max-width: 1000px){
+  body {
+    overflow-x: auto ;
+    overflow-y: auto ;
+  }
+}
+@media screen and (max-width: 750px){
+  a {
+    font-size: 13px;
+  }
+  .toggle-menu-button.sticky {
+    transform: translateX(-90vw);
+    transition: transform 0.3s ease-in-out;
+  }
+}

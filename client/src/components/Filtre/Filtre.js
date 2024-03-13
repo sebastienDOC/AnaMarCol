@@ -2,75 +2,133 @@ import React, { useState, useCallback } from 'react';
 import './Filtre.css';
 
 const FiltreArticles = ({ onFilterChange }) => {
+  const [filters, setFilters] = useState({
+    selectedFournisseurs: '',
+    selectedEtats: '',
+    searchTerm: ''
+  });
   const [selectedFournisseurs, setSelectedFournisseurs] = useState([]);
   const [selectedEtats, setSelectedEtats] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleFournisseurChange = useCallback(
+  const handleFournisseursChangeDesk = useCallback(
     (value) => {
       const updatedFournisseurs = selectedFournisseurs.includes(value)
         ? selectedFournisseurs.filter((f) => f !== value)
         : [...selectedFournisseurs, value];
 
       setSelectedFournisseurs(updatedFournisseurs);
-      onFilterChange({ selectedFournisseurs: updatedFournisseurs, selectedEtats, searchTerm });
+      onFilterChange({ selectedFournisseurs: updatedFournisseurs, selectedEtats, searchTerm: filters.searchTerm });
     },
-    [selectedFournisseurs, selectedEtats, searchTerm, onFilterChange]
+    [selectedFournisseurs, selectedEtats, filters.searchTerm, onFilterChange]
   );
 
-  const handleEtatChange = useCallback(
+  const handleEtatsChangeDesk = useCallback(
     (value) => {
       const updatedEtats = selectedEtats.includes(value)
         ? selectedEtats.filter((e) => e !== value)
         : [...selectedEtats, value];
 
       setSelectedEtats(updatedEtats);
-      onFilterChange({ selectedFournisseurs, selectedEtats: updatedEtats, searchTerm });
+      onFilterChange({ selectedFournisseurs, selectedEtats: updatedEtats, searchTerm: filters.searchTerm });
     },
-    [selectedFournisseurs, selectedEtats, searchTerm, onFilterChange]
+    [selectedFournisseurs, selectedEtats, filters.searchTerm, onFilterChange]
+  );
+
+
+  const handleFournisseursChange = useCallback(
+    (event) => {
+      const value = event.target.value;
+      setFilters({ ...filters, selectedFournisseurs: value });
+      onFilterChange({ selectedFournisseurs: value, selectedEtats: filters.selectedEtats, searchTerm: filters.searchTerm });
+    },
+    [filters, onFilterChange]
+  );
+
+  const handleEtatsChange = useCallback(
+    (event) => {
+      const value = event.target.value;
+      setFilters({ ...filters, selectedEtats: value });
+      onFilterChange({ selectedFournisseurs: filters.selectedFournisseurs, selectedEtats: value, searchTerm: filters.searchTerm });
+    },
+    [filters, onFilterChange]
   );
 
   const handleSearchTermChange = useCallback(
-    (value) => {
-      setSearchTerm(value);
-      onFilterChange({ selectedFournisseurs, selectedEtats, searchTerm: value });
+    (event) => {
+      const value = event.target.value;
+      setFilters({ ...filters, searchTerm: value });
+      onFilterChange({ selectedFournisseurs: filters.selectedFournisseurs, selectedEtats: filters.selectedEtats, searchTerm: value });
     },
-    [selectedFournisseurs, selectedEtats, onFilterChange]
+    [filters, onFilterChange]
   );
 
   return (
-    <div className='tri-ctn'>
-      
-      <div className='tri-recherche'>
+    <div className='filtres'>
+      <div className='tri-ctn desk'>
+
         <h4>Rechercher :</h4>
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          value={searchTerm} 
-          onChange={(e) => handleSearchTermChange(e.target.value)}
-        />
-      </div>
+        <div className='tri-recherche'>
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={filters.searchTerm}
+            onChange={handleSearchTermChange}
+          />
+        </div>
 
-      <div className='tri-fournisseur'>
         <h4>Fournisseur :</h4>
-        {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
-          <label key={value}>
-            <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseurChange(value)} />
-            {value}
-          </label>
-        ))}
-      </div>
+        <div className='tri-fournisseur'>
+          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+            <label key={value}>
+              <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseursChangeDesk(value)} />
+              {value}
+            </label>
+          ))}
+        </div>
 
-      <div className='tri-etat'>
         <h4>État :</h4>
-        {['SAV', 'Neuf'].map(value => (
-          <label key={value}>
-            <input type="checkbox" value={value} checked={selectedEtats.includes(value)} onChange={() => handleEtatChange(value)} />
-            {value}
-          </label>
-        ))}
+        <div className='tri-etat'>  
+          {['SAV', 'Neuf'].map(value => (
+            <label key={value}>
+              <input type="checkbox" value={value} checked={selectedEtats.includes(value)} onChange={() => handleEtatsChangeDesk(value)} />
+              {value}
+            </label>
+          ))}
+        </div>
+
       </div>
 
+      <div className='tri-ctn mob'>
+        <div className='tri-recherche'>
+          <h4>Rechercher :</h4>
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={filters.searchTerm}
+            onChange={handleSearchTermChange}
+          />
+        </div>
+
+        <div className='tri-fournisseur'>
+          <h4>Fournisseur :</h4>
+          <select value={filters.selectedFournisseurs} onChange={handleFournisseursChange}>
+            <option value="">-- Fournisseur --</option>
+            {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+              <option key={value} value={value}>{value}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className='tri-etat'>  
+          <h4>État :</h4>
+          <select value={filters.selectedEtats} onChange={handleEtatsChange}>
+            <option value="">-- État --</option>
+            {['SAV', 'Neuf'].map(value => (
+              <option key={value} value={value}>{value}</option>
+            ))}
+          </select>
+        </div>
+      </div>
     </div>
   );
 };

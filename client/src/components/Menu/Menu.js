@@ -49,7 +49,7 @@ export default function Menu() {
           <li>
             <Link to='/home'>
               <i className="fa-solid fa-house"></i>
-              Tableau de bord
+              Accueil
             </Link>
           </li>
 
@@ -61,7 +61,7 @@ export default function Menu() {
                   Articles
                 </Link>
               </li>
-              <li className='li-btn'>
+              <li className='li-btn desk'>
                 <button onClick={openAddModal} aria-label="Ajouter article(s)">
                   Ajouter article(s)
                 </button>
@@ -91,10 +91,6 @@ export default function Menu() {
           </li>
         </ul>
 
-        {isAddModalOpen && currentUser._id && (
-          <AddModal onClose={closeAddModal} posterId={currentUser._id} modifierId={currentUser._id} />
-        )}
-
         {isOnArticlePage && <FiltreArticles onFilterChange={handleFilterChange}/>}
       </div>
 
@@ -106,14 +102,23 @@ export default function Menu() {
         )}
       </button>
 
+      {isAddModalOpen && currentUser._id && (
+          <AddModal onClose={closeAddModal} posterId={currentUser._id} modifierId={currentUser._id} />
+      )}
+
       <div className='main-content'>
         {isOnArticlePage && (
-          <AllArticles
-            filteredItems={filteredItems}
-            setFilteredItems={setFilteredItems}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <>
+            <button onClick={openAddModal} aria-label="Ajouter article(s)" className='add-btn mob'>
+              Ajouter article(s)
+            </button>
+            <AllArticles
+              filteredItems={filteredItems}
+              setFilteredItems={setFilteredItems}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
         )}
       </div>
 

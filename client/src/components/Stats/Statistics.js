@@ -115,7 +115,7 @@ const Statistiques = () => {
             </div>
         </div>
   
-        <div className='stats-fournisseurs'>
+        <div className='stats-fournisseurs desk'>
             <h2>Stock par Fournisseur</h2>
             <div className='table-container'>
               <table>
@@ -160,6 +160,32 @@ const Statistiques = () => {
                 </tbody>
               </table>
             </div>
+        </div>
+
+        <div className='stats-fournisseurs mob'>
+          <h2>Stock par Fournisseur</h2>
+          <div className='table-container'>
+            <table>
+              <thead>
+                <tr>
+                  <th>Fournisseur</th>
+                  <th className='td-case'>Articles</th>
+                  <th className='td-case'>Stock total</th>
+                  <th className='td-case'>Stock &lt; 5</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fournisseursList.map((fournisseur, index) => (
+                  <tr key={index} className='tr-fournisseur'>
+                    <td className='td-fournisseur'>{fournisseur}</td>
+                    <td className='td-number'>{fournisseursStats[fournisseur]?.numberOfArticles || 0}</td>
+                    <td className='td-number'>{fournisseursStats[fournisseur]?.totalStock || 0}</td>
+                    <td className='td-number'>{fournisseursStats[fournisseur]?.numberOfLowStockArticles || 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
     </div>
   );

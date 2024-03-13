@@ -33,7 +33,11 @@ export default function Header() {
 
                     <div className='header-icons'>
                         <Link to='/profil' aria-label="Profil utilisateur">
-                            <i className="fa-solid fa-user fa-xl"></i>
+                        <img 
+                            src={userData.picture}
+                            alt='Employé'
+                            className='header-pic'
+                        />
                         </Link>
                         <Logout />
                     </div>

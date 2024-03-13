@@ -8,3 +8,10 @@
     flex-direction: column;
 }
   
+/* Responsive */
+@media screen and (max-width: 750px){
+    .home-first {
+        flex-direction: column;
+        height: 100%;
+    }
+}

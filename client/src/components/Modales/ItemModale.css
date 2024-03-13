@@ -81,5 +81,15 @@ img.modal-left-img {
 
 }
 @media screen and (max-width: 750px){
-
+    .modal-ctn {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .modal-content {
+        width: 60%;
+    }
+    .modal-left,
+    .modal-right {
+        margin: 0;
+    }
 }

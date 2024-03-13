@@ -8,7 +8,6 @@ h2 {
     width: 85vw;
     position: relative;
     border-bottom: 1px solid black;
-    gap: 10px;
     padding: 10px;
 }
 .stats-total {
@@ -23,7 +22,8 @@ h2 {
 }
 table, th, td {
     border: 1px solid black;
-    padding: 10px;
+    font-size: 14px;
+    padding: 2px 5px;
     text-align: center;
     border-collapse: collapse;
 }
@@ -51,15 +51,13 @@ table, th, td {
 .stats-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin: auto;
-    gap: 50px;
+    gap: 10px;
 }
 .stats-fournisseurs,
 .stats-etats {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 5px;
     margin: auto;
 }
@@ -101,17 +99,77 @@ table, th, td {
     border: 1px solid black;
     border-radius: 20px;
 }
+.td-fournisseur,
+.td-case {
+    width: 8vh;
+}
+.stats-fournisseurs.mob {
+    display: none;
+}
 
 /* Responsive */
 @media screen and (max-width: 1500px){
-
+    .stats-ctn {
+        height: 100%;
+        padding: 10px 0;
+        flex-direction: column;
+    }
+    .stats-fournisseurs,
+    .stats-etats,
+    .stats-container {
+        margin: 0 auto;
+    }
 }
 @media screen and (max-width: 1250px){
-
+    .stats-ctn {
+        width: 80vw;
+    }
 }
 @media screen and (max-width: 1000px){
-
+    .stats-ctn {
+        width: 80vw;
+    }
+    .stats-fournisseurs.mob {
+        display: block;
+        margin: 0 auto;
+        width: 70vw;
+    }
+    .stats-fournisseurs.desk {
+        display: none;
+    }
+    h2 {
+        font-size: 18px;
+    }
+    .stats-container {
+        gap: 10px;
+        height: 100%;
+        margin: 0;
+        justify-content: space-evenly;
+    }
+    .table-container {
+        flex-direction: column;
+    }
+    .stats-total table,
+    .stats-etats table {
+        width: 30%;
+        margin: 0 auto;
+    }
+    .stats-etats {
+        margin: 0;
+    }
 }
 @media screen and (max-width: 750px){
+    .stats-ctn {
+        margin: auto;
+    }
+    .stats-fournisseurs.mob {
+        width: 80vw;
+    }
+    .stats-total table,
+    .stats-etats table {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 500px){
 
 }

@@ -20,7 +20,6 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
 
   useEffect(() => {
     setFilteredItems(itemsData);
-    setCurrentPage(1);
   }, [itemsData, setFilteredItems, setCurrentPage]);
 
   const currentItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
@@ -122,23 +121,21 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
   );
 };
 
-// Hook personnalisé pour déterminer le nombre d'articles par page en fonction de la largeur de l'écran
+// Détermine le nombre d'articles par page en fonction de la largeur de l'écran
 const useItemsPerPage = () => {
   const [itemsPerPage, setItemsPerPage] = useState(15);
 
   useEffect(() => {
     const handleResize = () => {
       // Ajuste le nombre d'articles par page en fonction de la largeur de l'écran
-      if (window.innerWidth < 500) {
-        setItemsPerPage(6);
-      } else if (window.innerWidth < 1000) {
-        setItemsPerPage(6);
-      } else if (window.innerWidth < 1250) {
-        setItemsPerPage(9);
-      } else if (window.innerWidth < 1500) {
-        setItemsPerPage(12);
-      } else {
+      if (window.innerWidth >= 1500) {
         setItemsPerPage(15);
+      } else if (window.innerWidth >= 1250) {
+        setItemsPerPage(12);
+      } else if (window.innerWidth >= 1000) {
+        setItemsPerPage(9);
+      } else {
+        setItemsPerPage(6);
       }
     };
 
