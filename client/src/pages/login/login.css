@@ -41,8 +41,28 @@
 }
 .login-welcome,
 .login-logs {
-    width: 15%;
+    width: 20%;
 }
 .error {
     color: red;
+}
+
+/* Responsive */
+@media screen and (max-width: 1000px){
+    .login-welcome,
+    .login-logs {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 750px){
+    .login-welcome,
+    .login-logs {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 500px){
+    .login-welcome,
+    .login-logs {
+        width: 50%;
+    }
 }

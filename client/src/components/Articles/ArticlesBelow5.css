@@ -36,6 +36,9 @@ img.art5-img{
 
 /* Responsive */
 @media screen and (max-width: 1500px){
+    .art5-ctn {
+        margin: auto;
+    }
     .art5-ul {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }

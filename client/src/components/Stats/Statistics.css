@@ -113,6 +113,7 @@ table, th, td {
         height: 100%;
         padding: 10px 0;
         flex-direction: column;
+        width: 90vw;
     }
     .stats-fournisseurs,
     .stats-etats,
