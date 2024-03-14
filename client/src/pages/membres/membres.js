@@ -1,4 +1,5 @@
 import './membres.css'
+import No from '../../assets/no.png'
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header'
 import Menu from '../../components/Menu/Menu';
@@ -38,8 +39,9 @@ export default function Membres() {
                     </div>
                 </div>
             ) : 
-                <div>
-                    <h1>Veuillez vous connecter</h1>
+                <div className='login-false'>
+                    <h1>Vous n'êtes pas connecté.</h1>
+                    <img src={No} alt='Panneau interdit'/>
                     <h2><Link to='/'>Retour à la page de connexion</Link></h2>
                 </div>
             }

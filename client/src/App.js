@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <UidContext.Provider value={uid}>
-      <BrowserRouter>
+      <BrowserRouter>        
         <Routes />
       </BrowserRouter>
     </UidContext.Provider>

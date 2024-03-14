@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './login.css';
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const [isLoading, setIsLoading] = useState(false)
+    console.log(isLoading);
     function handleLogin(e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error')
@@ -20,22 +22,32 @@ export default function Login() {
                 password
             }
         })
-        .then((res) => {
-            console.log(res)
-            if(res.data.errors) {
-                emailError.innerHTML = res.data.errors.email
-                passwordError.innerHTML = res.data.errors.password
-            } else {
-                window.location = '/home'
-            }
+        .then(() => {
+            setIsLoading(true)
+            window.location = '/home'
         })
         .catch((err) => {
-            console.log(err)
+            emailError.innerHTML = err.response.data.errors.email
+            passwordError.innerHTML = err.response.data.errors.password
         })
+
+        setIsLoading(false)
     }
 
     return (
         <div className='login-ctn'>
+            {isLoading && (
+                <div className="spinner">
+                    <ClipLoader
+                        color='#000'
+                        loading={isLoading}
+                        size={150}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
+                    <h2>En cours de chargement...</h2>
+                </div>
+            )}
             <div className='login-welcome'>
                 <h1>Gestion de stock</h1>
                 <h2>AnaMarCol</h2>
