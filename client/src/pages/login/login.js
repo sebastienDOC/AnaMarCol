@@ -35,8 +35,8 @@ export default function Login() {
     }
 
     return (
-        <div className='login-ctn'>
-            {isLoading && (
+        <div>
+            {isLoading ? (
                 <div className="spinner">
                     <ClipLoader
                         color='#000'
@@ -47,37 +47,40 @@ export default function Login() {
                     />
                     <h2>En cours de chargement...</h2>
                 </div>
+            ) : (
+                <div className='login-ctn'>
+                    <div className='login-welcome'>
+                        <h1>Gestion de stock</h1>
+                        <h2>AnaMarCol</h2>
+                    </div>
+                    <form className='login-logs' action='' onSubmit={handleLogin} id="sign-up-form">
+                        <label htmlFor='email'>E-mail</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"  
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            placeholder='exemple@gmail.com' 
+                            required 
+                        />
+                        <div className='email error'></div>
+                        <label htmlFor='password'>Mot de passe</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password"  
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            placeholder='*******' 
+                            autoComplete=''
+                            required 
+                        />
+                        <div className='password error'></div>
+                        <input type="submit" value='Se connecter' className='form-btn' />
+                    </form>
+                </div>
             )}
-            <div className='login-welcome'>
-                <h1>Gestion de stock</h1>
-                <h2>AnaMarCol</h2>
-            </div>
-            <form className='login-logs' action='' onSubmit={handleLogin} id="sign-up-form">
-                <label htmlFor='email'>E-mail</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email"  
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    placeholder='exemple@gmail.com' 
-                    required 
-                />
-                <div className='email error'></div>
-                <label htmlFor='password'>Mot de passe</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password"  
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    placeholder='*******' 
-                    autoComplete=''
-                    required 
-                />
-                <div className='password error'></div>
-                <input type="submit" value='Se connecter' className='form-btn' />
-            </form>
-        </div>
+        </div> 
     )
 }
