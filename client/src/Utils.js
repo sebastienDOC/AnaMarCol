@@ -5,3 +5,20 @@ export const dateParser = (num) => {
 
     return date.toString()
 }
+export const uploadErrors = (err, detectedMimeType, fileName) => {
+    let errors = { format: '', maxSize: '' };
+
+    if (err.message.includes('Invalid file')) {
+        const detectedMimeMessage = detectedMimeType ? `Detected MIME type: ${detectedMimeType}.` : '';
+        errors.format = `Format incompatible. ${detectedMimeMessage} `;
+    }
+
+    if (err.message.includes('Max size')) {
+        errors.maxSize = 'Le fichier est trop volumineux, maximum 500ko';
+    }
+
+    console.error('Detected MIME Type:', detectedMimeType);
+    console.error('File Name:', fileName);
+
+    return errors;
+};

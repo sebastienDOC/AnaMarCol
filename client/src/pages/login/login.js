@@ -7,7 +7,7 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    console.log(isLoading);
+
     function handleLogin(e) {
         e.preventDefault();
         const emailError = document.querySelector('.email.error')
@@ -30,7 +30,6 @@ export default function Login() {
             emailError.innerHTML = err.response.data.errors.email
             passwordError.innerHTML = err.response.data.errors.password
         })
-
         setIsLoading(false)
     }
 

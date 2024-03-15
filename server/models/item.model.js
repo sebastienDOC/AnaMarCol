@@ -12,8 +12,8 @@ const ItemSchema = new mongoose.Schema(
         denomination: {
             type: String,
             trim: true,
-            unique: true,
             required: true,
+            unique: false
         },
         quantite: {
             type: String,

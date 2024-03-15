@@ -28,23 +28,19 @@ module.exports.signInErrors = (err) => {
     return errors
 }
 
-const { extname } = require('path');
-
 // Fonction pour gérer les erreurs lors de l'upload d'image
 module.exports.uploadErrors = (err, detectedMimeType, fileName) => {
     let errors = { format: '', maxSize: '' };
 
     if (err.message.includes('Invalid file')) {
         const detectedMimeMessage = detectedMimeType ? `Detected MIME type: ${detectedMimeType}.` : '';
-        const fileExtensionMessage = fileName ? `File extension: ${extname(fileName)}.` : '';
-        errors.format = `Format incompatible. ${detectedMimeMessage} ${fileExtensionMessage}`;
+        errors.format = `Format incompatible. ${detectedMimeMessage} `;
     }
 
     if (err.message.includes('Max size')) {
         errors.maxSize = 'Le fichier est trop volumineux, maximum 500ko';
     }
 
-    // Ajoutez ces lignes pour afficher les informations de débogage
     console.error('Detected MIME Type:', detectedMimeType);
     console.error('File Name:', fileName);
 
@@ -62,9 +58,8 @@ module.exports.createItemErrors = (err) => {
     if (err.message.includes('etat')) 
         errors.etat = "L'état de la pièce doit être Neuf ou SAV"
     if (err.message.includes('quantite')) 
-        errors.quantite = "La quantité attendu est un nombre"
-    if (err.code === 11000 && Object.keys(err.keyValue)[0].includes('denomination'))
-        errors.denomination = "Cette dénomination est déjà prise"
+        errors.quantite = "La quantité attendue est un nombre"
 
+    console.error(err);
     return errors
 }

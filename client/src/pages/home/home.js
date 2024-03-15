@@ -6,7 +6,7 @@ import Menu from '../../components/Menu/Menu';
 import Statistiques from '../../components/Stats/Statistics';
 import ArticlesBelow5 from '../../components/Articles/ArticlesBelow5';
 import { UidContext } from '../../components/AppContext';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 
 

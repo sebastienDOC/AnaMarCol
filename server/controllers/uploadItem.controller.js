@@ -1,9 +1,10 @@
 const ItemModel = require('../models/item.model');
 const fs = require('fs');
 const { promisify } = require('util');
-const { uploadErrors } = require('../utils/errors.utils');
+const { uploadErrors } = require('../errors.utils');
 const stream = require('stream');
 const pipeline = promisify(stream.pipeline);
+const path = require('path');
 
 module.exports.uploadItem = async (req, res) => {
     try {
@@ -24,7 +25,7 @@ module.exports.uploadItem = async (req, res) => {
     }
 
     const fileName = req.body.denomination + '.jpg';
-    const filePath = `${__dirname}/../client/public/uploads/items/${fileName}`;
+    const filePath = path.join(__dirname, `/../../client/public/uploads/items/${fileName}`);
 
     try {
         const bufferStream = new stream.PassThrough();

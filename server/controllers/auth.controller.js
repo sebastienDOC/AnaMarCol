@@ -1,6 +1,6 @@
 const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
-const { signUpErrors, signInErrors } = require('../utils/errors.utils');
+const { signUpErrors, signInErrors } = require('../errors.utils');
 
 // Durée de vie du token
 const maxAge = 3 * 21 * 60 * 60 * 1000

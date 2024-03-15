@@ -8,7 +8,8 @@ const UploadImg = () => {
     const dispatch = useDispatch()
     const userData = useSelector((state) => state.userReducer)
 
-    const handlePicture = () => {
+    const handlePicture = (e) => {
+        e.preventDefault()
         const data = new FormData()
         data.append("name", userData.pseudo)
         data.append("userId", userData._id)
@@ -30,6 +31,7 @@ const UploadImg = () => {
             />
             <br/>
             <input type="submit" value="Envoyer" className="upload-pic-send"/>
+            <p className="error-message-profil"></p>
         </form>
     )
 }

@@ -25,7 +25,6 @@ const ContactModale = ({ onClose, contactId }) => {
             try {
                 await dispatch(uploadContactPicture(data, selectedContactInfo._id, modifierId));
                 dispatch(getAllContacts())
-                onClose();
             } catch (error) {
                 console.error("Erreur lors de l'envoi de l'image :", error);
             }
@@ -58,6 +57,7 @@ const ContactModale = ({ onClose, contactId }) => {
                                     <br/>
                                     <input type="submit" value="Envoyer" className="modal-btn" />
                                 </form>
+                                <p className='error-message-contact'></p>
                             </>
                         ) : (
                             <p>Aucune image disponible</p>

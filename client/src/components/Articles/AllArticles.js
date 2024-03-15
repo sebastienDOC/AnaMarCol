@@ -63,7 +63,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
 
   return (
     <div className="item-flex">
-
+      <p className="article-error"></p>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

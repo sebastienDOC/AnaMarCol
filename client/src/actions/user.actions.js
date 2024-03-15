@@ -16,6 +16,7 @@ export const getUser = (uid) => {
 }
 
 export const uploadPicture = (data, id) => {
+    const errorMsgProfil = document.querySelector('.error-message-profil')
     return (dispatch) => {
         return axios
             .post(`${process.env.REACT_APP_API_URL}api/user/upload`, data)
@@ -26,7 +27,14 @@ export const uploadPicture = (data, id) => {
                         dispatch({type: UPLOAD_PICTURE, payload: res.data.picture})
                     })
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                if (err.response.data.errors.format) {
+                    errorMsgProfil.innerHTML = err.response.data.errors.format
+                }
+                if (err.response.data.errors.maxSize) {
+                    errorMsgProfil.innerHTML = err.response.data.errors.maxSize
+                }
+            })
     }
 }
 

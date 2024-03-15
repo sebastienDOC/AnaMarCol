@@ -40,6 +40,10 @@
 .upload-image-btn{
     display: none;
 }
+.error-message-contact {
+    color: red;
+    font-weight: bold;
+}
 
 /* Responsive */
 @media screen and (max-width: 1500px){

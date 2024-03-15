@@ -1,8 +1,10 @@
 const ContactModel = require('../models/contact.model');
 const fs = require('fs');
 const { promisify } = require('util');
+const { uploadErrors } = require('../errors.utils');
 const stream = require('stream');
 const pipeline = promisify(stream.pipeline);
+const path = require('path');
 
 module.exports.uploadContact = async (req, res) => {
     try {
@@ -14,15 +16,16 @@ module.exports.uploadContact = async (req, res) => {
             throw new Error('Invalid file');
         }
 
-        if (req.file.size > 2000000) {
+        if (req.file.size > 500000) {
             throw new Error('Max size');
         }
     } catch (err) {
-        return res.status(400).json(err);
+        const errors = uploadErrors(err, req.file.mimetype);
+        return res.status(400).json(errors);
     }
 
     const fileName = req.body.nom + '.jpg';
-    const filePath = `${__dirname}/../client/public/uploads/contacts/${fileName}`;
+    const filePath = path.join(__dirname, `/../../client/public/uploads/contacts/${fileName}`);
 
     try {
         const bufferStream = new stream.PassThrough();

@@ -1,5 +1,6 @@
 const ItemModel = require('../models/item.model')
-const { createItemErrors } = require('../utils/errors.utils');
+const { createItemErrors } = require('../errors.utils');
+const { uploadErrors } = require('../errors.utils');
 const ObjectID = require('mongoose').Types.ObjectId
 
 module.exports.itemInfo = (req, res) => { 
@@ -33,13 +34,12 @@ module.exports.readItem = (req, res) => {
 
 module.exports.createItem = async (req, res) => {
     const {denomination, quantite, fournisseur, etat, posterId, modifierName} = req.body
-
     try {
         const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierName })
         return res.status(200).json({ item: item._id})
     } catch (err){
         const errors = createItemErrors(err)
-        res.status(201).send({ errors })
+        return res.status(400).json({ errors })
     }
 }
 

@@ -1,4 +1,3 @@
-// AddModal.jsx
 import React, { useState } from 'react';
 import "./ItemModale.css"
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,13 +9,13 @@ const ItemModale = ({ onClose }) => {
     const dispatch = useDispatch();
     const { selectedItemInfo, selectedItemQuantite } = useSelector((state) => state.itemReducer);
     const currentUser = useSelector((state) => state.userReducer);
-    const userDataId = currentUser._id
-    const modifierName = useSelector((state) => state.userReducer.pseudo)
+    const userDataId = currentUser._id;
+    const modifierName = useSelector((state) => state.userReducer.pseudo);
     const [quantite, setQuantite] = useState(selectedItemQuantite || '');
     const [updateForm, setUpdateForm] = useState(false);
 
-    const handlePicture = async (event) => {
-        event.preventDefault();
+    const handlePicture = async (e) => {
+        e.preventDefault();
 
         if (selectedItemInfo && selectedItemInfo._id && file && currentUser && currentUser._id) {
             const modifierId = currentUser._id;
@@ -30,7 +29,6 @@ const ItemModale = ({ onClose }) => {
             try {
                 await dispatch(uploadItemPicture(data, selectedItemInfo._id, modifierId));
 
-                onClose();
             } catch (error) {
                 console.error("Erreur lors de l'envoi de l'image :", error);
             }
@@ -79,6 +77,7 @@ const ItemModale = ({ onClose }) => {
                                     <br/>
                                     <input type="submit" value="Envoyer" className="modal-btn"/>
                                 </form>
+                                <p className="error-message"></p>
                             </>
                         ) : (
                             <p>Aucune image disponible</p>

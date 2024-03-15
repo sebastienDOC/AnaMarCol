@@ -45,6 +45,7 @@ export const setSelectedContactId = (contactId) => {
 };
 
 export const uploadContactPicture = (data, id) => {
+    const errorMsgContact = document.querySelector('.error-message-contact')
     return (dispatch) => {
         return axios
             .post(`${process.env.REACT_APP_API_URL}api/contacts/upload`, data)
@@ -56,7 +57,14 @@ export const uploadContactPicture = (data, id) => {
                         dispatch(getAllContacts())
                     })
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                if (err.response.data.format) {
+                    errorMsgContact.innerHTML = err.response.data.format
+                }
+                if (err.response.data.maxSize) {
+                    errorMsgContact.innerHTML = err.response.data.maxSize
+                }
+            })
     }
 }
 

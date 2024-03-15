@@ -15,25 +15,56 @@ export const SET_SELECTED_ITEM_ID = "SET_SELECTED_ITEM_ID"
 export const UPLOAD_ITEM_PICTURE = "UPLOAD_ITEM_PICTURE"
 
 export const addItem = (newItem) => {
+  const errorArticle = document.querySelector('.article-error');
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}api/item/`, newItem);
+      // Vérifie si des articles avec la même dénomination existent
+      const existingItems = await axios.get(`${process.env.REACT_APP_API_URL}api/item/?denomination=${newItem.denomination}`);
+      // Parcourez les articles existants pour trouver ceux avec le même fournisseur et état
+      const sameItems = existingItems.data.filter((item) => {
+        return item.denomination === newItem.denomination && 
+               item.fournisseur === newItem.fournisseur && 
+               item.etat === newItem.etat;
+      });    
+
+      if (sameItems.length > 0) {
+        // Si des articles avec la même dénomination, fournisseur et état existent, affiche un message d'erreur
+        errorArticle.innerHTML = "Un article avec la même dénomination, fournisseur et état existe déjà.";
+        return; // Arrête le traitement car un article avec les mêmes paramètres existe déjà
+      }
+
+      // Si aucun article avec les mêmes paramètres n'existe, créez le nouvel article
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}api/item/`, newItem);
+      
       dispatch({
         type: ADD_ITEM_SUCCESS,
-        payload: response.data.item,
+        payload: res.data.item,
       });
-
-      // Mettez à jour les statistiques du fournisseur après la création de l'article
+      
+      // Met à jour les statistiques du fournisseur après la création de l'article
       dispatch(fetchStatisticsForFournisseur(newItem.fournisseur));
       dispatch(fetchStatisticsForEtat(newItem.etat));
       dispatch(fetchArticlesWithLowStock());
       dispatch(getAllItems());
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'article", error);
-      dispatch({
-        type: ADD_ITEM_FAILURE,
-        payload: error.message || 'Une erreur s\'est produite lors de l\'ajout de l\'article.',
-      });
+    } catch (err) {
+      // Gère les erreurs
+      if (err.response.data.errors) {
+        const errors = err.response.data.errors;
+        if (errors.denomination) {
+          errorArticle.innerHTML = errors.denomination;
+        }
+        if (errors.fournisseur) {
+          errorArticle.innerHTML = errors.fournisseur;
+        }
+        if (errors.etat) {
+          errorArticle.innerHTML = errors.etat;
+        }
+        if (errors.quantite) {
+          errorArticle.innerHTML = errors.quantite;
+        }
+      } else {
+        console.error(err);
+      }
     }
   };
 };
@@ -96,6 +127,7 @@ export const setSelectedItemId = (itemId) => {
 };
 
 export const uploadItemPicture = (data, id, modifierId) => {
+  const errorMsg = document.querySelector('.error-message')
   return (dispatch) => {
     data.append("modifierId", modifierId);
 
@@ -109,7 +141,14 @@ export const uploadItemPicture = (data, id, modifierId) => {
             dispatch(getAllItems());
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response.data.errors.format) {
+          errorMsg.innerHTML = err.response.data.errors.format
+        }
+        if (err.response.data.errors.maxSize) {
+        errorMsg.innerHTML = err.response.data.errors.maxSize
+        }
+      })
   };
 };
 
@@ -122,7 +161,7 @@ export const deleteItem = (itemId, fournisseur, etat) => {
         type: DELETE_ITEM_SUCCESS,
         payload: { itemId },
       });
-      // Mettez à jour les statistiques du fournisseur après la suppression de l'article
+      // Met à jour les statistiques du fournisseur après la suppression de l'article
       dispatch(fetchStatisticsForFournisseur(fournisseur));
       dispatch(fetchStatisticsForEtat(etat));
       dispatch(fetchArticlesWithLowStock());
