@@ -77,20 +77,6 @@ img.modal-left-img {
 /* Responsive */
 @media screen and (max-width: 1250px){
     .modal-ctn {
-        flex-direction: column;
-        gap: 20px;
-    }
-    .modal-content {
-        width: 40%;
-    }
-    .modal-left,
-    .modal-right {
-        margin: 0;
-    }
-}
-@media screen and (max-width: 750px){
-    .modal-ctn {
-        flex-direction: column;
         gap: 20px;
     }
     .modal-content {
@@ -100,4 +86,32 @@ img.modal-left-img {
     .modal-right {
         margin: 0;
     }
+}
+@media screen and (max-width: 1000px){
+    .modal-ctn {
+        flex-direction: column;
+        gap: 20px;
+    }
+    img.modal-left-img {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+}
+@media screen and (max-width: 750px){
+    .modal-ctn {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-left,
+    .modal-right {
+        margin: 0;
+    }
+}
+@media screen and (max-width: 500px){
+
 }

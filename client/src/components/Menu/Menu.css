@@ -158,3 +158,8 @@ li.li-btn button:hover{
         transition: all 0.3s;
     }
 }
+@media screen and (max-width: 500px){
+    .menu-list i{
+        margin: 0 5px;
+    }
+}

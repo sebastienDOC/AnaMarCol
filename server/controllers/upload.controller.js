@@ -16,7 +16,7 @@ module.exports.uploadProfil = async (req, res) => {
             throw new Error('Invalid file');
         }
 
-        if (req.file.size > 500000) {
+        if (req.file.size > 2000000) {
             throw new Error('Max size');
         }
     } catch (err) {

@@ -46,6 +46,7 @@ export const addItem = (newItem) => {
       dispatch(fetchStatisticsForEtat(newItem.etat));
       dispatch(fetchArticlesWithLowStock());
       dispatch(getAllItems());
+      errorArticle.innerHTML = ''
     } catch (err) {
       // Gère les erreurs
       if (err.response.data.errors) {

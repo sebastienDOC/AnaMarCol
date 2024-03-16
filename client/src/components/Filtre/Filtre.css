@@ -88,15 +88,6 @@ input[type="checkbox"] {
   
 
 /* Responsive */
-@media screen and (max-width: 1500px){
-
-}
-@media screen and (max-width: 1250px){
-
-}
-@media screen and (max-width: 1000px){
-
-}
 @media screen and (max-width: 750px){
   .tri-ctn {
     flex-direction: row;
@@ -122,10 +113,19 @@ input[type="checkbox"] {
   }
   .tri-fournisseur select,
   .tri-etat select{
-    width: 100%;
+    width: 94%;
   }
   .tri-fournisseur,
   .tri-etat {
     flex-direction: column;
+  }
+}
+@media screen and (max-width: 500px){
+  .tri-ctn.mob h4{
+    font-size: 13px;
+  }
+  .tri-fournisseur select,
+  .tri-etat select{
+    width: 100%;
   }
 }
