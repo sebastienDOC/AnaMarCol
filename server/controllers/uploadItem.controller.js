@@ -16,7 +16,7 @@ module.exports.uploadItem = async (req, res) => {
             throw new Error('Invalid file');
         }
 
-        if (req.file.size > 2000000) {
+        if (req.file.size > 2500000) {
             throw new Error('Max size');
         }
     } catch (err) {

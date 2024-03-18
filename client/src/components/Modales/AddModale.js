@@ -1,11 +1,10 @@
-// AddModal.jsx
 import React from 'react';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../actions/item.actions";
 import "./AddModale.css"
 
-const AddModal = ({ onClose, posterId, modifierId }) => {
+const AddModal = ({ onClose, posterId, modifierId }) => { 
     const [denomination, setDenomination] = useState("");
     const [fournisseur, setFournisseur] = useState("");
     const [quantite, setQuantite] = useState("");
@@ -24,6 +23,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
             setQuantite("");
             setEtat("");
             onClose();
+
         } catch (error) {
             console.error("Erreur lors de la soumission de l'article", error);
         }
@@ -58,6 +58,7 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
                         <option value="Aures">Aures</option>
                         <option value="LDLC">LDLC</option>
                         <option value="VNE">VNE</option>
+                        <option value="TPV Line">TPV Line</option>
                         <option value="Oxhoo">Oxhoo</option>
                         <option value="Monétique et Services">Monétique et Services</option>
                         <option value="MD Ouest">MD Ouest</option>

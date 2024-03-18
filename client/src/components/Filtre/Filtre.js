@@ -78,7 +78,7 @@ const FiltreArticles = ({ onFilterChange }) => {
 
         <h4>Fournisseur :</h4>
         <div className='tri-fournisseur'>
-          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'TPV Line', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
             <label key={value}>
               <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseursChangeDesk(value)} />
               {value}

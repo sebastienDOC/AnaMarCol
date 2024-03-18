@@ -13,6 +13,13 @@ const ItemModale = ({ onClose }) => {
     const modifierName = useSelector((state) => state.userReducer.pseudo);
     const [quantite, setQuantite] = useState(selectedItemQuantite || '');
     const [updateForm, setUpdateForm] = useState(false);
+    const posterId = selectedItemInfo?.posterId;
+    const users = useSelector((state) => state.usersReducer || []);
+
+    const findUserById = (users, id) => {
+        return users.find(user => user._id === id);
+    };
+    const matchingUser = findUserById(users, posterId);
 
     const handlePicture = async (e) => {
         e.preventDefault();
@@ -82,6 +89,21 @@ const ItemModale = ({ onClose }) => {
                         ) : (
                             <p>Aucune image disponible</p>
                         )}
+                        {posterId && (userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201') && (
+                            <div className='modal-infos'>
+                                <div className='modal-infos'>
+                                    <p>Créé par {matchingUser ? matchingUser.pseudo : ""} le {dateParser(selectedItemInfo ? selectedItemInfo.createdAt : "")}</p>
+                                </div>
+                            </div>
+                        )}
+                        {!posterId && (userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201') && (
+                            <div className='modal-infos'>
+                                <div className='modal-infos'>
+                                    <p>Créé par Edith LECORDIER</p>
+                                </div>
+                            </div>
+                        )}
+
                     </div>
 
                     <div className='modal-right'>

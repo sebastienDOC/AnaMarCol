@@ -22,9 +22,12 @@ module.exports.itemInfo = (req, res) => {
 };
 
 module.exports.readItem = (req, res) => {
-    ItemModel.find()
+    ItemModel
+        .find()
+        .sort({ denomination: 1 })
         .then(docs => {
-            res.send(docs);
+            res
+            .send(docs);
         })
         .catch(err => {
             console.log('Error to get data: ' + err);
@@ -35,13 +38,18 @@ module.exports.readItem = (req, res) => {
 module.exports.createItem = async (req, res) => {
     const {denomination, quantite, fournisseur, etat, posterId, modifierName} = req.body
     try {
-        const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierName })
-        return res.status(200).json({ item: item._id})
+        const item = await ItemModel.create({denomination, fournisseur, etat, quantite, posterId, modifierName });
+
+        // Récupération de tous les articles après la création de l'article
+        const sortedItems = await ItemModel.find().sort({ denomination: 1 });
+
+        return res.status(200).json({ item: item._id, sortedItems });
     } catch (err){
         const errors = createItemErrors(err)
         return res.status(400).json({ errors })
     }
 }
+
 
 module.exports.updateItem = async (req, res) => {
     if (!ObjectID.isValid(req.params.id)) 

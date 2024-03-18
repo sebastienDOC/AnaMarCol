@@ -17,6 +17,12 @@ export default function Menu() {
   const [currentPage, setCurrentPage] = useState(1);
   const isMenuOpen = useSelector((state) => state.menuReducer.isMenuOpen);
 
+  const [currentFilters, setCurrentFilters] = useState({
+    selectedFournisseurs: [],
+    selectedEtats: [],
+    searchTerm: ''
+  });
+
   const openAddModal = () => {
     setIsAddModalOpen(true);
   };
@@ -30,16 +36,7 @@ export default function Menu() {
   const isOnArticlePage = location.pathname === '/articles';
 
   const handleFilterChange = ({ selectedFournisseurs, selectedEtats, searchTerm }) => {
-    const newFilteredItems = itemsData.filter((item) => {
-      const fournisseurMatch = selectedFournisseurs.length === 0 || selectedFournisseurs.includes(item.fournisseur);
-      const etatMatch = selectedEtats.length === 0 || selectedEtats.includes(item.etat);
-      const searchTermMatch = !searchTerm || item.denomination.toLowerCase().includes(searchTerm.toLowerCase());
-
-      return fournisseurMatch && etatMatch && searchTermMatch;
-    });
-
-    setFilteredItems(newFilteredItems);
-    setCurrentPage(1)
+    setCurrentFilters({ selectedFournisseurs, selectedEtats, searchTerm });
   };
 
   return (
@@ -91,7 +88,7 @@ export default function Menu() {
           </li>
         </ul>
 
-        {isOnArticlePage && <FiltreArticles onFilterChange={handleFilterChange}/>}
+        {isOnArticlePage && <FiltreArticles onFilterChange={handleFilterChange} currentFilters={currentFilters}/>}
       </div>
 
       <button onClick={handleMenuToggle} className={`toggle-menu-button ${isMenuOpen ? '' : 'sticky'}`}>
@@ -117,6 +114,7 @@ export default function Menu() {
               setFilteredItems={setFilteredItems}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              currentFilters={currentFilters}
             />
           </>
         )}

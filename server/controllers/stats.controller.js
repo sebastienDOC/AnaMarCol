@@ -54,23 +54,22 @@ exports.getNumberOfArticlesWithStockBelow5 = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-// stats.controller.js
 
 exports.getArticlesWithLowStock = async (req, res) => {
   try {
-    const articlesWithLowStock = await ItemModel.find({
-      $expr: {
-        $lt: [{ $toInt: "$quantite" }, 5]
-      }
-    });
+    const articlesWithLowStock = await ItemModel
+      .find({
+        $expr: {
+          $lt: [{ $toInt: "$quantite" }, 5]
+        }
+      })
+      .sort({ denomination: 1 });
     res.json(articlesWithLowStock);
   } catch (error) {
     console.error('Error fetching articles with low stock:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
-
 
 // Fournisseurs
 exports.getFournisseursList = async (req, res) => {

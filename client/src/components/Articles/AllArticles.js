@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from '../../components/Pagination/Pagination';
 import './AllArticles.css';
@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import DeleteItem from "../Delete/Delete";
 import { setSelectedItemId, setSelectedItemQuantite, deleteItem, updateQuantite } from '../../actions/item.actions';
 
-const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPage}) => {
+const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPage, currentFilters }) => {
   const dispatch = useDispatch();
   const itemsData = useSelector((state) => state.itemsReducer.items || []);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -22,6 +22,19 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
     setFilteredItems(itemsData);
   }, [itemsData, setFilteredItems, setCurrentPage]);
 
+  useEffect(() => {
+    const newFilteredItems = itemsData.filter(item => {
+      const fournisseurMatch = currentFilters.selectedFournisseurs.length === 0 || currentFilters.selectedFournisseurs.includes(item.fournisseur);
+      const etatMatch = currentFilters.selectedEtats.length === 0 || currentFilters.selectedEtats.includes(item.etat);
+      const searchTermMatch = !currentFilters.searchTerm || item.denomination.toLowerCase().includes(currentFilters.searchTerm.toLowerCase());
+      
+      return fournisseurMatch && etatMatch && searchTermMatch;
+    });
+
+    setFilteredItems(newFilteredItems);
+    setCurrentPage(1);
+  }, [itemsData, currentFilters]);
+
   const currentItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -32,16 +45,16 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
     }
   };
 
+  const closeAddModal = () => {
+    dispatch(setSelectedItemId(null));
+    setIsAddModalOpen(false);
+  };
+
   const handleDeleteItem = (itemId, fournisseur, etat) => {
     dispatch(deleteItem(itemId, fournisseur, etat));
     const updatedFilteredItems = filteredItems.filter((item) => item._id !== itemId);
     setFilteredItems(updatedFilteredItems);
     dispatch(setSelectedItemQuantite(null));
-  };
-
-  const closeAddModal = () => {
-    dispatch(setSelectedItemId(null));
-    setIsAddModalOpen(false);
   };
 
   const handleQuantityChange = (e, itemId, operation) => {
@@ -73,33 +86,34 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
         <AnimatePresence>
           {filteredItems.length > 0 && (
             <ul className='all-items'>
-              {currentItems.map((item) => (
-                <motion.li
-                  key={item._id}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => handleItemClick(item._id)}
-                >
-                  {userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201' ? (
-                    <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
-                  ) : ""}
-                  <img 
-                    src={item.image}
-                    alt="Article"
-                    className='item-img'
-                  />
-                  <h3>{item.denomination}</h3>
-                  <h4>{item.fournisseur}</h4>
-                  <p>{item.etat}</p>
-                  <div className="items-quantity">
-                    <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')} aria-label="Retirer">-</button>
-                    <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
-                    <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')} aria-label="Ajouter">+</button>
-                  </div>
-                </motion.li>
-              ))}
+              {currentItems
+                .map((item) => (
+                  <motion.li
+                    key={item._id}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => handleItemClick(item._id)}
+                  >
+                    {userDataId === '65afe8c7c307f521781311fd' || userDataId === '65afe8e4c307f52178131201' ? (
+                      <DeleteItem id={item._id} onDelete={() => handleDeleteItem(item._id, item.fournisseur, item.etat)} />
+                    ) : ""}
+                    <img 
+                      src={item.image}
+                      alt="Article"
+                      className='item-img'
+                    />
+                    <h3>{item.denomination}</h3>
+                    <h4>{item.fournisseur}</h4>
+                    <p>{item.etat}</p>
+                    <div className="items-quantity">
+                      <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')} aria-label="Retirer">-</button>
+                      <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
+                      <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')} aria-label="Ajouter">+</button>
+                    </div>
+                  </motion.li>
+                ))}
             </ul>
           )}
           {filteredItems.length === 0 && (

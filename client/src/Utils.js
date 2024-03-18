@@ -14,7 +14,7 @@ export const uploadErrors = (err, detectedMimeType, fileName) => {
     }
 
     if (err.message.includes('Max size')) {
-        errors.maxSize = 'Le fichier est trop volumineux, maximum 500ko';
+        errors.maxSize = 'Le fichier est trop volumineux, maximum 2.5Mo';
     }
 
     console.error('Detected MIME Type:', detectedMimeType);
