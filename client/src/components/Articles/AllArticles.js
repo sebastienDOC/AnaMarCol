@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from '../../components/Pagination/Pagination';
 import './AllArticles.css';
@@ -33,7 +33,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
 
     setFilteredItems(newFilteredItems);
     setCurrentPage(1);
-  }, [itemsData, currentFilters]);
+  }, [itemsData, currentFilters, setCurrentPage, setFilteredItems]);
 
   const currentItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
