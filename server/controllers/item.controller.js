@@ -62,24 +62,26 @@ module.exports.updateItem = async (req, res) => {
             return res.status(404).send('Item not found');
         }
 
-        // Met à jour les champs individuellement en respectant les middlewares
         if (req.body.denomination) item.denomination = req.body.denomination;
         if (req.body.fournisseur) item.fournisseur = req.body.fournisseur;
         if (req.body.etat) item.etat = req.body.etat;
-        if (req.body.quantite) item.quantite = req.body.quantite;
+        
+        if (req.body.hasOwnProperty('quantite')) {
+            item.quantite = req.body.quantite < 0 ? 0 : req.body.quantite;
+        }
+        
         if (req.body.image) item.image = req.body.image;
         if (req.body.modifierName) item.modifierName = req.body.modifierName;
 
-        // Enregistrez les modifications
         const updatedItem = await item.save();
 
-        // Renvoyez la réponse avec `modifierName`
         return res.status(200).json({ item: updatedItem });
     } catch (err) {
         console.error('Error updating item:', err);
         return res.status(500).json({ message: err.message || 'Internal Server Error' });
     }
 };
+
 
 module.exports.deleteItem = async (req, res) => {
     if (!ObjectID.isValid(req.params.id)) 
