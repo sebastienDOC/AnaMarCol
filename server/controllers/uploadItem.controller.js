@@ -24,7 +24,7 @@ module.exports.uploadItem = async (req, res) => {
         return res.status(400).json({ errors });
     }
 
-    const fileName = req.body.denomination + '.jpg';
+    const fileName = req.body.denomination + req.body.fournisseur + req.body.etat + '.jpg';
     const filePath = path.join(__dirname, `/../../client/public/uploads/items/${fileName}`);
 
     try {

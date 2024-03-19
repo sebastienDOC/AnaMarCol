@@ -29,6 +29,8 @@ const ItemModale = ({ onClose }) => {
 
             const data = new FormData();
             data.append("denomination", selectedItemInfo.denomination);
+            data.append("fournisseur", selectedItemInfo.fournisseur);
+            data.append("etat", selectedItemInfo.etat);
             data.append("itemId", selectedItemInfo._id);
             data.append("file", file);
             data.append("modifierId", modifierId);
