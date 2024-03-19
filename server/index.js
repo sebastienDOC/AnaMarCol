@@ -13,7 +13,7 @@ const app = express();
 
 const corsOptions = {
     // origin: process.env.CLIENT_URL,
-    origin: "https://anamarcol.vercel.app/",
+    origin: "https://anamarcol.vercel.app",
     credentials: true,
     allowedHeaders: ['Content-Type', 'sessionID'],
     exposedHeaders: ['sessionID'],
