@@ -12,7 +12,8 @@ const cors = require('cors')
 const app = express();
 
 const corsOptions = {
-    origin: 'https://anamarcol-front.onrender.com',
+    // origin: 'https://anamarcol-front.onrender.com',
+    origin: 'https://anamarcol.vercel.app/',
     // origin: process.env.CLIENT_URL,
     credentials: true,
     allowedHeaders: ['Content-Type', 'sessionID'],
