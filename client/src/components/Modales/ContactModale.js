@@ -44,7 +44,7 @@ const ContactModale = ({ onClose, contactId }) => {
                         {selectedContactInfo && selectedContactInfo.picture ? (
                             <>
                                 <img src={selectedContactInfo.picture} alt="Contact" />
-                                <form  onSubmit={handlePicture} className="upload-image">
+                                {/* <form  onSubmit={handlePicture} className="upload-image">
                                     <label htmlFor="file">Parcourir...</label>
                                     <input 
                                         type="file" 
@@ -56,7 +56,7 @@ const ContactModale = ({ onClose, contactId }) => {
                                     />
                                     <br/>
                                     <input type="submit" value="Envoyer" className="modal-btn" />
-                                </form>
+                                </form> */}
                                 <p className='error-message-contact'></p>
                             </>
                         ) : (
