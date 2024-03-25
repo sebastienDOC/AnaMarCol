@@ -8,9 +8,13 @@ import { useContext } from 'react';
 import { UidContext } from '../../components/AppContext';
 
 export default function Membres() {
-    const usersData = useSelector((state) => state.usersReducer)
-    const uid = useContext(UidContext)
+    const usersData = useSelector((state) => state.usersReducer);
+    const uid = useContext(UidContext);
     const isMenuOpen = useSelector((state) => state.menuReducer.isMenuOpen);
+
+    if (!Array.isArray(usersData)) {
+        return null;
+    }
 
     return (
         <div>
@@ -47,4 +51,4 @@ export default function Membres() {
             }
         </div>
     )
-}        
+}
