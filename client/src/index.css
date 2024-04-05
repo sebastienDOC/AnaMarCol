@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   max-width: 1920px;
   background-color: #F5F1E3;
+  overflow-y: hidden;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -92,6 +93,9 @@ i {
   }
 }
 @media screen and (max-width: 750px){
+  body {
+    overflow-y: auto;
+  }
   h1 {
     font-size: 24px;
   }

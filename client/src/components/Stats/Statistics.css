@@ -171,6 +171,8 @@ table, th, td {
         width: 35vw;
     }
 }
-@media screen and (max-width: 500px){
-
+@media screen and (max-width: 400px){
+    .stats-container {
+        flex-direction: column;
+    }
 }

@@ -19,21 +19,25 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
   const ITEMS_PER_PAGE = useItemsPerPage();
 
   useEffect(() => {
-    setFilteredItems(itemsData);
-  }, [itemsData, setFilteredItems, setCurrentPage]);
-
-  useEffect(() => {
     const newFilteredItems = itemsData.filter(item => {
       const fournisseurMatch = currentFilters.selectedFournisseurs.length === 0 || currentFilters.selectedFournisseurs.includes(item.fournisseur);
-      const etatMatch = currentFilters.selectedEtats.length === 0 || currentFilters.selectedEtats.includes(item.etat);
+      // const etatMatch = currentFilters.selectedEtats.length === 0 || currentFilters.selectedEtats.includes(item.etat);
       const searchTermMatch = !currentFilters.searchTerm || item.denomination.toLowerCase().includes(currentFilters.searchTerm.toLowerCase());
+      const prepaCGMatch = !currentFilters.selectedPrepaCG || item.prepaCG === currentFilters.selectedPrepaCG;
+      const prepaCaisseMatch = !currentFilters.selectedPrepaCaisse || item.prepaCaisse === currentFilters.selectedPrepaCaisse;
+      const prepaTPVMatch = !currentFilters.selectedPrepaTPV || item.prepaTPV === currentFilters.selectedPrepaTPV;
+      const preparationMatch = !currentFilters.selectedPreparation || item.preparation === currentFilters.selectedPreparation;      
       
-      return fournisseurMatch && etatMatch && searchTermMatch;
+      return fournisseurMatch && searchTermMatch && prepaCGMatch && prepaCaisseMatch && prepaTPVMatch && preparationMatch;
     });
-
+  
     setFilteredItems(newFilteredItems);
     setCurrentPage(1);
   }, [itemsData, currentFilters, setCurrentPage, setFilteredItems]);
+
+  useEffect(() => {
+    setFilteredItems(itemsData)
+  }, [itemsData, setFilteredItems, setCurrentPage]);
 
   const currentItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);

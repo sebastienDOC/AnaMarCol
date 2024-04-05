@@ -27,6 +27,8 @@ export default function Login() {
             window.location = '/home'
         })
         .catch((err) => {
+            console.log("email:", email)
+            console.log("password:", password)
             emailError.innerHTML = err.response.data.errors.email
             passwordError.innerHTML = err.response.data.errors.password
         })
@@ -52,7 +54,7 @@ export default function Login() {
                         <h1>Gestion de stock</h1>
                         <h2>AnaMarCol</h2>
                     </div>
-                    <form className='login-logs' action='' onSubmit={handleLogin} id="sign-up-form">
+                    <form className='login-logs' action='' onSubmit={handleLogin} id="sign-up-form" autoComplete='off'>
                         <label htmlFor='email'>E-mail</label>
                         <input 
                             type="email" 
@@ -76,7 +78,7 @@ export default function Login() {
                             required 
                         />
                         <div className='password error'></div>
-                        <input type="submit" value='Se connecter' className='form-btn' />
+                        <input type="submit" value='Se connecter' className='form-btn' autoComplete='off'/>
                     </form>
                 </div>
             )}

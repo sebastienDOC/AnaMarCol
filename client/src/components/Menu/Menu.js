@@ -19,8 +19,11 @@ export default function Menu() {
 
   const [currentFilters, setCurrentFilters] = useState({
     selectedFournisseurs: [],
-    selectedEtats: [],
-    searchTerm: ''
+    // selectedEtats: [],
+    searchTerm: '',
+    selectedPrepaCG: [],
+    selectedPrepaCaisse: [],
+    selectedPrepaTPV: [],
   });
 
   const openAddModal = () => {
@@ -35,8 +38,8 @@ export default function Menu() {
 
   const isOnArticlePage = location.pathname === '/articles';
 
-  const handleFilterChange = ({ selectedFournisseurs, selectedEtats, searchTerm }) => {
-    setCurrentFilters({ selectedFournisseurs, selectedEtats, searchTerm });
+  const handleFilterChange = ({ selectedFournisseurs, searchTerm, selectedPrepaCG, selectedPrepaCaisse, selectedPrepaTPV}) => {
+    setCurrentFilters({ selectedFournisseurs, searchTerm, selectedPrepaCG, selectedPrepaCaisse, selectedPrepaTPV});
   };
 
   return (

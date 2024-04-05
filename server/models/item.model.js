@@ -30,6 +30,15 @@ const ItemSchema = new mongoose.Schema(
         etat: {
             type: String,
             required: true
+        },
+        prepaCG: {
+            type: Boolean,
+        },
+        prepaCaisse: {
+            type: Boolean,
+        },
+        prepaTPV: {
+            type: Boolean,
         }
     },
     {
