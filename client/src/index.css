@@ -65,6 +65,18 @@ i {
   color: red;
   font-weight: bold;
 }
+.pink {
+  background-color: #D07E87;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.orange {
+  background-color: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
 .closed ~ .main-content {
   transform: translateX(calc(-50vw + 50%)); 
   transition: transform 0.3s ease-in-out;

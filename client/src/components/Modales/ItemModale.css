@@ -32,7 +32,6 @@
 img.modal-left-img {
     max-width: 300px;
     max-height: 300px;
-    border-radius: 20px;
     object-fit: cover;
 }
 .upload-image {
@@ -95,7 +94,6 @@ img.modal-left-img {
     img.modal-left-img {
         max-width: 200px;
         max-height: 200px;
-        border-radius: 20px;
         object-fit: cover;
     }
 }

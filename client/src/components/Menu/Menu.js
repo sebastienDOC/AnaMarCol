@@ -91,7 +91,7 @@ export default function Menu() {
           </li>
         </ul>
 
-        {isOnArticlePage && <FiltreArticles onFilterChange={handleFilterChange} currentFilters={currentFilters}/>}
+        {isOnArticlePage && <FiltreArticles setCurrentPage={setCurrentPage} onFilterChange={handleFilterChange} currentFilters={currentFilters}/>}
       </div>
 
       <button onClick={handleMenuToggle} className={`toggle-menu-button ${isMenuOpen ? '' : 'sticky'}`}>

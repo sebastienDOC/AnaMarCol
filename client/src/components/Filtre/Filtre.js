@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import './Filtre.css';
 
-const FiltreArticles = ({ onFilterChange }) => {
+const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
   const [filters, setFilters] = useState({
     selectedFournisseurs: '',
     // selectedEtats: '',
@@ -22,6 +22,7 @@ const FiltreArticles = ({ onFilterChange }) => {
   
       setSelectedFournisseurs(updatedFournisseurs);
       onFilterChange({ selectedFournisseurs: updatedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      setCurrentPage(1);
     },
     [selectedFournisseurs, filters.searchTerm, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, onFilterChange]
   );
@@ -32,6 +33,7 @@ const FiltreArticles = ({ onFilterChange }) => {
       const value = event.target.value;
       setFilters({ ...filters, selectedFournisseurs: value });
       onFilterChange({ selectedFournisseurs: value, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      setCurrentPage(1);
     },
     [filters, onFilterChange]
   );
@@ -62,6 +64,7 @@ const FiltreArticles = ({ onFilterChange }) => {
       const value = event.target.value;
       setFilters({ ...filters, searchTerm: value });
       onFilterChange({ selectedFournisseurs: filters.selectedFournisseurs, searchTerm: value, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      setCurrentPage(1);
     },
     [filters, onFilterChange]
   );
@@ -71,6 +74,7 @@ const FiltreArticles = ({ onFilterChange }) => {
   
     setFilters({ ...filters, selectedPrepaCG: updatedPrepaCG });
     onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: updatedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+    setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);
   
   const handlePrepaCaisseChangeDesk = useCallback(() => {
@@ -78,6 +82,7 @@ const FiltreArticles = ({ onFilterChange }) => {
   
     setFilters({ ...filters, selectedPrepaCaisse: updatedPrepaCaisse });
     onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: updatedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+    setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);
   
   const handlePrepaTPVChangeDesk = useCallback(() => {
@@ -85,6 +90,7 @@ const FiltreArticles = ({ onFilterChange }) => {
   
     setFilters({ ...filters, selectedPrepaTPV: updatedPrepaTPV });
     onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: updatedPrepaTPV });
+    setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);  
   
   const handlePreparationChange = useCallback(
@@ -104,6 +110,7 @@ const FiltreArticles = ({ onFilterChange }) => {
   
       setFilters(updatedFilters);
       onFilterChange(updatedFilters);
+      setCurrentPage(1);
     },
     [filters, onFilterChange]
   );

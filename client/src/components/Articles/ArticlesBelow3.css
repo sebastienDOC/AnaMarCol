@@ -1,0 +1,111 @@
+.art3-ctn{
+    width: 85vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+}
+.art3-title {
+    margin-top: 20px;
+}
+.art3-ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin: auto;
+    padding: 0;
+}
+.art3-li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #CED7C1;
+    background-color: #CED7C1;
+    border-radius: 20px;
+    padding: 5px;;
+}
+img.art3-img{
+    height: 100px;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media screen and (max-width: 1500px){
+    .art3-ctn {
+        margin: auto;
+    }
+    .art3-ul {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .art3-ul li{
+        width: 15vw;
+    }
+}
+@media screen and (max-width: 1250px){
+    .art3-ctn {
+        width: 80vw;
+    }
+    .art3-ul {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+    }
+}
+@media screen and (max-width: 1000px){
+    .art3-ul li{
+        padding: 0 0 5px 0;
+        width: 20vw;
+    }
+    .art3-ul li img{
+        width: 100%;
+        padding: 0;
+        border-radius: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        object-position: top;
+    }
+    .art3-li h3 {  
+        font-size: 16px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+    }
+    .art3-li h4 {  
+        font-size: 15px;
+    }
+    .art3-li p {  
+        font-size: 13px;
+    }
+}
+@media screen and (max-width: 750px){
+    .art3-ul {
+        grid-template-columns: 1fr 1fr;
+        margin: 10px;
+    }
+    .art3-ul li{
+        width: 100%;
+    }
+    .art3-li h3 {  
+        font-size: 15px;
+    }
+    .art3-li h4 {  
+        font-size: 14px;
+    }
+    .art3-li p {  
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 500px){
+    .art3-li {
+        padding: 0;
+    }
+    .art3-li img {
+        width: 100%;
+        min-height: 100px;
+        padding: 0;
+    }
+}

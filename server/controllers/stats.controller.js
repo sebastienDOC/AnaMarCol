@@ -41,16 +41,16 @@ exports.getNumberOfSuppliers = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
-exports.getNumberOfArticlesWithStockBelow5 = async (req, res) => {
+exports.getNumberOfArticlesWithStockBelow3 = async (req, res) => {
   try {
     const numberOfLowStockArticles = await ItemModel.countDocuments({
       $expr: {
-        $lt: [ { $toInt: "$quantite" }, 5 ]
+        $lt: [ { $toInt: "$quantite" }, 3 ]
       }
     });
     res.status(200).json({ numberOfLowStockArticles: `${numberOfLowStockArticles}` || 0 });
   } catch (error) {
-    console.error('Erreur lors du calcul du nombre d\'articles avec un stock inférieur à 5 :', error);
+    console.error('Erreur lors du calcul du nombre d\'articles avec un stock inférieur à 3 :', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
@@ -60,7 +60,7 @@ exports.getArticlesWithLowStock = async (req, res) => {
     const articlesWithLowStock = await ItemModel
       .find({
         $expr: {
-          $lt: [{ $toInt: "$quantite" }, 5]
+          $lt: [{ $toInt: "$quantite" }, 3]
         }
       })
       .sort({ denomination: 1 });
@@ -97,7 +97,7 @@ exports.getStatisticsForFournisseur = async (req, res) => {
           },
           numberOfLowStockArticles: {
             $sum: {
-              $cond: [{ $lt: [{ $toInt: '$quantite' }, 5] }, 1, 0]
+              $cond: [{ $lt: [{ $toInt: '$quantite' }, 3] }, 1, 0]
             }
           }
         }
@@ -142,7 +142,7 @@ exports.getStatisticsForEtat = async (req, res) => {
           },
           numberOfLowStockArticles: {
             $sum: {
-              $cond: [{ $lt: [{ $toInt: '$quantite' }, 5] }, 1, 0]
+              $cond: [{ $lt: [{ $toInt: '$quantite' }, 3] }, 1, 0]
             }
           }
         }

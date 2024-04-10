@@ -4,10 +4,11 @@ import No from '../../assets/no.png'
 import Header from '../../components/Header/Header'
 import Menu from '../../components/Menu/Menu';
 import Statistiques from '../../components/Stats/Statistics';
-import ArticlesBelow5 from '../../components/Articles/ArticlesBelow5';
+import ArticlesBelow3 from '../../components/Articles/ArticlesBelow3';
 import { UidContext } from '../../components/AppContext';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+
 
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
                         <Menu />
                         <div className={`home-both main-content ${isMenuOpen ? 'visible' : 'closed'}`}>
                             <Statistiques />
-                            <ArticlesBelow5 />
+                            <ArticlesBelow3 />
                         </div>
                     </div>
                 </div>

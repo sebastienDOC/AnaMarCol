@@ -26,7 +26,6 @@
     align-items: center;
 }
 .modal-left img {
-    border-radius: 20px;
     max-width: 300px;
     max-height: 300px;
 }
@@ -54,14 +53,12 @@
 }
 @media screen and (max-width: 1000px){
     .modal-left img {
-        border-radius: 20px;
         max-width: 200px;
         max-height: 200px;
     }
 }
 @media screen and (max-width: 500px){
     .modal-left img {
-        border-radius: 20px;
         max-width: 150px;
         max-height: 150px;
     }

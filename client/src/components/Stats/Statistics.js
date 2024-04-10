@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Statistics.css';
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchStatistics, fetchTotalStock, fetchNumberOfSuppliers, fetchNumberOfArticlesWithStockBelow5} from '../../actions/statistics.actions';
+import {fetchStatistics, fetchTotalStock, fetchNumberOfSuppliers, fetchNumberOfArticlesWithStockBelow3} from '../../actions/statistics.actions';
 import { fetchEtatsList, fetchFournisseursList, setFournisseurStatistics, setEtatStatistics } from '../../actions/statistics.actions';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ const Statistiques = () => {
   const numberOfArticles = globalStatistics?.numberOfArticles || 0;
   const totalStock = globalStatistics?.totalStock || 0;
   const numberOfFournisseurs = globalStatistics?.numberOfSuppliers || 0;
-  const numberOfArticlesStockInf5 = globalStatistics?.numberOfLowStockArticles || 0;
+  const numberOfArticlesStockInf3 = globalStatistics?.numberOfLowStockArticles || 0;
 
   const statistics = useSelector((state) => state.statisticsReducer);
   const fournisseursList = statistics?.fournisseursList
@@ -26,7 +26,7 @@ const Statistiques = () => {
         await dispatch(fetchStatistics());
         await dispatch(fetchTotalStock());
         await dispatch(fetchNumberOfSuppliers());
-        await dispatch(fetchNumberOfArticlesWithStockBelow5());
+        await dispatch(fetchNumberOfArticlesWithStockBelow3());
 
         await dispatch(fetchFournisseursList());
         await dispatch(fetchEtatsList());
@@ -77,8 +77,8 @@ const Statistiques = () => {
                           <td className='td-number'>{numberOfFournisseurs}</td>
                       </tr>
                       <tr>
-                          <th className='td-case'>Stock &lt; 5</th>
-                          <td className='td-number'>{numberOfArticlesStockInf5}</td>
+                          <th className='td-case'>Stock &lt; 3</th>
+                          <td className='td-number'>{numberOfArticlesStockInf3}</td>
                       </tr>
                   </tbody>
               </table>
@@ -106,7 +106,7 @@ const Statistiques = () => {
                           <td className='td-number'>{etatsStats['SAV']?.totalStock || 0}</td>
                       </tr>
                       <tr className='tr-etats'>
-                          <td className='td-case'>Stock &lt; 5</td>
+                          <td className='td-case'>Stock &lt; 3</td>
                           <td className='td-number'>{etatsStats['Neuf']?.numberOfLowStockArticles || 0}</td>
                           <td className='td-number'>{etatsStats['SAV']?.numberOfLowStockArticles || 0}</td>
                       </tr>
@@ -124,7 +124,7 @@ const Statistiques = () => {
                     <th>Fournisseur</th>
                     <th className='td-case'>Articles</th>
                     <th className='td-case'>Stock total</th>
-                    <th className='td-case'>Stock &lt; 5</th>
+                    <th className='td-case'>Stock &lt; 3</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -145,7 +145,7 @@ const Statistiques = () => {
                     <th>Fournisseur</th>
                     <th className='td-case'>Articles</th>
                     <th className='td-case'>Stock total</th>
-                    <th className='td-case'>Stock &lt; 5</th>
+                    <th className='td-case'>Stock &lt; 3</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -171,7 +171,7 @@ const Statistiques = () => {
                   <th>Fournisseur</th>
                   <th className='td-case'>Articles</th>
                   <th className='td-case'>Stock total</th>
-                  <th className='td-case'>Stock &lt; 5</th>
+                  <th className='td-case'>Stock &lt; 3</th>
                 </tr>
               </thead>
               <tbody>

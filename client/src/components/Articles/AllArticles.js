@@ -32,7 +32,6 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
     });
   
     setFilteredItems(newFilteredItems);
-    setCurrentPage(1);
   }, [itemsData, currentFilters, setCurrentPage, setFilteredItems]);
 
   useEffect(() => {
@@ -108,13 +107,15 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
                       alt="Article"
                       className='item-img'
                     />
+                    <div className={`${item.etat === 'Neuf' ? 'item-etat pink' : 'item-etat orange'}`}>
+                      <p>{item.etat}</p>
+                    </div>
                     <h3>{item.denomination}</h3>
                     <h4>{item.fournisseur}</h4>
-                    <p>{item.etat}</p>
                     <div className="items-quantity">
-                      <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')} aria-label="Retirer">-</button>
-                      <p className={`${item.quantite >= 5 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
-                      <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')} aria-label="Ajouter">+</button>
+                      <button className="minus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'decrement')} aria-label="Retirer">-</button>
+                      <p className={`${item.quantite >= 3 ? 'item-quantite' : 'red item-quantite'}`}>Stock : {item.quantite}</p>
+                      <button className="plus-btn" onClick={(e) => handleQuantityChange(e, item._id, 'increment')} aria-label="Ajouter">+</button>
                     </div>
                   </motion.li>
                 ))}
@@ -173,4 +174,3 @@ const useItemsPerPage = () => {
 };
 
 export default AllArticles;
-

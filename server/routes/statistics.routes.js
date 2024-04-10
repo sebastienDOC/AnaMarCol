@@ -5,7 +5,7 @@ const statisticsController = require('../controllers/stats.controller');
 router.get('/articles', statisticsController.getNumberOfArticles);
 router.get('/stock', statisticsController.getTotalStock);
 router.get('/fournisseurs', statisticsController.getNumberOfSuppliers);
-router.get('/articles/stockinf5', statisticsController.getNumberOfArticlesWithStockBelow5);
+router.get('/articles/stockinf3', statisticsController.getNumberOfArticlesWithStockBelow3);
 router.get('/articles/low-stock', statisticsController.getArticlesWithLowStock);
 
 // Fournisseurs

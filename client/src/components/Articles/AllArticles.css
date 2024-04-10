@@ -39,10 +39,10 @@
 }
 .all-items li img{  
     height: 100px;
-    max-width: 100%;
+    max-width: 95%;
     padding: 10px;
     border-radius: 20px;
-    object-fit: cover;
+    object-fit: contain;
 }
 .items-quantity {
     display: flex;
@@ -72,6 +72,11 @@
 }
 .all-items h3 {
     font-size: 17px;
+}
+.item-etat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 .item-del {
     border: none;
@@ -164,8 +169,10 @@
     }
     .all-items li img {
         min-height: 100px;
+        width: 95%;
         border-radius: 10px;
-        object-fit: cover;
+        object-fit: contain;
+        padding-bottom: 0;
     }
     .items-quantity  {
         gap: 5px;

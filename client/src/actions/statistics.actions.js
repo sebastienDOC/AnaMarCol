@@ -51,15 +51,15 @@ export const fetchNumberOfSuppliers = () => {
   };
 };
 
-export const fetchNumberOfArticlesWithStockBelow5 = () => {
+export const fetchNumberOfArticlesWithStockBelow3 = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}api/statistics/articles/stockinf5`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}api/statistics/articles/stockinf3`);
       const data = response.data;
 
       dispatch(setGlobalStatistics(data));
     } catch (error) {
-      console.error('Erreur lors de la récupération du nombre d\'articles avec un stock inférieur à 5 :', error);
+      console.error('Erreur lors de la récupération du nombre d\'articles avec un stock inférieur à 3 :', error);
     }
   };
 };
