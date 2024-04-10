@@ -4,17 +4,11 @@ h2 {
 }
 .stats-ctn {
     display: flex;
-    height: 40vh;
+    height: 40%;
     width: 85vw;
     position: relative;
     border-bottom: 1px solid black;
-    padding: 10px;
-}
-.stats-total {
-    display: flex;
-    padding: 5px;
-    flex-direction: column;
-    align-items: center;
+    padding: 10px 10px 20px 10px ;
 }
 .stats-total table,
 .stats-etats table {
@@ -51,19 +45,28 @@ table, th, td {
 .stats-container {
     display: flex;
     justify-content: space-between;
-    margin: auto;
+    margin: 0 auto;
     gap: 10px;
+    height: 100%;
 }
 .stats-fournisseurs,
-.stats-etats {
+.stats-etats,
+.stats-total {
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    margin: auto;
+    
+    margin: 0 auto;
+    height: 100%;
+}
+.stats-etats table,
+.stats-total table,
+.stats-fournisseurs table{
+    height: 100%;
 }
 .table-container {
     display: flex;
     gap: 20px;
+    height: 100%;
 }
 .ul-fournisseurs {
     width: 100%;
@@ -102,6 +105,7 @@ table, th, td {
 .td-fournisseur,
 .td-case {
     width: 8vh;
+    font-weight: bold;
 }
 .stats-fournisseurs.mob {
     display: none;
@@ -120,6 +124,24 @@ table, th, td {
     .stats-container {
         margin: 0 auto;
     }
+    .table-container,
+    .stats-container {
+        width: 65vw;
+        margin: auto;
+    }
+    .stats-container {
+        margin-bottom: 10px;
+    }
+    .table-container table,
+    .stats-total table,
+    .stats-etats table {
+        width: 100%;
+        margin: 0 auto;  
+    }
+    .stats-etats,
+    .stats-total {
+        width: 50%;
+    }
 }
 @media screen and (max-width: 1250px){
     .stats-ctn {
@@ -130,13 +152,13 @@ table, th, td {
     .stats-ctn {
         width: 80vw;
     }
+    .desk {
+        display: none;
+    }
     .stats-fournisseurs.mob {
         display: block;
-        margin: 0 auto;
+        margin: 10px auto 30px;
         width: 70vw;
-    }
-    .stats-fournisseurs.desk {
-        display: none;
     }
     h2 {
         font-size: 18px;
@@ -144,35 +166,51 @@ table, th, td {
     .stats-container {
         gap: 10px;
         height: 100%;
-        margin: 0;
+        width: 70vw;
+        margin: 0 auto;
         justify-content: space-evenly;
     }
     .table-container {
-        flex-direction: column;
+        width: 100%;
+        height: 100%;
     }
+    .table-container table,
     .stats-total table,
     .stats-etats table {
-        width: 30%;
-        margin: 0 auto;
+        width: 100%;
+        height: 100%; 
     }
-    .stats-etats {
-        margin: 0;
+    .stats-etats,
+    .stats-total {
+        width: 100%;
+        height: 100%; 
     }
 }
 @media screen and (max-width: 750px){
     .stats-ctn {
+        width: 100%;
         margin: auto;
     }
+    .stats-container {
+        width: 80%;
+    }
     .stats-fournisseurs.mob {
-        width: 80vw;
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .stats-etats,
+    .stats-total {
+        height: 160px; 
+    }
+}
+@media screen and (max-width: 500px){
+    .stats-container {
+        flex-direction: column;
+        margin-bottom: 20px;
     }
     .stats-total table,
     .stats-etats table {
-        width: 35vw;
-    }
-}
-@media screen and (max-width: 400px){
-    .stats-container {
-        flex-direction: column;
+        width: 100%;
     }
 }

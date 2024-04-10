@@ -100,7 +100,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
   
       if (value === "CashGuard") {
         updatedFilters = { ...updatedFilters, selectedPrepaCG: true, selectedPrepaCaisse: false, selectedPrepaTPV: false };
-      } else if (value === "Caisse OHXHOO") {
+      } else if (value === "Caisse OXHOO") {
         updatedFilters = { ...updatedFilters, selectedPrepaCG: false, selectedPrepaCaisse: true, selectedPrepaTPV: false };
       } else if (value === "Caisse TPV") {
         updatedFilters = { ...updatedFilters, selectedPrepaCG: false, selectedPrepaCaisse: false, selectedPrepaTPV: true };
@@ -131,7 +131,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
 
         <h4>Fournisseur :</h4>
         <div className='tri-fournisseur'>
-          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'TPV Line', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'OXHOO', 'VNE', 'TPV Line', 'MD Ouest', 'Tigra'].map(value => (
             <label key={value}>
               <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseursChangeDesk(value)} />
               {value}
@@ -157,7 +157,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
           </label>
           <label>
             <input type="checkbox" checked={filters.prepaCaisse} onChange={handlePrepaCaisseChangeDesk} />
-            Caisse OHXHOO
+            Caisse OXHOO
           </label>
           <label>
             <input type="checkbox" checked={filters.prepaTPV} onChange={handlePrepaTPVChangeDesk} />
@@ -182,7 +182,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
           <h4>Fournisseur :</h4>
           <select value={filters.selectedFournisseurs} onChange={handleFournisseursChange}>
             <option value="">-- Fournisseur --</option>
-            {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Solumag', 'Tigra'].map(value => (
+            {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'OXHOO', 'VNE', 'MD Ouest', 'Tigra'].map(value => (
               <option key={value} value={value}>{value}</option>
             ))}
           </select>
@@ -203,7 +203,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
           <select value={filters.selectedPreparation} onChange={handlePreparationChange}>
             <option value="">-- Préparation --</option>
             <option value="CashGuard">CashGuard</option>
-            <option value="Caisse OHXHOO">Caisse OHXHOO</option>
+            <option value="Caisse OXHOO">Caisse OXHOO</option>
             <option value="Caisse TPV">Caisse TPV</option>
           </select>
         </div>

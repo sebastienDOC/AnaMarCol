@@ -62,7 +62,6 @@ const AddModal = ({ onClose, posterId, modifierId }) => {
                         <option value="Oxhoo">Oxhoo</option>
                         <option value="Monétique et Services">Monétique et Services</option>
                         <option value="MD Ouest">MD Ouest</option>
-                        <option value="Solumag">Solumag</option>
                         <option value="Tigra">Tigra</option>
                     </select>
                     <div className="fournisseur error"></div>

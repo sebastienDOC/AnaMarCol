@@ -2,7 +2,7 @@
   visibility: hidden;
 }
 nav {
-  margin: auto;
+  margin: 10px auto;
 }
 .pagination {
   width: 85vw;

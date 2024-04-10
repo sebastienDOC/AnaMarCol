@@ -54,8 +54,6 @@ export default function UpdateProfil() {
                             <button onClick={handleUpdate} aria-label="Valider modifications">Valider modifications</button>
                         </>
                     )}
-                    <br/>
-                    <h4>Modifié le : {dateParser(userData.updatedAt)}</h4>
                 </div>
             </div>
         </div>

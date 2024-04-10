@@ -177,4 +177,9 @@
     .items-quantity  {
         gap: 5px;
     }
+    .item-etat {
+        padding: 1px 3px;
+        top: 8px;
+        left: 8px;
+    }
 }

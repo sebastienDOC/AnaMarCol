@@ -55,10 +55,20 @@
     margin: 0 auto;
     padding: 10px 5px;
     gap: 5px;
-    cursor: pointer;
 }
 .contact-item a {
     color: black;
+    border: 1px solid #5d6d46;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-style: italic;
+    transition: all 0.3s;
+}
+.contact-item a:hover {
+    scale: 1.05;
+    color: white;
+    background-color: #5d6d46;
+    transition: all 0.3s;
 }
 
 /* Responsive */

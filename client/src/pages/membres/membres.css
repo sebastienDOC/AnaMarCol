@@ -9,7 +9,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 25px;
-    margin: auto;
+    margin: 20px auto;
 }
 .membres-flex h2{
     margin: 0;

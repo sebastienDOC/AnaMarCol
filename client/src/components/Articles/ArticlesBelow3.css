@@ -24,7 +24,8 @@
     border: 1px solid #CED7C1;
     background-color: #CED7C1;
     border-radius: 20px;
-    padding: 5px;;
+    padding: 5px;
+    position: relative;
 }
 img.art3-img{
     height: 100px;
@@ -66,7 +67,6 @@ img.art3-img{
         border-radius: 0;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-        object-position: top;
     }
     .art3-li h3 {  
         font-size: 16px;
