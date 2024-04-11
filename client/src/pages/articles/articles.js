@@ -8,7 +8,6 @@ import { UidContext } from '../../components/AppContext';
 
 export default function Articles() {
     const uid = useContext(UidContext)
-
     return (
         <div>
           {uid ? (
@@ -23,7 +22,7 @@ export default function Articles() {
               <h1>Vous n'êtes pas connecté.</h1>
               <img src={No} alt='Panneau interdit'/>
               <h2><Link to='/'>Retour à la page de connexion</Link></h2>
-          </div>
+            </div>
           )}
         </div>
       )

@@ -9,8 +9,6 @@ import { UidContext } from '../../components/AppContext';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 
-
-
 export default function Home() {
     const uid = useContext(UidContext)
     const isMenuOpen = useSelector((state) => state.menuReducer.isMenuOpen);
@@ -27,13 +25,13 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                ) : 
+                ) : (
                 <div className='login-false'>
                     <h1>Vous n'êtes pas connecté.</h1>
                     <img src={No} alt='Panneau interdit'/>
                     <h2><Link to='/'>Retour à la page de connexion</Link></h2>
                 </div>
-            }
+            )}
         </div>
     )
 }

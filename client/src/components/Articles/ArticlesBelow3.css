@@ -1,19 +1,19 @@
 .art3-ctn{
-    width: 85vw;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
+    justify-content: space-evenly;
+    margin: 0;
 }
 .art3-title {
-    margin-top: 20px;
+    margin: 20px 0 0;
 }
 .art3-ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 10px;
-    margin: auto;
+    margin: 10px auto;
     padding: 0;
 }
 .art3-li {
@@ -100,6 +100,9 @@ img.art3-img{
     }
 }
 @media screen and (max-width: 500px){
+    .art3-title {
+        font-size: 16px;
+    }
     .art3-li {
         padding: 0;
     }

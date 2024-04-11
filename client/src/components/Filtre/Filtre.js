@@ -21,7 +21,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
         : [...selectedFournisseurs, value];
   
       setSelectedFournisseurs(updatedFournisseurs);
-      onFilterChange({ selectedFournisseurs: updatedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      onFilterChange({ 
+        selectedFournisseurs: updatedFournisseurs, 
+        searchTerm: filters.searchTerm, 
+        selectedPrepaCG: filters.selectedPrepaCG, 
+        selectedPrepaCaisse: filters.selectedPrepaCaisse, 
+        selectedPrepaTPV: filters.selectedPrepaTPV 
+      });
       setCurrentPage(1);
     },
     [selectedFournisseurs, filters.searchTerm, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, onFilterChange]
@@ -32,7 +38,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
     (event) => {
       const value = event.target.value;
       setFilters({ ...filters, selectedFournisseurs: value });
-      onFilterChange({ selectedFournisseurs: value, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      onFilterChange({ 
+        selectedFournisseurs: value, 
+        searchTerm: filters.searchTerm, 
+        selectedPrepaCG: filters.selectedPrepaCG, 
+        selectedPrepaCaisse: filters.selectedPrepaCaisse, 
+        selectedPrepaTPV: filters.selectedPrepaTPV 
+      });
       setCurrentPage(1);
     },
     [filters, onFilterChange]
@@ -45,7 +57,11 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
   //       : [...selectedEtats, value];
 
   //     setSelectedEtats(updatedEtats);
-  //     onFilterChange({ selectedFournisseurs, selectedEtats: updatedEtats, searchTerm: filters.searchTerm });
+  //     onFilterChange({ 
+  //       selectedFournisseurs, 
+  //       selectedEtats: updatedEtats, 
+  //       searchTerm: filters.searchTerm 
+  //     });
   //   },
   //   [selectedFournisseurs, selectedEtats, filters.searchTerm, onFilterChange]
   // );
@@ -63,7 +79,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
     (event) => {
       const value = event.target.value;
       setFilters({ ...filters, searchTerm: value });
-      onFilterChange({ selectedFournisseurs: filters.selectedFournisseurs, searchTerm: value, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+      onFilterChange({ 
+        selectedFournisseurs: filters.selectedFournisseurs, 
+        searchTerm: value, 
+        selectedPrepaCG: filters.selectedPrepaCG, 
+        selectedPrepaCaisse: filters.selectedPrepaCaisse, 
+        selectedPrepaTPV: filters.selectedPrepaTPV 
+      });
       setCurrentPage(1);
     },
     [filters, onFilterChange]
@@ -73,7 +95,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
     const updatedPrepaCG = !filters.selectedPrepaCG;
   
     setFilters({ ...filters, selectedPrepaCG: updatedPrepaCG });
-    onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: updatedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+    onFilterChange({ 
+      selectedFournisseurs, 
+      searchTerm: filters.searchTerm, 
+      selectedPrepaCG: updatedPrepaCG, 
+      selectedPrepaCaisse: filters.selectedPrepaCaisse, 
+      selectedPrepaTPV: filters.selectedPrepaTPV 
+    });
     setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);
   
@@ -81,7 +109,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
     const updatedPrepaCaisse = !filters.selectedPrepaCaisse;
   
     setFilters({ ...filters, selectedPrepaCaisse: updatedPrepaCaisse });
-    onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: updatedPrepaCaisse, selectedPrepaTPV: filters.selectedPrepaTPV });
+    onFilterChange({ 
+      selectedFournisseurs, 
+      searchTerm: filters.searchTerm, 
+      selectedPrepaCG: filters.selectedPrepaCG, 
+      selectedPrepaCaisse: updatedPrepaCaisse, 
+      selectedPrepaTPV: filters.selectedPrepaTPV 
+    });
     setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);
   
@@ -89,7 +123,13 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
     const updatedPrepaTPV = !filters.selectedPrepaTPV;
   
     setFilters({ ...filters, selectedPrepaTPV: updatedPrepaTPV });
-    onFilterChange({ selectedFournisseurs, searchTerm: filters.searchTerm, selectedPrepaCG: filters.selectedPrepaCG, selectedPrepaCaisse: filters.selectedPrepaCaisse, selectedPrepaTPV: updatedPrepaTPV });
+    onFilterChange({ 
+      selectedFournisseurs, 
+      searchTerm: filters.searchTerm, 
+      selectedPrepaCG: filters.selectedPrepaCG, 
+      selectedPrepaCaisse: filters.selectedPrepaCaisse, 
+      selectedPrepaTPV: updatedPrepaTPV 
+    });
     setCurrentPage(1);
   }, [selectedFournisseurs, filters.selectedPrepaCG, filters.selectedPrepaCaisse, filters.selectedPrepaTPV, filters.searchTerm, onFilterChange]);  
   
@@ -131,7 +171,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
 
         <h4>Fournisseur :</h4>
         <div className='tri-fournisseur'>
-          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'OXHOO', 'VNE', 'TPV Line', 'MD Ouest', 'Tigra'].map(value => (
+          {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'TPV Line', 'MD Ouest', 'Tigra'].map(value => (
             <label key={value}>
               <input type="checkbox" value={value} checked={selectedFournisseurs.includes(value)} onChange={() => handleFournisseursChangeDesk(value)} />
               {value}
@@ -152,15 +192,15 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
         <h4>Préparation :</h4>
         <div className='tri-prepa'>
           <label>
-            <input type="checkbox" checked={filters.prepaCG} onChange={handlePrepaCGChangeDesk} />
+            <input type="checkbox" checked={filters.selectedPrepaCG} onChange={handlePrepaCGChangeDesk} />
             CashGuard
           </label>
           <label>
-            <input type="checkbox" checked={filters.prepaCaisse} onChange={handlePrepaCaisseChangeDesk} />
-            Caisse OXHOO
+            <input type="checkbox" checked={filters.selectedPrepaCaisse} onChange={handlePrepaCaisseChangeDesk} />
+            Caisse Oxhoo
           </label>
           <label>
-            <input type="checkbox" checked={filters.prepaTPV} onChange={handlePrepaTPVChangeDesk} />
+            <input type="checkbox" checked={filters.selectedPrepaTPV} onChange={handlePrepaTPVChangeDesk} />
             Caisse TPV
           </label>
         </div>
@@ -182,7 +222,7 @@ const FiltreArticles = ({ setCurrentPage, onFilterChange }) => {
           <h4>Fournisseur :</h4>
           <select value={filters.selectedFournisseurs} onChange={handleFournisseursChange}>
             <option value="">-- Fournisseur --</option>
-            {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'OXHOO', 'VNE', 'MD Ouest', 'Tigra'].map(value => (
+            {['CashGuard', 'Aures', 'LDLC', 'Monétique et Services', 'Oxhoo', 'VNE', 'MD Ouest', 'Tigra'].map(value => (
               <option key={value} value={value}>{value}</option>
             ))}
           </select>

@@ -8,7 +8,7 @@ import rootReducer from './reducers';
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: false,
+  devTools: true,
 });
 
 const root = createRoot(document.getElementById('root'));

@@ -113,6 +113,7 @@ export default function Menu() {
               Ajouter article(s)
             </button>
             <AllArticles
+              itemsData={itemsData}
               filteredItems={filteredItems}
               setFilteredItems={setFilteredItems}
               currentPage={currentPage}

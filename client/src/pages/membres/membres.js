@@ -42,13 +42,13 @@ export default function Membres() {
                         </div> 
                     </div>
                 </div>
-            ) : 
+            ) : (
                 <div className='login-false'>
                     <h1>Vous n'êtes pas connecté.</h1>
                     <img src={No} alt='Panneau interdit'/>
                     <h2><Link to='/'>Retour à la page de connexion</Link></h2>
                 </div>
-            }
+            )}
         </div>
     )
 }

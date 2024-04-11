@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from '../../components/Pagination/Pagination';
 import './AllArticles.css';
@@ -9,15 +9,19 @@ import { setSelectedItemId, setSelectedItemQuantite, deleteItem, updateQuantite 
 
 const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPage, currentFilters }) => {
   const dispatch = useDispatch();
-  const itemsData = useSelector((state) => state.itemsReducer.items || []);
+  const itemsData = useSelector((state) => state?.itemsReducer?.items || []);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const selectedItemId = useSelector((state) => state.itemReducer.selectedItemId);
-  const userDataPseudo = useSelector((state) => state.userReducer.pseudo)
-  const userDataId = useSelector((state) => state.userReducer._id)
-
-  // Nombre d'articles par page dépendant de la largeur de l'écran
+  const userDataPseudo = useSelector((state) => state.userReducer.pseudo);
+  const userDataId = useSelector((state) => state.userReducer._id);
   const ITEMS_PER_PAGE = useItemsPerPage();
-
+  
+  useEffect(() => {
+    if (filteredItems.length === 0) {
+      setFilteredItems(itemsData);
+    }
+  }, [itemsData, filteredItems]);
+  
   useEffect(() => {
     const newFilteredItems = itemsData.filter(item => {
       const fournisseurMatch = currentFilters.selectedFournisseurs.length === 0 || currentFilters.selectedFournisseurs.includes(item.fournisseur);
@@ -26,18 +30,13 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
       const prepaCGMatch = !currentFilters.selectedPrepaCG || item.prepaCG === currentFilters.selectedPrepaCG;
       const prepaCaisseMatch = !currentFilters.selectedPrepaCaisse || item.prepaCaisse === currentFilters.selectedPrepaCaisse;
       const prepaTPVMatch = !currentFilters.selectedPrepaTPV || item.prepaTPV === currentFilters.selectedPrepaTPV;
-      const preparationMatch = !currentFilters.selectedPreparation || item.preparation === currentFilters.selectedPreparation;      
-      
+      const preparationMatch = !currentFilters.selectedPreparation || item.preparation === currentFilters.selectedPreparation;     
+
       return fournisseurMatch && searchTermMatch && prepaCGMatch && prepaCaisseMatch && prepaTPVMatch && preparationMatch;
     });
+    setFilteredItems(newFilteredItems);    
+  }, [itemsData, currentFilters, setFilteredItems]);
   
-    setFilteredItems(newFilteredItems);
-  }, [itemsData, currentFilters, setCurrentPage, setFilteredItems]);
-
-  useEffect(() => {
-    setFilteredItems(itemsData)
-  }, [itemsData, setFilteredItems, setCurrentPage]);
-
   const currentItems = filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -61,7 +60,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
   };
 
   const handleQuantityChange = (e, itemId, operation) => {
-    e.stopPropagation()
+    e.stopPropagation();
     const selectedItem = filteredItems.find(item => item._id === itemId);
 
     if (selectedItem) {
@@ -87,7 +86,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
         className="items-ctn"
       >
         <AnimatePresence>
-          {filteredItems.length > 0 && (
+          {filteredItems.length > 0 ? (
             <ul className='all-items'>
               {currentItems
                 .map((item) => (
@@ -120,8 +119,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
                   </motion.li>
                 ))}
             </ul>
-          )}
-          {filteredItems.length === 0 && (
+          ) : (
             <p>Aucun article ne correspond à vos filtres.</p>
           )}
         </AnimatePresence>
@@ -133,6 +131,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
           totalItems={filteredItems.length}
           paginate={paginate}
           currentPage={currentPage}
+          currentFilters={currentFilters}
         />
 
       </motion.div>
