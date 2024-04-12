@@ -27,8 +27,7 @@ export default function Login() {
             window.location = '/home'
         })
         .catch((err) => {
-            console.log("email:", email)
-            console.log("password:", password)
+            setPassword("")
             emailError.innerHTML = err.response.data.errors.email
             passwordError.innerHTML = err.response.data.errors.password
         })

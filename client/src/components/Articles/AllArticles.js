@@ -103,7 +103,7 @@ const AllArticles = ({filteredItems, setFilteredItems, currentPage, setCurrentPa
                     ) : ""}
                     <img 
                       src={item.image}
-                      alt="Article"
+                      alt={item.denomination}
                       className='item-img'
                     />
                     <div className={`${item.etat === 'Neuf' ? 'item-etat pink' : 'item-etat orange'}`}>

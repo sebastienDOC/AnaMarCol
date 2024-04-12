@@ -73,7 +73,7 @@ const ItemModale = ({ onClose }) => {
                         {selectedItemInfo && selectedItemInfo.image ? (
                             <>
                                 <img src={selectedItemInfo.image} alt="Article" className='modal-left-img'/>
-                                <form  onSubmit={handlePicture} className="upload-image">
+                                {/* <form  onSubmit={handlePicture} className="upload-image">
                                     <label htmlFor="file">Parcourir...</label>
                                     <input 
                                         type="file" 
@@ -86,7 +86,7 @@ const ItemModale = ({ onClose }) => {
                                     <br/>
                                     <input type="submit" value="Envoyer" className="modal-btn"/>
                                 </form>
-                                <p className="error-message"></p>
+                                <p className="error-message"></p> */}
                             </>
                         ) : (
                             <p>Aucune image disponible</p>
